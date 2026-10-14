@@ -1,0 +1,211 @@
+/* ==========================================================================
+   RH GLOBAL CRM — USER PORTAL GLOBAL DESIGN SYSTEM
+   Luxury Travel, Visa & Holiday Booking Theme
+   Mobile-First with Seamless Desktop Responsiveness
+   ========================================================================== */
+
+:root {
+  /* Brand Palette - Deep Forest Green & Natural Pine */
+  --rh-primary: #0f2419;
+  --rh-primary-hover: #173b27;
+  --rh-primary-light: #204d35;
+  --rh-primary-muted: rgba(15, 36, 25, 0.08);
+
+  /* High-Conversion Accent - Vibrant Neon Lime & Meadow */
+  --rh-accent: #c6f243;
+  --rh-accent-hover: #b4e030;
+  --rh-accent-subtle: rgba(198, 242, 67, 0.18);
+  --rh-accent-border: rgba(198, 242, 67, 0.45);
+  --rh-accent-text: #0a1810;
+
+  /* Natural Neutrals & Canvas Surfaces */
+  --rh-bg-main: #f0f5f1;
+  --rh-bg-surface: #ffffff;
+  --rh-bg-surface-elevated: #ffffff;
+  --rh-bg-subtle: #e6ede8;
+  --rh-bg-tag: #eef4f0;
+  --rh-dock-bg: rgba(15, 36, 25, 0.94);
+  --rh-glass-white: rgba(255, 255, 255, 0.85);
+  --rh-glass-dark: rgba(15, 36, 25, 0.75);
+
+  /* Typography Colors */
+  --rh-text-primary: #0c1811;
+  --rh-text-secondary: #58675c;
+  --rh-text-muted: #8d9e92;
+  --rh-text-inverse: #ffffff;
+  --rh-text-inverse-muted: #a3b8aa;
+
+  /* Borders & Dividers */
+  --rh-border: rgba(15, 36, 25, 0.09);
+  --rh-border-strong: rgba(15, 36, 25, 0.16);
+  --rh-border-light: rgba(255, 255, 255, 0.2);
+
+  /* Elevation Shadows */
+  --rh-shadow-xs: 0 1px 3px rgba(15, 36, 25, 0.04);
+  --rh-shadow-sm: 0 4px 12px rgba(15, 36, 25, 0.06);
+  --rh-shadow-md: 0 10px 25px rgba(15, 36, 25, 0.08);
+  --rh-shadow-lg: 0 20px 45px rgba(15, 36, 25, 0.12);
+  --rh-shadow-dock: 0 14px 40px rgba(0, 0, 0, 0.28);
+  --rh-shadow-accent: 0 8px 24px rgba(198, 242, 67, 0.35);
+
+  /* Visa & CRM Application Status Tokens */
+  --rh-status-approved: #059669;
+  --rh-status-approved-bg: #ecfdf5;
+  --rh-status-approved-border: #a7f3d0;
+
+  --rh-status-review: #d97706;
+  --rh-status-review-bg: #fffbeb;
+  --rh-status-review-border: #fde68a;
+
+  --rh-status-pending: #2563eb;
+  --rh-status-pending-bg: #eff6ff;
+  --rh-status-pending-border: #bfdbfe;
+
+  --rh-status-action: #dc2626;
+  --rh-status-action-bg: #fef2f2;
+  --rh-status-action-border: #fecaca;
+
+  /* Radiuses */
+  --rh-radius-xs: 6px;
+  --rh-radius-sm: 12px;
+  --rh-radius-md: 20px;
+  --rh-radius-lg: 28px;
+  --rh-radius-xl: 38px;
+  --rh-radius-pill: 9999px;
+
+  /* Typography Scales */
+  --rh-font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --rh-font-display: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+
+  /* Transitions */
+  --rh-transition-fast: 160ms cubic-bezier(0.16, 1, 0.3, 1);
+  --rh-transition-smooth: 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  --rh-transition-spring: 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  background-color: var(--rh-bg-main);
+  color: var(--rh-text-primary);
+  font-family: var(--rh-font-sans);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Typography Helpers */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--rh-font-display);
+  font-weight: 700;
+  color: var(--rh-text-primary);
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+button {
+  cursor: pointer;
+  user-select: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Root App Viewport Management */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--rh-bg-main);
+}
+
+/* Hide scrollbars while preserving scroll functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(198, 242, 67, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(198, 242, 67, 0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn var(--rh-transition-smooth) ease forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp var(--rh-transition-smooth) ease forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn var(--rh-transition-smooth) ease forwards;
+}
+
+.pulse-glow {
+  animation: pulseGlow 2.4s infinite;
+}
