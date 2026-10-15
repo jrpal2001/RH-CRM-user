@@ -11,12 +11,12 @@
   --rh-primary-light: #204d35;
   --rh-primary-muted: rgba(15, 36, 25, 0.08);
 
-  /* High-Conversion Accent - Vibrant Neon Lime & Meadow */
-  --rh-accent: #c6f243;
-  --rh-accent-hover: #b4e030;
-  --rh-accent-subtle: rgba(198, 242, 67, 0.18);
-  --rh-accent-border: rgba(198, 242, 67, 0.45);
-  --rh-accent-text: #0a1810;
+  /* High-Conversion Accent - Refined Luxury Emerald & Mint */
+  --rh-accent: #10b981;
+  --rh-accent-hover: #059669;
+  --rh-accent-subtle: rgba(16, 185, 129, 0.14);
+  --rh-accent-border: rgba(16, 185, 129, 0.35);
+  --rh-accent-text: #ffffff;
 
   /* Natural Neutrals & Canvas Surfaces */
   --rh-bg-main: #f0f5f1;
@@ -46,7 +46,7 @@
   --rh-shadow-md: 0 10px 25px rgba(15, 36, 25, 0.08);
   --rh-shadow-lg: 0 20px 45px rgba(15, 36, 25, 0.12);
   --rh-shadow-dock: 0 14px 40px rgba(0, 0, 0, 0.28);
-  --rh-shadow-accent: 0 8px 24px rgba(198, 242, 67, 0.35);
+  --rh-shadow-accent: 0 8px 24px rgba(16, 185, 129, 0.35);
 
   /* Visa & CRM Application Status Tokens */
   --rh-status-approved: #059669;

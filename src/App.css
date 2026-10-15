@@ -2547,156 +2547,1054 @@
    ========================================================================== */
 
 /* Login View */
-.rh-login-page-wrap {
-  min-height: 85vh;
+/* ==========================================================================
+   UNIFIED RESPONSIVE LOGIN EXPERIENCE (DESKTOP & MOBILE REFERENCE DESIGNS)
+   ========================================================================== */
+.rh-login-unified-container {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  background: #ffffff;
+}
+
+/* --------------------------------------------------------------------------
+   1. DESKTOP VIEW (Split Screen: White Form Left + login.jpg Hero Right)
+   -------------------------------------------------------------------------- */
+.rh-login-desktop-layout {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .rh-login-desktop-layout {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+  }
+}
+
+.rh-login-desktop-form-pane {
+  width: 46%;
+  min-width: 440px;
+  max-width: 580px;
+  min-height: 100vh;
+  background: #ffffff;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px 16px;
+  padding: 40px 52px;
+  overflow-y: auto;
+  z-index: 2;
 }
 
-.rh-login-card {
+/* Subtle Decorative Flower Accents */
+.rh-deco-flower {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.rh-deco-flower.top-flower {
+  top: 72px;
+  left: 24px;
+  transform: rotate(-12deg);
+  opacity: 0.75;
+}
+
+.rh-deco-flower.bottom-flower {
+  bottom: 24px;
+  left: 32px;
+  transform: rotate(20deg);
+  opacity: 0.7;
+}
+
+.rh-desktop-form-inner {
   width: 100%;
-  max-width: 520px;
-  background: var(--rh-bg-surface);
-  border: 1px solid var(--rh-border);
-  border-radius: var(--rh-radius-xl);
-  padding: 36px 32px;
-  box-shadow: var(--rh-shadow-md);
+  max-width: 380px;
+  position: relative;
+  z-index: 2;
 }
 
-.rh-login-brand {
-  text-align: center;
-  margin-bottom: 24px;
+.rh-desktop-brand-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
 }
 
-.rh-logo-badge.large {
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 14px;
-  border-radius: var(--rh-radius-md);
+.rh-desktop-brand-header .rh-logo-badge.small {
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background: var(--rh-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
 }
 
-.rh-login-title {
-  font-size: 24px;
-  font-weight: 800;
-  color: var(--rh-text-primary);
-  margin-bottom: 4px;
-}
-
-.rh-login-subtitle {
+.rh-desktop-brand-title {
   font-size: 13px;
-  color: var(--rh-text-muted);
-  line-height: 1.5;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--rh-primary);
 }
 
-.rh-quick-demo-accounts {
+.rh-desktop-header-text {
   margin-bottom: 20px;
 }
 
-.rh-demo-accounts-title {
-  display: block;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--rh-text-muted);
-  margin-bottom: 8px;
+/* Lettering slightly smaller & sleeker as requested */
+.rh-desktop-welcome-heading {
+  font-size: 23px;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -0.02em;
+  margin-bottom: 4px;
 }
 
-.rh-demo-buttons-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.rh-demo-login-btn {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: var(--rh-bg-main);
-  border: 1px solid var(--rh-border);
-  border-radius: var(--rh-radius-md);
-  padding: 12px 16px;
-  text-align: left;
-  transition: all var(--rh-transition-fast);
-  color: var(--rh-text-primary);
-}
-
-.rh-demo-login-btn:hover {
-  background: #ffffff;
-  border-color: var(--rh-primary);
-  box-shadow: var(--rh-shadow-xs);
-  transform: translateY(-1px);
-}
-
-.rh-demo-login-btn.active {
-  border-color: var(--rh-primary);
-  background: rgba(15, 36, 25, 0.04);
-}
-
-.rh-demo-btn-text {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.rh-demo-btn-text strong {
+.rh-desktop-welcome-sub {
   font-size: 13px;
-  color: var(--rh-text-primary);
+  color: #6b7280;
+  line-height: 1.45;
 }
 
-.rh-demo-btn-text span {
-  font-size: 11px;
-  color: var(--rh-text-muted);
-}
-
-.rh-demo-arrow {
-  color: var(--rh-text-muted);
-}
-
-.rh-auth-divider {
-  text-align: center;
+/* Right Pane: Hero Image with login.jpg */
+.rh-login-desktop-hero-pane {
+  flex: 1;
+  min-height: 100vh;
   position: relative;
-  margin: 20px 0;
+  overflow: hidden;
+  background: #0f2419;
 }
 
-.rh-auth-divider span {
-  background: var(--rh-bg-surface);
-  padding: 0 12px;
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--rh-text-muted);
-  text-transform: uppercase;
+.rh-login-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  inset: 0;
+  transform: scale(1.02);
 }
 
-.rh-role-tab-selector {
-  display: flex;
-  gap: 8px;
+.rh-login-hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(14, 32, 23, 0.45) 0%,
+    rgba(14, 32, 23, 0.2) 35%,
+    rgba(14, 32, 23, 0.88) 100%
+  );
+  z-index: 1;
+}
+
+.rh-login-hero-overlay {
+  position: absolute;
+  bottom: 44px;
+  left: 48px;
+  right: 48px;
+  color: #ffffff;
+  z-index: 2;
+  max-width: 560px;
+}
+
+.rh-hero-social-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 5px 14px 5px 5px;
+  border-radius: var(--rh-radius-pill);
   margin-bottom: 18px;
 }
 
-.rh-role-tab {
-  flex: 1;
-  height: 42px;
+.rh-hero-avatar-stack {
+  display: flex;
+  align-items: center;
+}
+
+.rh-avatar-stack-item {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  object-fit: cover;
+  margin-left: -6px;
+}
+
+.rh-avatar-stack-item:first-child {
+  margin-left: 0;
+}
+
+.rh-hero-social-text {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Scaled down, refined headline */
+.rh-hero-headline {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: #ffffff;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.rh-hero-subtext {
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 18px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.rh-hero-badges-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.rh-hero-badge-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  color: #a7f3d0;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 10px;
   border-radius: var(--rh-radius-pill);
-  background: var(--rh-bg-main);
-  border: 1px solid var(--rh-border);
+  border: 1px solid rgba(167, 243, 208, 0.25);
+}
+
+/* --------------------------------------------------------------------------
+   LOGINCARD COMPONENT STYLES (PURE OTP LOGIN)
+   -------------------------------------------------------------------------- */
+.rh-login-card-component {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Desktop Clean Variant */
+.rh-login-card-component.desktop-clean {
+  color: #111827;
+}
+
+.rh-logincard-role-tabs {
+  display: flex;
+  gap: 6px;
+  background: #f3f4f6;
+  padding: 3px;
+  border-radius: var(--rh-radius-pill);
+  margin-bottom: 16px;
+}
+
+.rh-logincard-role-btn {
+  flex: 1;
+  height: 35px;
+  border: none;
+  background: transparent;
+  border-radius: var(--rh-radius-pill);
+  font-size: 12px;
+  font-weight: 700;
+  color: #6b7280;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all var(--rh-transition-fast);
+}
+
+.rh-logincard-role-btn.active {
+  background: #ffffff;
+  color: var(--rh-primary);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.rh-logincard-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.rh-logincard-confirmed-email {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 14px;
+}
+
+.rh-confirmed-left {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.rh-confirmed-lbl {
+  font-size: 10.5px;
+  color: #6b7280;
+}
+
+.rh-confirmed-val {
+  font-size: 12.5px;
+  color: #111827;
+  font-weight: 700;
+}
+
+.rh-change-email-btn {
+  background: none;
+  border: none;
+  color: var(--rh-primary);
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: all var(--rh-transition-fast);
+}
+
+.rh-change-email-btn:hover {
+  background: rgba(21, 59, 38, 0.08);
+}
+
+.rh-logincard-field {
+  margin-bottom: 14px;
+}
+
+.rh-logincard-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 5px;
+}
+
+.rh-logincard-otp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.rh-logincard-otp-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--rh-primary);
+  background: var(--rh-primary-light);
+  padding: 2px 8px;
+  border-radius: var(--rh-radius-pill);
+}
+
+.rh-logincard-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.rh-logincard-icon {
+  position: absolute;
+  left: 12px;
+  color: #9ca3af;
+  pointer-events: none;
+}
+
+.rh-logincard-input {
+  width: 100%;
+  height: 40px;
+  border-radius: 8px;
+  border: 1.5px solid #e5e7eb;
+  background: #f9fafb;
+  padding: 0 12px 0 36px;
+  font-size: 13px;
+  color: #111827;
+  transition: all var(--rh-transition-fast);
+  outline: none;
+}
+
+.rh-logincard-input:focus {
+  border-color: var(--rh-primary);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(21, 59, 38, 0.1);
+}
+
+.rh-otp-text {
+  letter-spacing: 0.18em;
+  font-family: monospace;
+  font-weight: 700;
+}
+
+/* Resend OTP Row */
+.rh-logincard-resend-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 6px;
+}
+
+.rh-logincard-resend-hint {
+  font-size: 11.5px;
+  color: #6b7280;
+}
+
+.rh-logincard-resend-btn {
+  background: none;
+  border: none;
+  color: var(--rh-primary);
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  transition: all var(--rh-transition-fast);
+}
+
+.rh-logincard-resend-btn:hover:not(:disabled) {
+  text-decoration: underline;
+}
+
+.rh-logincard-resend-btn:disabled {
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+.rh-spinning {
+  animation: rh-spin-anim 1s linear infinite;
+}
+
+@keyframes rh-spin-anim {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.rh-logincard-submit-btn {
+  width: 100%;
+  height: 42px;
+  border-radius: 8px;
+  border: none;
+  background: var(--rh-primary);
+  color: #ffffff;
   font-size: 13px;
   font-weight: 700;
-  color: var(--rh-text-secondary);
+  cursor: pointer;
+  transition: all var(--rh-transition-fast);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  margin-top: 6px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 8px rgba(15, 36, 25, 0.2);
+}
+
+.rh-logincard-submit-btn:hover {
+  background: var(--rh-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(15, 36, 25, 0.3);
+}
+
+.rh-logincard-demos-wrap {
+  padding-top: 14px;
+  border-top: 1px dashed #e5e7eb;
+}
+
+.rh-logincard-demos-title {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.rh-logincard-demos-grid {
+  display: flex;
+  gap: 6px;
+}
+
+.rh-logincard-demo-chip {
+  flex: 1;
+  padding: 7px 8px;
+  border-radius: 7px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  font-size: 11px;
+  font-weight: 600;
+  color: #374151;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
   transition: all var(--rh-transition-fast);
 }
 
-.rh-role-tab.active {
-  background: var(--rh-primary);
-  color: #ffffff;
+.rh-logincard-demo-chip:hover {
   border-color: var(--rh-primary);
-  box-shadow: var(--rh-shadow-xs);
+  background: #ffffff;
+  color: var(--rh-primary);
+}
+
+/* --------------------------------------------------------------------------
+   2. MOBILE VIEW (Matches Reference Image 1 with Transparent Global Colors)
+   -------------------------------------------------------------------------- */
+.rh-login-mobile-layout {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 900px) {
+  .rh-login-mobile-layout {
+    display: none;
+  }
+}
+
+.rh-mobile-bg-wrap {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: #0f2419;
+}
+
+.rh-mobile-bg-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.rh-mobile-bg-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0.15) 40%,
+    rgba(15, 36, 25, 0.85) 100%
+  );
+}
+
+/* Screen 1: Welcome Screen */
+.rh-mobile-welcome-screen {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 48px 20px 36px;
+}
+
+.rh-mobile-top-brand {
+  text-align: center;
+}
+
+/* Scaled down, refined title */
+.rh-mobile-brush-title {
+  font-size: 32px;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: 0.12em;
+  text-shadow: 0 3px 14px rgba(0, 0, 0, 0.6);
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  text-transform: uppercase;
+}
+
+.rh-mobile-brush-title.small {
+  font-size: 26px;
+  letter-spacing: 0.1em;
+}
+
+.rh-mobile-welcome-footer {
+  text-align: center;
+}
+
+.rh-mobile-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 4px 12px;
+  border-radius: var(--rh-radius-pill);
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.rh-mobile-scenery-chips-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin: 14px 0;
+}
+
+.rh-mobile-scenery-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  padding: 5px 12px;
+  border-radius: var(--rh-radius-pill);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.rh-mobile-stats-glass-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-top: 1px solid rgba(255, 255, 255, 0.45);
+  padding: 4px 12px;
+  border-radius: var(--rh-radius-pill);
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.rh-mobile-dont-wait {
+  font-size: 24px;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 4px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.rh-mobile-sub-catch {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 20px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* ==========================================================================
+   SLIDE TO LOGIN COMPONENT (Frosted Glass Slider with Specular Reflection)
+   ========================================================================== */
+.rh-slide-track {
+  width: 100%;
+  height: 58px;
+  border-radius: var(--rh-radius-pill);
+  background: linear-gradient(180deg, rgba(14, 44, 28, 0.55) 0%, rgba(8, 28, 17, 0.72) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1.5px solid rgba(255, 255, 255, 0.32);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.4),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.35),
+    0 10px 30px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  margin-bottom: 12px;
+}
+
+.rh-slide-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.1) 100%);
+  border-radius: var(--rh-radius-pill);
+  pointer-events: none;
+}
+
+.rh-slide-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+  padding-left: 20px;
+}
+
+.rh-slide-text {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 1) 50%,
+    rgba(255, 255, 255, 0.7) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rh-shimmer-sweep 2.4s linear infinite;
+}
+
+@keyframes rh-shimmer-sweep {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.rh-slide-arrows-wrap {
+  display: inline-flex;
+  align-items: center;
+  animation: rh-arrows-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes rh-arrows-pulse {
+  0%, 100% { transform: translateX(0); opacity: 0.7; }
+  50% { transform: translateX(4px); opacity: 1; }
+}
+
+.rh-slide-arrows {
+  color: #ffffff;
+}
+
+/* Sliding Glass Thumb with Real Reflection */
+.rh-slide-thumb {
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  left: 5px;
+  border-radius: 50%;
+  background: linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0.65) 0%,
+    rgba(240, 246, 242, 0.32) 48%,
+    rgba(255, 255, 255, 0.18) 52%,
+    rgba(230, 242, 236, 0.5) 100%
+  );
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(255, 255, 255, 0.75);
+  border-top: 2px solid rgba(255, 255, 255, 0.95);
+  box-shadow:
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.95),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.2),
+    0 6px 18px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  cursor: grab;
+  z-index: 3;
+}
+
+.rh-slide-thumb:active,
+.rh-slide-thumb.dragging {
+  cursor: grabbing;
+  transform: scale(1.04);
+  box-shadow:
+    inset 0 2px 3px rgba(255, 255, 255, 1),
+    0 8px 22px rgba(0, 0, 0, 0.5);
+}
+
+.rh-slide-thumb-icon {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+}
+
+.rh-mobile-direct-tap-link {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px;
+  text-decoration: underline;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  transition: all var(--rh-transition-fast);
+}
+
+.rh-mobile-direct-tap-link:hover {
+  color: #ffffff;
+}
+
+/* Screen 2: Bottom Sheet with Transparent Global Theme */
+.rh-mobile-sheet-screen {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.rh-mobile-sheet-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px 6px;
+  color: #ffffff;
+}
+
+.rh-mobile-close-btn {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.rh-mobile-topbar-title {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.rh-mobile-sheet-image-hero {
+  text-align: center;
+  padding: 6px 20px 16px;
+  color: #ffffff;
+}
+
+.rh-mobile-sheet-tagline {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-top: 2px;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* Transparent Green Glass Curved Sheet with Specular Rim Reflection */
+.rh-mobile-curved-sheet.glass-global {
+  background: linear-gradient(180deg, rgba(14, 44, 28, 0.52) 0%, rgba(8, 28, 17, 0.68) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.45);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 28px 28px 0 0;
+  padding: 22px 20px 30px;
+  box-shadow: 0 -12px 42px rgba(0, 0, 0, 0.5), inset 0 1.5px 2px rgba(255, 255, 255, 0.35), inset 0 0 15px rgba(255, 255, 255, 0.04);
+}
+
+/* LoginCard Mobile Glass Overrides using Proper Frosted Glass with Reflections */
+.rh-login-card-component.mobile-glass .rh-logincard-role-tabs {
+  background: rgba(0, 0, 0, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 0 rgba(255, 255, 255, 0.08);
+  padding: 4px;
+}
+
+.rh-login-card-component.mobile-glass .rh-logincard-role-btn {
+  color: rgba(255, 255, 255, 0.72);
+  transition: all var(--rh-transition-fast);
+}
+
+/* Active tab: translucent light-gray frosted glass with top reflection */
+.rh-login-card-component.mobile-glass .rh-logincard-role-btn.active {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.38) 0%, rgba(225, 235, 229, 0.18) 100%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.75);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.7), inset 0 -1px 1px rgba(0, 0, 0, 0.15), 0 4px 14px rgba(0, 0, 0, 0.25);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+}
+
+.rh-login-card-component.mobile-glass .rh-logincard-confirmed-email {
+  background: rgba(0, 0, 0, 0.32);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.rh-login-card-component.mobile-glass .rh-confirmed-lbl {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.rh-login-card-component.mobile-glass .rh-confirmed-val {
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.rh-login-card-component.mobile-glass .rh-change-email-btn {
+  color: #ffffff;
+  text-decoration: underline;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.rh-login-card-component.mobile-glass .rh-change-email-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.rh-login-card-component.mobile-glass .rh-logincard-label {
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  font-weight: 600;
+}
+
+.rh-login-card-component.mobile-glass .rh-logincard-otp-badge {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(6px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.rh-login-card-component.mobile-glass .rh-logincard-icon {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.rh-login-card-component.mobile-glass .rh-logincard-input {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-top: 1px solid rgba(255, 255, 255, 0.36);
+  color: #ffffff;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.25), 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.rh-login-card-component.mobile-glass .rh-logincard-input::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.rh-login-card-component.mobile-glass .rh-logincard-input:focus {
+  border-color: rgba(255, 255, 255, 0.65);
+  border-top: 1.5px solid #ffffff;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.18), inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.rh-login-card-component.mobile-glass .rh-logincard-resend-hint {
+  color: rgba(255, 255, 255, 0.75);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.rh-login-card-component.mobile-glass .rh-logincard-resend-btn {
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: underline;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Submit button: Proper translucent light-gray glass with reflection sheen & top rim light */
+.rh-login-card-component.mobile-glass .rh-logincard-submit-btn {
+  background: linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0.42) 0%,
+    rgba(230, 240, 234, 0.22) 48%,
+    rgba(255, 255, 255, 0.1) 52%,
+    rgba(220, 234, 226, 0.32) 100%
+  );
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  box-shadow:
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.85),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.2),
+    0 8px 25px rgba(0, 0, 0, 0.35);
+}
+
+.rh-login-card-component.mobile-glass .rh-logincard-submit-btn:hover {
+  background: linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0.52) 0%,
+    rgba(238, 246, 241, 0.3) 48%,
+    rgba(255, 255, 255, 0.18) 52%,
+    rgba(230, 242, 236, 0.4) 100%
+  );
+  border-top: 1.5px solid rgba(255, 255, 255, 0.95);
+  box-shadow:
+    inset 0 2px 3px rgba(255, 255, 255, 0.95),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.2),
+    0 10px 30px rgba(0, 0, 0, 0.4);
+  transform: translateY(-1px);
+}
+
+.rh-login-card-component.mobile-glass .rh-logincard-demos-wrap {
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.rh-login-card-component.mobile-glass .rh-logincard-demos-title {
+  color: rgba(255, 255, 255, 0.72);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.rh-login-card-component.mobile-glass .rh-logincard-demo-chip {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-top: 1px solid rgba(255, 255, 255, 0.38);
+  color: #ffffff;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.25), 0 2px 8px rgba(0, 0, 0, 0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+.rh-login-card-component.mobile-glass .rh-logincard-demo-chip:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  border-top: 1.5px solid rgba(255, 255, 255, 0.8);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.24) 0%, rgba(255, 255, 255, 0.1) 100%);
+  color: #ffffff;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4), 0 4px 12px rgba(0, 0, 0, 0.28);
 }
 
 /* Dashboard Hero Header */
