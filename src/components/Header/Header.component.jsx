@@ -100,14 +100,14 @@ export default function Header() {
           )}
 
           {/* Quick Track Application Button */}
-          <button
+          {/* <button
             type="button"
             className="rh-pill-btn rh-quick-track-btn"
             onClick={() => setIsTrackLookupOpen(true)}
           >
             <CheckCircle size={15} />
             <span>Track Application</span>
-          </button>
+          </button> */}
 
           {/* User Profile / Auth */}
           {user ? (

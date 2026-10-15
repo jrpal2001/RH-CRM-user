@@ -2573,18 +2573,19 @@
 }
 
 .rh-login-desktop-form-pane {
-  width: 46%;
-  min-width: 440px;
-  max-width: 580px;
+  width: 36%;
+  min-width: 380px;
+  max-width: 470px;
   min-height: 100vh;
   background: #ffffff;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 52px;
+  padding: 36px 42px;
   overflow-y: auto;
   z-index: 2;
+  box-shadow: 6px 0 28px rgba(0, 0, 0, 0.08);
 }
 
 /* Subtle Decorative Flower Accents */
@@ -2595,22 +2596,22 @@
 }
 
 .rh-deco-flower.top-flower {
-  top: 72px;
-  left: 24px;
+  top: 56px;
+  left: 20px;
   transform: rotate(-12deg);
-  opacity: 0.75;
+  opacity: 0.65;
 }
 
 .rh-deco-flower.bottom-flower {
   bottom: 24px;
-  left: 32px;
+  left: 24px;
   transform: rotate(20deg);
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 .rh-desktop-form-inner {
   width: 100%;
-  max-width: 380px;
+  max-width: 360px;
   position: relative;
   z-index: 2;
 }
