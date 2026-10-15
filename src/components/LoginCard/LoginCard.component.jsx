@@ -151,16 +151,6 @@ export default function LoginCard({ isMobile = false, onClose = null }) {
               </>
             )}
           </button>
-
-          {isMobile && onClose && (
-            <button
-              type="button"
-              className="rh-logincard-cancel-btn"
-              onClick={onClose}
-            >
-              Cancel
-            </button>
-          )}
         </form>
       ) : (
         /* STEP 2: OTP Sent -> Enter OTP Code & Click "Sign In" */
