@@ -1,19 +1,12 @@
 import React from 'react';
-import { LayoutGrid, ShieldCheck, Palmtree, Trees, Landmark } from 'lucide-react';
 
-const iconMap = {
-  Grid: LayoutGrid,
-  ShieldCheck: ShieldCheck,
-  Palmtree: Palmtree,
-  Trees: Trees,
-  Landmark: Landmark
-};
+export default function CategoryPills({ categories, activeCategory, onSelectCategory }) {
+  if (!categories || !categories.length) return null;
 
-export default function FilterPills({ categories, activeCategory, onSelectCategory }) {
   return (
     <div className="rh-filter-pills-wrap no-scrollbar">
       {categories.map((cat) => {
-        const IconComponent = iconMap[cat.icon] || LayoutGrid;
+        const IconComponent = cat.icon;
         const isActive = activeCategory === cat.id;
 
         return (
@@ -24,7 +17,7 @@ export default function FilterPills({ categories, activeCategory, onSelectCatego
             onClick={() => onSelectCategory(cat.id)}
           >
             <span className="rh-pill-icon-circle">
-              <IconComponent size={14} />
+              {IconComponent && <IconComponent size={14} />}
             </span>
             <span className="rh-pill-label">{cat.label}</span>
           </button>

@@ -1,27 +1,84 @@
-// Mock data for RH Global CRM User Portal
+// Mock data for RH Global CRM User Portal (Company & Individual)
 
-export const currentUser = {
+export const companyUser = {
+  id: "CORP-8820",
+  type: "company",
+  name: "David Chen",
+  companyName: "Acme Global Innovations Ltd",
+  role: "Head of Corporate Mobility & HR",
+  email: "corporate@acmeglobal.com",
+  phone: "+971 4 392 8800",
+  avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+  membership: "RH Corporate Gold Partner",
+  totalEmployees: 48,
+};
+
+export const individualUser = {
   id: "USR-9921",
+  type: "individual",
   name: "Morgan Vance",
-  avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
+  role: "Frequent Traveler",
   email: "morgan.vance@example.com",
   phone: "+1 (555) 234-8910",
   passportNo: "A98234120",
+  avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
   membership: "RH Platinum Traveler",
-  destinationWishlist: ["Norway", "Austria", "Fiji", "Japan"]
 };
 
-export const relationshipManager = {
-  name: "Sarah Jenkins",
-  title: "Senior Visa & Holiday Consultant",
-  avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80",
-  phone: "+971 4 800 7445",
-  whatsapp: "+971501234567",
-  email: "sarah.j@rhglobalcrm.com",
-  status: "Online Now"
-};
+export const currentUser = companyUser; // Default active for rich corporate demonstration
 
-export const userApplications = [
+export const companyEmployees = [
+  {
+    id: "EMP-101",
+    name: "Elena Rostova",
+    designation: "VP of Engineering",
+    department: "Technology",
+    email: "elena.r@acmeglobal.com",
+    phone: "+971 50 112 3491",
+    passportNo: "P88129034",
+    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80",
+    nationality: "United Kingdom",
+    applicationIds: ["RH-VSA-2026-8819", "RH-HLD-2026-3401"],
+  },
+  {
+    id: "EMP-102",
+    name: "Marcus Aurelius Vance",
+    designation: "Senior Solutions Architect",
+    department: "Enterprise Solutions",
+    email: "marcus.v@acmeglobal.com",
+    phone: "+971 50 445 8821",
+    passportNo: "A98234120",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
+    nationality: "Canada",
+    applicationIds: ["RH-VSA-2026-9042"],
+  },
+  {
+    id: "EMP-103",
+    name: "Sophia Martinez",
+    designation: "Director of International Expansion",
+    department: "Business Development",
+    email: "sophia.m@acmeglobal.com",
+    phone: "+971 55 789 1234",
+    passportNo: "E77491029",
+    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80",
+    nationality: "Spain",
+    applicationIds: ["RH-VSA-2026-7731", "RH-HLD-2026-5590"],
+  },
+  {
+    id: "EMP-104",
+    name: "Rajesh Kothari",
+    designation: "Lead Infrastructure Consultant",
+    department: "Cloud Operations",
+    email: "rajesh.k@acmeglobal.com",
+    phone: "+971 52 334 9012",
+    passportNo: "K44102981",
+    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80",
+    nationality: "India",
+    applicationIds: ["RH-VSA-2026-6644"],
+  },
+];
+
+export const allApplicationsData = [
   {
     id: "RH-VSA-2026-8819",
     type: "visa",
@@ -29,101 +86,89 @@ export const userApplications = [
     country: "Australia",
     countryCode: "AU",
     flag: "🇦🇺",
-    visaType: "Tourist Visitor Visa (Subclass 600)",
-    applicantName: "Morgan Vance",
-    passportNumber: "A98234120",
+    visaType: "Business / Tourist Visitor Visa (Subclass 600)",
+    applicantName: "Elena Rostova",
+    employeeId: "EMP-101",
+    passportNumber: "P88129034",
     submissionDate: "04 Oct 2026",
     estimatedCompletion: "18 Oct 2026",
-    status: "approved", // "submitted" | "under_review" | "biometrics" | "approved" | "action_required"
+    status: "approved", // "active" | "under_review" | "approved" | "pending"
+    statusGroup: "completed", // "current" | "pending" | "completed"
     statusLabel: "Visa Granted & Ready to Download",
-    currentStep: 4, // 0 to 4
+    currentStep: 4,
     steps: [
       { id: 1, title: "Application Submitted", date: "04 Oct 2026", desc: "Form & initial documents filed online", done: true },
       { id: 2, title: "Document Verification", date: "06 Oct 2026", desc: "Verified by RH Global Compliance team", done: true },
       { id: 3, title: "Embassy Biometrics & Review", date: "10 Oct 2026", desc: "Biometrics processed at VFS Global center", done: true },
       { id: 4, title: "Visa Decision & Issuance", date: "13 Oct 2026", desc: "Department of Home Affairs approved Grant #610992", done: true },
     ],
-    documents: [
-      {
-        id: "DOC-VSA-01",
-        name: "Australia Official e-Visa Grant Notification",
+    downloads: {
+      application: {
+        name: "Australia_Visa_Application_Form_Filled.pdf",
         type: "PDF",
-        size: "1.4 MB",
-        date: "13 Oct 2026",
-        downloadUrl: "#",
-        badge: "Official Document"
+        size: "1.2 MB",
+        badge: "Filed Application",
       },
-      {
-        id: "DOC-VSA-02",
-        name: "RH Global Verified Visa Dossier & Itinerary",
+      invoice: {
+        name: "RHGlobal_Invoice_INV-AU-99214.pdf",
         type: "PDF",
-        size: "2.8 MB",
-        date: "06 Oct 2026",
-        downloadUrl: "#",
-        badge: "Travel Dossier"
+        size: "450 KB",
+        badge: "Official Tax Invoice",
       },
-      {
-        id: "DOC-VSA-03",
-        name: "Embassy Fee & Processing Tax Invoice",
+      document: {
+        name: "Australian_Government_eVisa_Grant_Notice.pdf",
         type: "PDF",
-        size: "420 KB",
-        date: "04 Oct 2026",
-        downloadUrl: "#",
-        badge: "Payment Receipt"
-      }
-    ],
-    notes: "Your Subclass 600 tourist visa has been granted with Multiple Entries valid for 12 months. Please print the Grant Notification and carry it with your physical passport."
+        size: "1.8 MB",
+        badge: "Approved eVisa Grant",
+      },
+    },
+    notes: "Your Subclass 600 multiple entry visa has been granted. Valid for 12 months with up to 90 days stay per entry."
   },
   {
     id: "RH-HLD-2026-3401",
     type: "holiday",
-    category: "Holiday Package",
+    category: "Holiday / Tour Package",
     country: "Austria & Switzerland",
     countryCode: "AT",
     flag: "🇦🇹",
-    packageName: "Tyrolean Alps & Alpine Lakes Adventure",
+    packageName: "Tyrolean Alps & Alpine Lakes Corporate Retreat",
+    applicantName: "Elena Rostova",
+    employeeId: "EMP-101",
+    passportNumber: "P88129034",
     duration: "7 Days / 6 Nights",
     travelDates: "27 Nov 2026 – 03 Dec 2026",
     guestCount: 2,
     hotel: "Lenas Donau Hotel & Alpine Chalet Resort",
-    status: "confirmed", // "confirmed" | "payment_pending" | "itinerary_draft"
-    statusLabel: "Booking Confirmed & Vouchers Issued",
+    status: "approved",
+    statusGroup: "completed",
+    statusLabel: "Booking Confirmed & Vouchers Ready",
     currentStep: 3,
     steps: [
       { id: 1, title: "Booking Received", date: "28 Sep 2026", desc: "Travel itinerary customized with RH Concierge", done: true },
-      { id: 2, title: "Flights & Hotels Secured", date: "01 Oct 2026", desc: "Emirates flight & boutique chalets locked in", done: true },
-      { id: 3, title: "Travel Vouchers Issued", date: "05 Oct 2026", desc: "All vouchers and activity passes ready", done: true }
+      { id: 2, title: "Flights & Hotels Secured", date: "01 Oct 2026", desc: "Emirates flight & chalets locked in", done: true },
+      { id: 3, title: "Travel Vouchers Issued", date: "05 Oct 2026", desc: "All vouchers and boarding passes ready", done: true },
     ],
-    documents: [
-      {
-        id: "DOC-HLD-01",
-        name: "Confirmed Trip Itinerary & Hotel Vouchers",
+    downloads: {
+      application: {
+        name: "Corporate_Holiday_Booking_Request.pdf",
         type: "PDF",
-        size: "3.2 MB",
-        date: "05 Oct 2026",
-        downloadUrl: "#",
-        badge: "Voucher"
+        size: "950 KB",
+        badge: "Booking Request",
       },
-      {
-        id: "DOC-HLD-02",
-        name: "Emirates Airline Electronic Flight Tickets",
+      invoice: {
+        name: "Tax_Invoice_Alps_Retreat_INV-7731.pdf",
         type: "PDF",
-        size: "860 KB",
-        date: "02 Oct 2026",
-        downloadUrl: "#",
-        badge: "Boarding Pass"
+        size: "520 KB",
+        badge: "Payment Receipt",
       },
-      {
-        id: "DOC-HLD-03",
-        name: "Allianz Comprehensive Travel Insurance Policy",
+      document: {
+        name: "Confirmed_Flight_Ticket_And_Hotel_Vouchers.pdf",
         type: "PDF",
-        size: "1.1 MB",
-        date: "05 Oct 2026",
-        downloadUrl: "#",
-        badge: "Insurance"
-      }
-    ],
-    notes: "Your airport private chauffeur pick-up is arranged for Vienna International Airport (VIE) at Terminal 3."
+        size: "3.4 MB",
+        badge: "E-Tickets & Hotel Vouchers",
+      },
+    },
+    notes: "Private executive airport transfer has been scheduled for Vienna International Airport (VIE)."
   },
   {
     id: "RH-VSA-2026-9042",
@@ -133,11 +178,13 @@ export const userApplications = [
     countryCode: "FR",
     flag: "🇫🇷",
     visaType: "Schengen Multi-Entry Short Stay (Type C)",
-    applicantName: "Morgan Vance",
+    applicantName: "Marcus Vance",
+    employeeId: "EMP-102",
     passportNumber: "A98234120",
     submissionDate: "12 Oct 2026",
     estimatedCompletion: "26 Oct 2026",
     status: "under_review",
+    statusGroup: "current",
     statusLabel: "Consulate Review in Progress",
     currentStep: 2,
     steps: [
@@ -145,18 +192,161 @@ export const userApplications = [
       { id: 2, title: "Embassy File Processing", date: "14 Oct 2026", desc: "Under internal review by French Consulate", done: true },
       { id: 3, title: "Decision & Passport Dispatch", date: "Pending", desc: "Estimated by 26 Oct 2026", done: false },
     ],
-    documents: [
-      {
-        id: "DOC-VSA-FR-01",
-        name: "Consulate Submission & Acknowledgment Slip",
+    downloads: {
+      application: {
+        name: "Schengen_France_Visa_Application_Signed.pdf",
+        type: "PDF",
+        size: "1.1 MB",
+        badge: "Application Form",
+      },
+      invoice: {
+        name: "Embassy_Appointment_Invoice_VFS.pdf",
+        type: "PDF",
+        size: "380 KB",
+        badge: "Invoice",
+      },
+      document: {
+        name: "VFS_Submission_Acknowledgment_Receipt.pdf",
+        type: "PDF",
+        size: "620 KB",
+        badge: "Consulate Receipt",
+      },
+    },
+    notes: "Consulate processing in progress. Appointment completed at VFS Dubai center."
+  },
+  {
+    id: "RH-VSA-2026-7731",
+    type: "visa",
+    category: "Visa Application",
+    country: "United Kingdom",
+    countryCode: "GB",
+    flag: "🇬🇧",
+    visaType: "UK Standard Business Visitor Visa",
+    applicantName: "Sophia Martinez",
+    employeeId: "EMP-103",
+    passportNumber: "E77491029",
+    submissionDate: "13 Oct 2026",
+    estimatedCompletion: "27 Oct 2026",
+    status: "pending",
+    statusGroup: "pending",
+    statusLabel: "Biometrics Appointment Scheduled",
+    currentStep: 2,
+    steps: [
+      { id: 1, title: "UKVI Online Submission", date: "13 Oct 2026", desc: "Visa application fee paid & submitted", done: true },
+      { id: 2, title: "Biometrics Appointment", date: "18 Oct 2026", desc: "Scheduled at VFS WAFI Mall, Dubai", done: false },
+      { id: 3, title: "UK Visas & Immigration Decision", date: "Pending", desc: "Estimated by 27 Oct 2026", done: false },
+    ],
+    downloads: {
+      application: {
+        name: "UKVI_Standard_Visitor_Application_Copy.pdf",
+        type: "PDF",
+        size: "1.4 MB",
+        badge: "Submitted Form",
+      },
+      invoice: {
+        name: "UK_Government_Visa_Fee_Invoice.pdf",
+        type: "PDF",
+        size: "410 KB",
+        badge: "Tax Receipt",
+      },
+      document: {
+        name: "VFS_Global_Biometrics_Appointment_Letter.pdf",
+        type: "PDF",
+        size: "820 KB",
+        badge: "Appointment Confirmation",
+      },
+    },
+    notes: "Please arrive 15 minutes before the appointment time with the printed appointment letter."
+  },
+  {
+    id: "RH-HLD-2026-5590",
+    type: "holiday",
+    category: "Holiday / Tour Package",
+    country: "Japan",
+    countryCode: "JP",
+    flag: "🇯🇵",
+    packageName: "Kyoto Autumn Corporate Executive Tour",
+    applicantName: "Sophia Martinez",
+    employeeId: "EMP-103",
+    passportNumber: "E77491029",
+    duration: "8 Days / 7 Nights",
+    travelDates: "10 Nov 2026 – 17 Nov 2026",
+    guestCount: 1,
+    hotel: "The Ritz-Carlton Kyoto",
+    status: "active",
+    statusGroup: "current",
+    statusLabel: "Flight Confirmed & Hotel Processing",
+    currentStep: 2,
+    steps: [
+      { id: 1, title: "Itinerary Confirmed", date: "09 Oct 2026", desc: "Corporate flight & hotel package locked in", done: true },
+      { id: 2, title: "Japan eVisa & Rail Pass", date: "14 Oct 2026", desc: "eVisa processing with Japanese Ministry", done: true },
+      { id: 3, title: "Final Vouchers Issuance", date: "Pending", desc: "Expected 25 Oct 2026", done: false },
+    ],
+    downloads: {
+      application: {
+        name: "Japan_Corporate_Tour_Booking_Confirmation.pdf",
+        type: "PDF",
+        size: "1.3 MB",
+        badge: "Tour Agreement",
+      },
+      invoice: {
+        name: "RHGlobal_Tour_Invoice_JP-5590.pdf",
+        type: "PDF",
+        size: "490 KB",
+        badge: "Invoice",
+      },
+      document: {
+        name: "Japan_Rail_Pass_Exchange_Order_Voucher.pdf",
+        type: "PDF",
+        size: "1.5 MB",
+        badge: "JR Rail Pass Voucher",
+      },
+    },
+    notes: "Japan Rail 7-day green car exchange voucher ready. eVisa processing expected within 4 working days."
+  },
+  {
+    id: "RH-VSA-2026-6644",
+    type: "visa",
+    category: "Visa Application",
+    country: "United States",
+    countryCode: "US",
+    flag: "🇺🇸",
+    visaType: "B1/B2 Business & Tourism Visa (10 Years)",
+    applicantName: "Rajesh Kothari",
+    employeeId: "EMP-104",
+    passportNumber: "K44102981",
+    submissionDate: "10 Oct 2026",
+    estimatedCompletion: "05 Nov 2026",
+    status: "pending",
+    statusGroup: "pending",
+    statusLabel: "DS-160 Filed • Consular Interview Slot Locked",
+    currentStep: 2,
+    steps: [
+      { id: 1, title: "DS-160 Form Filed", date: "10 Oct 2026", desc: "Full CEAC consular form submitted", done: true },
+      { id: 2, title: "MRV Fee & Interview Scheduled", date: "14 Oct 2026", desc: "Slot secured at US Consulate Dubai", done: true },
+      { id: 3, title: "Visa Interview & Stamping", date: "03 Nov 2026", desc: "Personal interview at Consulate", done: false },
+    ],
+    downloads: {
+      application: {
+        name: "DS-160_Confirmation_Barcode_Page.pdf",
         type: "PDF",
         size: "720 KB",
-        date: "12 Oct 2026",
-        downloadUrl: "#",
-        badge: "Receipt"
-      }
-    ],
-    notes: "Consulate processing typically takes 10 to 15 business days. Your relationship manager is actively monitoring updates."
+        badge: "DS-160 Confirmation",
+      },
+      invoice: {
+        name: "US_MRV_Fee_Payment_Receipt_185USD.pdf",
+        type: "PDF",
+        size: "340 KB",
+        badge: "MRV Fee Receipt",
+      },
+      document: {
+        name: "US_Consulate_Interview_Appointment_Letter.pdf",
+        type: "PDF",
+        size: "890 KB",
+        badge: "Interview Appointment",
+      },
+    },
+    notes: "Consular interview preparation session scheduled with RH Visa advisor on 01 Nov 2026."
   }
 ];
 
@@ -247,7 +437,7 @@ export const packagesCatalog = [
     subtitle: "Pure nature & Northern wonders",
     country: "Norway",
     flag: "🇳🇴",
-    category: "nature",
+    category: "holidays",
     badge: "Staff Pick",
     heroImage: "https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?auto=format&fit=crop&w=1000&q=80",
     gallery: [
@@ -284,7 +474,7 @@ export const packagesCatalog = [
     subtitle: "Timeless harmony & Zen gardens",
     country: "Japan",
     flag: "🇯🇵",
-    category: "culture",
+    category: "holidays",
     badge: "Autumn Special",
     heroImage: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1000&q=80",
     gallery: [
@@ -318,7 +508,7 @@ export const packagesCatalog = [
   {
     id: "PKG-05",
     title: "Schengen Visa Express Multi-Country Pack",
-    subtitle: "Fast-Track Visa Concierge for Europe",
+    subtitle: "Fast-Track Visa Concierge for Europe (29 Countries)",
     country: "Europe (29 Countries)",
     flag: "🇪🇺",
     category: "visa",
@@ -386,13 +576,41 @@ export const packagesCatalog = [
       "Direct communication with immigration case officers if requested",
       "Instant PDF grant verification with QR code"
     ]
+  },
+  {
+    id: "PKG-07",
+    title: "United States B1/B2 Business & Tourist Visa",
+    subtitle: "Complete DS-160 Filing & Consular Appointment",
+    country: "United States",
+    flag: "🇺🇸",
+    category: "visa",
+    badge: "Top Corporate Choice",
+    heroImage: "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=1000&q=80",
+    gallery: [
+      "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?auto=format&fit=crop&w=600&q=80"
+    ],
+    rating: 4.94,
+    reviewsCount: "7.1k",
+    duration: "10-Year Validity",
+    distance: "All 50 States",
+    weather: "All Year",
+    price: 380,
+    priceNote: "DS-160 + Appointment + Mock Interview",
+    visaIncluded: true,
+    visaStatus: "10-Year Multiple Entry",
+    tags: ["Business & Conference", "10-Year Multiple", "Interview Coaching"],
+    description: "End-to-end US visa concierge service for corporate executives and holiday travelers. Expedited consular slot monitoring and personalized document preparation.",
+    routeList: [
+      { day: "Step 1", stop: "DS-160 form audit and photo compliance review" },
+      { day: "Step 2", stop: "MRV consular fee payment & priority slot booking" },
+      { day: "Step 3", stop: "One-on-one interview preparation with US immigration specialist" },
+      { day: "Step 4", stop: "Consulate appearance and passport courier delivery" }
+    ],
+    inclusions: [
+      "Comprehensive DS-160 preparation and validation",
+      "Automated appointment slot monitor for early dates",
+      "Executive interview preparation session",
+      "Corporate tax invoice for business reimbursement"
+    ]
   }
-];
-
-export const categoryPills = [
-  { id: "all", label: "All Packages", icon: "Grid" },
-  { id: "visa", label: "Visa Services", icon: "ShieldCheck" },
-  { id: "holidays", label: "Holiday Packages", icon: "Palmtree" },
-  // { id: "nature", label: "Nature & Adventure", icon: "Trees" },
-  // { id: "culture", label: "Culture & City", icon: "Landmark" }
 ];

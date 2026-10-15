@@ -1,19 +1,22 @@
 import React, { createContext, useContext, useState, useMemo } from 'react';
 import {
-  currentUser as initialUser,
-  userApplications as initialApplications,
-  packagesCatalog as initialPackages,
-  categoryPills
+  companyUser,
+  individualUser,
+  companyEmployees as initialEmployees,
+  allApplicationsData as initialApplications,
+  packagesCatalog as initialPackages
 } from '../data/mockData';
+import CATEGORY_PILLS from '../config/categories';
 
 const AppContext = createContext(null);
 
 export function AppProvider({ children }) {
-  // User Authentication
-  const [user, setUser] = useState(initialUser);
+  // User Authentication: starts with companyUser as default for corporate CRM view
+  const [user, setUser] = useState(companyUser);
 
-  // Applications & Packages
+  // Applications & Employees Data
   const [applications, setApplications] = useState(initialApplications);
+  const [employees, setEmployees] = useState(initialEmployees);
   const [packages] = useState(initialPackages);
 
   // Filtering & Search
@@ -45,15 +48,94 @@ export function AppProvider({ children }) {
     showToast(favorites.includes(pkgId) ? 'Removed from favorites' : 'Saved to favorites');
   };
 
-  const login = (userData) => {
-    setUser(userData);
-    showToast(`Welcome back, ${userData.name}!`);
+  // Login handler with Email & OTP + Role selection
+  const loginWithEmailAndOtp = (email, otp, selectedRole = 'company') => {
+    if (selectedRole === 'company') {
+      setUser({ ...companyUser, email: email || companyUser.email });
+      showToast(`Signed in as Company: ${companyUser.companyName}`);
+    } else {
+      setUser({ ...individualUser, email: email || individualUser.email });
+      showToast(`Signed in as Individual: ${individualUser.name}`);
+    }
   };
 
   const logout = () => {
     setUser(null);
-    showToast('Signed out of CRM portal');
+    showToast('Signed out from RH Global User Portal');
   };
+
+  // Helper to switch user type anytime (e.g. from Header or demo pills)
+  const switchUserType = (type) => {
+    if (type === 'company') {
+      setUser(companyUser);
+      showToast('Switched to Company User Mode');
+    } else {
+      setUser(individualUser);
+      showToast('Switched to Individual User Mode');
+    }
+  };
+
+  // Get single application by ID
+  const getApplicationById = (id) => {
+    return applications.find((app) => app.id === id) || null;
+  };
+
+  // Get single employee by ID and their linked applications
+  const getEmployeeById = (empId) => {
+    const employee = employees.find((e) => e.id === empId);
+    if (!employee) return null;
+
+    const employeeApps = applications.filter(
+      (app) => app.employeeId === empId || employee.applicationIds?.includes(app.id)
+    );
+
+    const visaHistory = employeeApps.filter((a) => a.type === 'visa');
+    const holidayHistory = employeeApps.filter((a) => a.type === 'holiday');
+
+    return {
+      ...employee,
+      applications: employeeApps,
+      visaHistory,
+      holidayHistory
+    };
+  };
+
+  // Applications filtered by user type
+  // If company: see all corporate employee applications
+  // If individual: see personal applications
+  const userApplications = useMemo(() => {
+    if (!user) return [];
+    if (user.type === 'company') {
+      return applications;
+    }
+    // Individual traveler files (Elena or Marcus personal files)
+    return applications.slice(0, 3);
+  }, [user, applications]);
+
+  // Dashboard Stats Calculations
+  const stats = useMemo(() => {
+    const apps = userApplications;
+    const current = apps.filter(
+      (a) => a.statusGroup === 'current' || a.status === 'active' || a.status === 'under_review'
+    ).length;
+
+    const pending = apps.filter(
+      (a) => a.statusGroup === 'pending' || a.status === 'pending'
+    ).length;
+
+    const completed = apps.filter(
+      (a) => a.statusGroup === 'completed' || a.status === 'approved'
+    ).length;
+
+    const totalEmployees = user?.type === 'company' ? (user.totalEmployees || employees.length) : null;
+
+    return {
+      current,
+      pending,
+      completed,
+      totalEmployees,
+    };
+  }, [userApplications, user, employees]);
 
   // Filtered packages
   const filteredPackages = useMemo(() => {
@@ -61,10 +143,7 @@ export function AppProvider({ children }) {
       const matchesCategory =
         activeCategory === 'all' ||
         (activeCategory === 'visa' && pkg.category === 'visa') ||
-        (activeCategory === 'holidays' && pkg.category === 'holidays') ||
-        (activeCategory === 'nature' &&
-          (pkg.category === 'nature' || pkg.tags.includes('Hiking') || pkg.tags.includes('Fjords'))) ||
-        (activeCategory === 'culture' && pkg.category === 'culture');
+        (activeCategory === 'holidays' && pkg.category === 'holidays');
 
       const matchesSearch =
         searchQuery.trim() === '' ||
@@ -76,33 +155,21 @@ export function AppProvider({ children }) {
     });
   }, [packages, activeCategory, searchQuery]);
 
-  // All user documents aggregated
-  const allUserDocuments = useMemo(() => {
-    return applications.flatMap((app) =>
-      app.documents.map((doc) => ({
-        ...doc,
-        appName: app.visaType || app.packageName,
-        flag: app.flag,
-        appId: app.id,
-        appType: app.type
-      }))
-    );
-  }, [applications]);
-
-  const unreadCount = useMemo(() => {
-    return applications.filter((a) => a.status === 'approved').length;
-  }, [applications]);
-
   const value = {
     user,
-    login,
+    setUser,
+    loginWithEmailAndOtp,
     logout,
-    applications,
+    switchUserType,
+    applications: userApplications,
+    allApplications: applications,
+    employees,
     packages,
     filteredPackages,
-    allUserDocuments,
-    unreadCount,
-    categoryPills,
+    stats,
+    getApplicationById,
+    getEmployeeById,
+    categoryPills: CATEGORY_PILLS,
     activeCategory,
     setActiveCategory,
     searchQuery,

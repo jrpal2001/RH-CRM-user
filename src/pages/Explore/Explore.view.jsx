@@ -1,13 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, ShieldCheck, Download } from 'lucide-react';
-import FilterPills from '../components/common/FilterPills';
-import PackageCard from '../components/common/PackageCard';
-import StatusStepper from '../components/common/StatusStepper';
-import DocumentCard from '../components/common/DocumentCard';
-import { useApp } from '../context/AppContext';
+import CategoryPills from '../../components/CategoryPills/CategoryPills.component';
+import PackageCard from '../../components/PackageCard/PackageCard.component';
+import StatusStepper from '../../components/StatusStepper/StatusStepper.component';
+import DocumentCard from '../../components/DocumentCard/DocumentCard.component';
+import { useApp } from '../../context/AppContext';
+import ROUTES from '../../config/routes';
 
-export default function ExplorePage() {
+export const ExploreView = () => {
   const navigate = useNavigate();
   const {
     user,
@@ -64,7 +65,7 @@ export default function ExplorePage() {
             <button
               type="button"
               className="rh-hero-ghost-btn"
-              onClick={() => navigate('/packages')}
+              onClick={() => navigate(ROUTES.PACKAGES)}
             >
               View All Destinations
             </button>
@@ -86,7 +87,7 @@ export default function ExplorePage() {
                 <button
                   type="button"
                   className="rh-section-view-all"
-                  onClick={() => navigate('/status')}
+                  onClick={() => navigate(ROUTES.STATUS)}
                 >
                   All Applications ({applications.length}) →
                 </button>
@@ -94,7 +95,7 @@ export default function ExplorePage() {
 
               <StatusStepper
                 application={applications[0]}
-                onSelectDocument={() => navigate('/downloads')}
+                onSelectDocument={() => navigate(ROUTES.DOWNLOADS)}
               />
             </div>
           )}
@@ -108,7 +109,7 @@ export default function ExplorePage() {
               </div>
             </div>
 
-            <FilterPills
+            <CategoryPills
               categories={categoryPills}
               activeCategory={activeCategory}
               onSelectCategory={setActiveCategory}
@@ -173,4 +174,6 @@ export default function ExplorePage() {
       </div>
     </div>
   );
-}
+};
+
+export default ExploreView;

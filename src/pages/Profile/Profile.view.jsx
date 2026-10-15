@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useApp } from '../context/AppContext';
+import { useApp } from '../../context/AppContext';
+import ROUTES from '../../config/routes';
 
-export default function ProfilePage() {
+export const ProfileView = () => {
   const navigate = useNavigate();
   const { user, applications, favorites, logout, setIsLoginOpen } = useApp();
 
@@ -26,7 +27,7 @@ export default function ProfilePage() {
             <div className="rh-profile-grid">
               <div
                 className="rh-profile-stat-box"
-                onClick={() => navigate('/status')}
+                onClick={() => navigate(ROUTES.STATUS)}
                 style={{ cursor: 'pointer' }}
               >
                 <span className="rh-stat-lbl">Active Applications</span>
@@ -34,7 +35,7 @@ export default function ProfilePage() {
               </div>
               <div
                 className="rh-profile-stat-box"
-                onClick={() => navigate('/packages')}
+                onClick={() => navigate(ROUTES.PACKAGES)}
                 style={{ cursor: 'pointer' }}
               >
                 <span className="rh-stat-lbl">Saved Packages</span>
@@ -59,7 +60,7 @@ export default function ProfilePage() {
               className="rh-logout-full-btn"
               onClick={() => {
                 logout();
-                navigate('/');
+                navigate(ROUTES.EXPLORE);
               }}
             >
               Sign Out from RH Global CRM
@@ -81,4 +82,6 @@ export default function ProfilePage() {
       )}
     </div>
   );
-}
+};
+
+export default ProfileView;

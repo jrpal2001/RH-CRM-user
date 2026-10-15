@@ -1,10 +1,10 @@
 import React from 'react';
 import { ShieldCheck } from 'lucide-react';
-import StatusStepper from '../components/common/StatusStepper';
-import DocumentCard from '../components/common/DocumentCard';
-import { useApp } from '../context/AppContext';
+import StatusStepper from '../../components/StatusStepper/StatusStepper.component';
+import DocumentCard from '../../components/DocumentCard/DocumentCard.component';
+import { useApp } from '../../context/AppContext';
 
-export default function StatusPage() {
+export const StatusView = () => {
   const { user, applications, setIsTrackLookupOpen, setIsLoginOpen, showToast } = useApp();
 
   return (
@@ -70,4 +70,6 @@ export default function StatusPage() {
       )}
     </div>
   );
-}
+};
+
+export default StatusView;

@@ -1,19 +1,9 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import {
-  Compass,
-  Palmtree,
-  CalendarCheck,
-  FolderDown,
-  Search,
-  Sun,
-  User as UserIcon,
-  LogOut,
-  CheckCircle,
-  Globe,
-  Bell
-} from 'lucide-react';
+import { Search, Sun, User as UserIcon, LogOut, CheckCircle, Globe, Bell, Building2, User, RefreshCw } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
+import { getNavItems } from '../../config/navigation';
+import ROUTES from '../../config/routes';
 
 export default function Header() {
   const navigate = useNavigate();
@@ -21,45 +11,57 @@ export default function Header() {
   const {
     user,
     logout,
+    switchUserType,
     unreadCount,
     searchQuery,
     setSearchQuery,
-    setIsTrackLookupOpen,
-    setIsLoginOpen
+    setIsTrackLookupOpen
   } = useApp();
 
-  const navLinks = [
-    { path: '/', label: 'Explore', icon: Compass },
-    { path: '/packages', label: 'Visa & Holiday Packages', icon: Palmtree },
-    { path: '/status', label: 'My Status', icon: CalendarCheck, badge: unreadCount },
-    { path: '/downloads', label: 'Download Center', icon: FolderDown }
-  ];
+  const isCompany = user?.type === 'company';
+  const navLinks = getNavItems(user);
+
+  const handleLogout = () => {
+    logout();
+    navigate(ROUTES.LOGIN);
+  };
 
   return (
     <header className="rh-header">
       <div className="rh-header-inner">
         {/* Brand & Greeting */}
         <div className="rh-brand-section">
-          <div className="rh-brand-logo" onClick={() => navigate('/')}>
+          <div className="rh-brand-logo" onClick={() => navigate(ROUTES.DASHBOARD)}>
             <div className="rh-logo-badge">
               <Globe size={22} className="rh-logo-icon" />
             </div>
             <div className="rh-brand-text">
               <span className="rh-brand-name">RH GLOBAL</span>
-              <span className="rh-brand-tagline">Visa & Holiday CRM</span>
+              <span className="rh-brand-tagline">
+                {isCompany ? 'Corporate Travel Desk' : 'Visa & Holiday CRM'}
+              </span>
             </div>
           </div>
 
-          {/* User greeting chip */}
+          {/* User Account Role Chip */}
           {user && (
             <div className="rh-user-greeting-chip">
-              <span className="rh-greeting-hi">Hi, {user.name.split(' ')[0]}</span>
-              <span className="rh-wave">👋</span>
+              {isCompany ? (
+                <>
+                  <Building2 size={13} color="var(--rh-primary)" />
+                  <span className="rh-greeting-hi">{user.companyName.split(' ')[0]} (Company)</span>
+                </>
+              ) : (
+                <>
+                  <User size={13} color="var(--rh-primary)" />
+                  <span className="rh-greeting-hi">{user.name.split(' ')[0]} (Individual)</span>
+                </>
+              )}
             </div>
           )}
         </div>
 
-        {/* Desktop Navigation Menu */}
+        {/* Desktop Navigation Menu (dynamically rendered from config/navigation.js) */}
         <nav className="rh-desktop-nav">
           {navLinks.map((link) => {
             const Icon = link.icon;
@@ -73,8 +75,8 @@ export default function Header() {
                 onClick={() => navigate(link.path)}
               >
                 <Icon size={16} />
-                <span>{link.label}</span>
-                {link.badge > 0 && !isActive && (
+                <span>{link.shortLabel || link.title}</span>
+                {link.hasBadge && unreadCount > 0 && !isActive && (
                   <span className="rh-nav-badge-dot"></span>
                 )}
               </button>
@@ -82,18 +84,20 @@ export default function Header() {
           })}
         </nav>
 
-        {/* Right Section: Weather, Track Button, Notifications, Auth */}
+        {/* Right Section: Role Switcher Demo, Quick Track, Notifications, Auth */}
         <div className="rh-header-actions">
-          {/* Weather Badge */}
-          <div className="rh-weather-badge">
-            <div className="rh-weather-icon-wrap">
-              <Sun size={14} className="rh-sun-icon" />
-            </div>
-            <div className="rh-weather-info">
-              <span className="rh-weather-label">Destination</span>
-              <span className="rh-weather-temp">Dubai 29°C</span>
-            </div>
-          </div>
+          {/* Quick Demo Switcher between Company and Individual */}
+          {user && (
+            <button
+              type="button"
+              className="rh-role-toggle-chip"
+              onClick={() => switchUserType(isCompany ? 'individual' : 'company')}
+              title={`Currently in ${isCompany ? 'Company' : 'Individual'} mode. Click to switch.`}
+            >
+              <RefreshCw size={12} />
+              <span>{isCompany ? 'Switch to Individual' : 'Switch to Company'}</span>
+            </button>
+          )}
 
           {/* Quick Track Application Button */}
           <button
@@ -105,24 +109,13 @@ export default function Header() {
             <span>Track Application</span>
           </button>
 
-          {/* Notification Bell */}
-          <button
-            type="button"
-            className="rh-icon-btn rh-bell-btn"
-            onClick={() => navigate('/status')}
-            title="Application Notifications"
-          >
-            <Bell size={18} />
-            {unreadCount > 0 && <span className="rh-notification-dot"></span>}
-          </button>
-
           {/* User Profile / Auth */}
           {user ? (
             <div className="rh-user-profile-menu">
               <div
                 className="rh-user-avatar-trigger"
-                onClick={() => navigate('/profile')}
-                title={`${user.name} (${user.membership})`}
+                onClick={() => navigate(ROUTES.PROFILE)}
+                title={`${user.name} (${isCompany ? user.companyName : 'Individual'})`}
               >
                 <img
                   src={user.avatar}
@@ -135,7 +128,7 @@ export default function Header() {
                 type="button"
                 className="rh-icon-btn rh-logout-mini"
                 title="Log Out"
-                onClick={logout}
+                onClick={handleLogout}
               >
                 <LogOut size={15} />
               </button>
@@ -144,7 +137,7 @@ export default function Header() {
             <button
               type="button"
               className="rh-pill-btn rh-login-trigger-btn"
-              onClick={() => setIsLoginOpen(true)}
+              onClick={() => navigate(ROUTES.LOGIN)}
             >
               <UserIcon size={15} />
               <span>Sign In</span>
@@ -160,7 +153,11 @@ export default function Header() {
           <input
             type="text"
             className="rh-search-input"
-            placeholder="Search destination, visa country, or holiday package..."
+            placeholder={
+              isCompany
+                ? "Search employee name, visa country, reference ID, or tour package..."
+                : "Search destination, visa country, or holiday package..."
+            }
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />

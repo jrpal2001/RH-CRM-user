@@ -1,20 +1,14 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Compass, Palmtree, CalendarCheck, FolderDown, User } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
+import { getNavItems } from '../../config/navigation';
 
 export default function BottomNav() {
   const navigate = useNavigate();
   const location = useLocation();
   const { user, unreadCount } = useApp();
 
-  const navItems = [
-    { path: '/', label: 'Explore', icon: Compass },
-    { path: '/packages', label: 'Packages', icon: Palmtree },
-    { path: '/status', label: 'My Status', icon: CalendarCheck, badge: unreadCount },
-    { path: '/downloads', label: 'Downloads', icon: FolderDown },
-    { path: '/profile', label: 'Profile', icon: User }
-  ];
+  const navItems = getNavItems(user);
 
   return (
     <nav className="rh-bottom-dock-wrap">
@@ -31,21 +25,13 @@ export default function BottomNav() {
               onClick={() => navigate(item.path)}
             >
               <div className="rh-dock-icon-wrap">
-                {item.label === 'Profile' && user ? (
-                  <img
-                    src={user.avatar}
-                    alt="User"
-                    className="rh-dock-user-avatar"
-                  />
-                ) : (
-                  <Icon size={20} className="rh-dock-icon" />
-                )}
+                <Icon size={20} className="rh-dock-icon" />
 
-                {item.badge > 0 && !isActive && (
+                {item.hasBadge && unreadCount > 0 && !isActive && (
                   <span className="rh-dock-badge-pulse"></span>
                 )}
               </div>
-              <span className="rh-dock-label">{item.label}</span>
+              <span className="rh-dock-label">{item.shortLabel || item.title}</span>
             </button>
           );
         })}

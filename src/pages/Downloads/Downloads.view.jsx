@@ -1,9 +1,9 @@
 import React from 'react';
 import { Download } from 'lucide-react';
-import DocumentCard from '../components/common/DocumentCard';
-import { useApp } from '../context/AppContext';
+import DocumentCard from '../../components/DocumentCard/DocumentCard.component';
+import { useApp } from '../../context/AppContext';
 
-export default function DownloadsPage() {
+export const DownloadsView = () => {
   const { user, allUserDocuments, setIsLoginOpen, showToast } = useApp();
 
   return (
@@ -45,4 +45,6 @@ export default function DownloadsPage() {
       )}
     </div>
   );
-}
+};
+
+export default DownloadsView;

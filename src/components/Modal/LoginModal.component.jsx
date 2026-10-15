@@ -18,7 +18,7 @@ export default function LoginModal({ isOpen, onClose, onLoginSuccess }) {
     setTimeout(() => {
       setLoading(false);
       setOtpSent(true);
-      setOtp('8942'); // auto demo OTP
+      setOtp('8942');
     }, 600);
   };
 

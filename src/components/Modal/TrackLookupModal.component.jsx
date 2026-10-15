@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Search, X, ShieldCheck, ArrowRight, AlertCircle } from 'lucide-react';
-import StatusStepper from '../common/StatusStepper';
-import DocumentCard from '../common/DocumentCard';
+import StatusStepper from '../StatusStepper/StatusStepper.component';
+import DocumentCard from '../DocumentCard/DocumentCard.component';
 
 export default function TrackLookupModal({ isOpen, onClose, applications, onSelectApplication }) {
   const [refQuery, setRefQuery] = useState('');

@@ -1,14 +1,15 @@
 import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { CheckCircle } from 'lucide-react';
-import Header from './Header';
-import BottomNav from './BottomNav';
-import PackageDetailModal from '../modals/PackageDetailModal';
-import TrackLookupModal from '../modals/TrackLookupModal';
-import LoginModal from '../modals/LoginModal';
-import { useApp } from '../../context/AppContext';
+import Header from '../components/Header/Header.component';
+import BottomNav from '../components/BottomNav/BottomNav.component';
+import PackageDetailModal from '../components/Modal/PackageDetailModal.component';
+import TrackLookupModal from '../components/Modal/TrackLookupModal.component';
+import LoginModal from '../components/Modal/LoginModal.component';
+import { useApp } from '../context/AppContext';
+import ROUTES from '../config/routes';
 
-export default function AppLayout() {
+export const UserLayout = () => {
   const navigate = useNavigate();
   const {
     toastMessage,
@@ -65,7 +66,7 @@ export default function AppLayout() {
         onClose={() => setIsTrackLookupOpen(false)}
         applications={applications}
         onSelectApplication={() => {
-          navigate('/status');
+          navigate(ROUTES.STATUS);
         }}
       />
 
@@ -79,4 +80,6 @@ export default function AppLayout() {
       />
     </div>
   );
-}
+};
+
+export default UserLayout;

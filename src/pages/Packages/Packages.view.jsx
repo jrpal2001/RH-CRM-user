@@ -1,9 +1,9 @@
 import React from 'react';
-import FilterPills from '../components/common/FilterPills';
-import PackageCard from '../components/common/PackageCard';
-import { useApp } from '../context/AppContext';
+import CategoryPills from '../../components/CategoryPills/CategoryPills.component';
+import PackageCard from '../../components/PackageCard/PackageCard.component';
+import { useApp } from '../../context/AppContext';
 
-export default function PackagesPage() {
+export const PackagesView = () => {
   const {
     filteredPackages,
     categoryPills,
@@ -25,8 +25,8 @@ export default function PackagesPage() {
         </div>
       </div>
 
-      {/* Filter Pills */}
-      <FilterPills
+      {/* Filter Pills from config */}
+      <CategoryPills
         categories={categoryPills}
         activeCategory={activeCategory}
         onSelectCategory={setActiveCategory}
@@ -46,4 +46,6 @@ export default function PackagesPage() {
       </div>
     </div>
   );
-}
+};
+
+export default PackagesView;
