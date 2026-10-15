@@ -15,7 +15,7 @@ import {
 import { useApp } from '../../context/AppContext';
 import ROUTES from '../../config/routes';
 
-export default function LoginCard({ isMobile = false }) {
+export default function LoginCard({ isMobile = false, onClose = null }) {
   const navigate = useNavigate();
   const { loginWithEmailAndOtp, showToast } = useApp();
 
@@ -151,6 +151,16 @@ export default function LoginCard({ isMobile = false }) {
               </>
             )}
           </button>
+
+          {isMobile && onClose && (
+            <button
+              type="button"
+              className="rh-logincard-cancel-btn"
+              onClick={onClose}
+            >
+              Cancel
+            </button>
+          )}
         </form>
       ) : (
         /* STEP 2: OTP Sent -> Enter OTP Code & Click "Sign In" */

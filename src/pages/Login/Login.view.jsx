@@ -201,19 +201,8 @@ export const LoginView = () => {
         ) : (
           /* Phase B: Login Bottom Sheet (Image 1, Right Screen) with Transparent Global Theme */
           <div className="rh-mobile-sheet-screen animate-fade-in">
-            {/* Top Bar with 'X' and 'LOG IN' */}
-            <div className="rh-mobile-sheet-topbar">
-              <button
-                type="button"
-                className="rh-mobile-close-btn"
-                onClick={() => setMobileSheetOpen(false)}
-                title="Go back"
-              >
-                <X size={18} />
-              </button>
-              {/* <span className="rh-mobile-topbar-title">LOG IN</span> */}
-              <div style={{ width: 32 }}></div>
-            </div>
+            {/* Top spacer (upper close button removed as requested) */}
+            <div className="rh-mobile-sheet-top-spacer"></div>
 
             {/* Stylized Heading on the image */}
             <div className="rh-mobile-sheet-image-hero">
@@ -221,9 +210,23 @@ export const LoginView = () => {
               <p className="rh-mobile-sheet-tagline">Create your own itinerary!</p>
             </div>
 
-            {/* Bottom Transparent / Frosted Glass Sheet Card with Global Colors */}
+            {/* Bottom Transparent / Frosted Glass Sheet Card */}
             <div className="rh-mobile-curved-sheet glass-global animate-slide-up">
-              <LoginCard isMobile={true} />
+              {/* Down Card Header with Drag Pill and Cancel/Close Button inside the card */}
+              <div className="rh-sheet-card-header">
+                <div className="rh-sheet-drag-pill" aria-hidden="true" />
+                <button
+                  type="button"
+                  className="rh-sheet-card-close-btn"
+                  onClick={() => setMobileSheetOpen(false)}
+                  title="Cancel & Go Back"
+                  aria-label="Cancel"
+                >
+                  <X size={15} />
+                </button>
+              </div>
+
+              <LoginCard isMobile={true} onClose={() => setMobileSheetOpen(false)} />
             </div>
           </div>
         )}
