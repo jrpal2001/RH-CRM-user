@@ -3,7 +3,6 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { CheckCircle } from 'lucide-react';
 import Header from '../components/Header/Header.component';
 import BottomNav from '../components/BottomNav/BottomNav.component';
-import PackageDetailModal from '../components/Modal/PackageDetailModal.component';
 import TrackLookupModal from '../components/Modal/TrackLookupModal.component';
 import LoginModal from '../components/Modal/LoginModal.component';
 import LogoutConfirmModal from '../components/Modal/LogoutConfirmModal.component';
@@ -49,19 +48,6 @@ export const UserLayout = () => {
 
       {/* Floating Bottom Navigation Bar (Visible only on mobile) */}
       <BottomNav />
-
-      {/* Global Modal: Package Details */}
-      {selectedPackage && (
-        <PackageDetailModal
-          pkg={selectedPackage}
-          onClose={() => setSelectedPackage(null)}
-          isFavorite={favorites.includes(selectedPackage.id)}
-          onToggleFavorite={toggleFavorite}
-          onBookNow={(pkg) => {
-            showToast(`Inquiry submitted for ${pkg.title}! We will contact you.`);
-          }}
-        />
-      )}
 
       {/* Global Modal: Quick Application Track Lookup */}
       <TrackLookupModal

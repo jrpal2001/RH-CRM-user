@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Search, Sun, User as UserIcon, LogOut, CheckCircle, Globe, Bell, Building2, User, RefreshCw } from 'lucide-react';
+import { Search, Sun, User as UserIcon, LogOut, CheckCircle, Globe, Bell, Building2, User } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { getNavItems } from '../../config/navigation';
 import ROUTES from '../../config/routes';
@@ -11,7 +11,6 @@ export default function Header() {
   const {
     user,
     logout,
-    switchUserType,
     unreadCount,
     searchQuery,
     setSearchQuery,
@@ -84,20 +83,8 @@ export default function Header() {
           })}
         </nav>
 
-        {/* Right Section: Role Switcher Demo, Quick Track, Notifications, Auth */}
+        {/* Right Section: Quick Track, Notifications, Auth */}
         <div className="rh-header-actions">
-          {/* Quick Demo Switcher between Company and Individual */}
-          {user && (
-            <button
-              type="button"
-              className="rh-role-toggle-chip"
-              onClick={() => switchUserType(isCompany ? 'individual' : 'company')}
-              title={`Currently in ${isCompany ? 'Company' : 'Individual'} mode. Click to switch.`}
-            >
-              <RefreshCw size={12} />
-              <span>{isCompany ? 'Switch to Individual' : 'Switch to Company'}</span>
-            </button>
-          )}
 
           {/* Quick Track Application Button */}
           {/* <button

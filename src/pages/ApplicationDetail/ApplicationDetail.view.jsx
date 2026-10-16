@@ -15,7 +15,14 @@ import {
   Printer,
   Copy,
   CheckCheck,
-  Loader2
+  Loader2,
+  Eye,
+  ArrowRight,
+  AlertTriangle,
+  CreditCard,
+  X,
+  Lock,
+  Building2
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 
@@ -28,6 +35,8 @@ export const ApplicationDetailView = () => {
   const [copied, setCopied] = useState(false);
   const [downloadingKey, setDownloadingKey] = useState(null);
   const [downloadedKeys, setDownloadedKeys] = useState({});
+  const [showDocPreview, setShowDocPreview] = useState(false);
+  const [payingPending, setPayingPending] = useState(false);
 
   if (!app) {
     return (
@@ -94,6 +103,37 @@ Official Portal: https://rhglobalcrm.com | support@rhglobalcrm.com`;
       }, 4000);
     }, 700);
   };
+
+  // Payment details extraction with fallback
+  const payment = app.paymentDetails || {
+    feeLabel: app.type === 'visa' ? 'TOTAL VISA FEE' : 'TOTAL PACKAGE FEE',
+    totalFee: 21000,
+    totalPaid: 21000,
+    pendingBalance: 0,
+    paymentStatus: 'PAID IN FULL',
+    transactions: [
+      {
+        id: 'PAY-1001',
+        type: 'ADVANCE DEPOSIT',
+        mode: 'Online UPI / Netbanking',
+        amount: 10000,
+        date: '2026-10-02',
+        reference: 'TXN-998120'
+      },
+      {
+        id: 'PAY-1002',
+        type: 'FINAL BALANCE',
+        mode: 'Credit Card / Gateway',
+        amount: 11000,
+        date: '2026-10-05',
+        reference: 'TXN-998144'
+      }
+    ]
+  };
+
+  const formatInr = (val) => `₹${Number(val || 0).toLocaleString('en-IN')}`;
+
+  const isPending = payment.pendingBalance > 0;
 
   return (
     <div className="rh-tab-content-wrap animate-fade-in">
@@ -190,7 +230,7 @@ Official Portal: https://rhglobalcrm.com | support@rhglobalcrm.com`;
         </div>
       </div>
 
-      {/* Prominent Official Documents Download Section (User Requirement!) */}
+      {/* Prominent Official Documents Download Section */}
       <div className="rh-section-box">
         <div className="rh-section-header-row">
           <div>
@@ -290,7 +330,7 @@ Official Portal: https://rhglobalcrm.com | support@rhglobalcrm.com`;
             </button>
           </div>
 
-          {/* 3. Download Visa or Holiday Document (Ticket/Voucher) */}
+          {/* 3. Download Visa or Holiday Document */}
           <div className="rh-primary-download-card highlight">
             <div className="rh-download-icon-box doc">
               <FileCheck2 size={24} />
@@ -386,6 +426,265 @@ Official Portal: https://rhglobalcrm.com | support@rhglobalcrm.com`;
           <div className="rh-notes-text">
             <strong>Official Case Officer Instructions:</strong>
             <p>{app.notes}</p>
+          </div>
+        </div>
+      )}
+
+      {/* Visa / Package Payment & Fee Details Section (User Requirement!) */}
+      <div className="rh-section-box rh-payment-section-box">
+        <div className="rh-payment-section-title-wrap">
+          <h2 className="rh-payment-main-heading">
+            {app.type === 'visa' ? 'Visa Payment & Fee Details' : 'Package Payment & Fee Details'}
+          </h2>
+        </div>
+
+        {/* 4 Metric Boxes Grid */}
+        <div className="rh-payment-metrics-grid">
+          {/* Box 1: Total Fee */}
+          <div className="rh-payment-metric-card">
+            <span className="rh-pay-metric-lbl">
+              {payment.feeLabel || (app.type === 'visa' ? 'TOTAL VISA FEE' : 'TOTAL PACKAGE FEE')}
+            </span>
+            <span className="rh-pay-metric-val">{formatInr(payment.totalFee)}</span>
+          </div>
+
+          {/* Box 2: Total Paid Amount */}
+          <div className="rh-payment-metric-card">
+            <span className="rh-pay-metric-lbl">TOTAL PAID AMOUNT</span>
+            <span className="rh-pay-metric-val">{formatInr(payment.totalPaid)}</span>
+          </div>
+
+          {/* Box 3: Pending Balance (Prominently Highlighted!) */}
+          <div className={`rh-payment-metric-card ${isPending ? 'has-pending' : 'is-settled'}`}>
+            <div className="rh-pay-metric-lbl-row">
+              <span className="rh-pay-metric-lbl">PENDING BALANCE</span>
+              {isPending ? (
+                <span className="rh-pending-tag-alert">Action Due</span>
+              ) : (
+                <span className="rh-settled-tag">Settled</span>
+              )}
+            </div>
+            <span className={`rh-pay-metric-val ${isPending ? 'pending-amount' : ''}`}>
+              {formatInr(payment.pendingBalance)}
+            </span>
+          </div>
+
+          {/* Box 4: Payment Status */}
+          <div className="rh-payment-metric-card status-card">
+            <span className="rh-pay-metric-lbl">PAYMENT STATUS</span>
+            <span className={`rh-pay-status-text ${isPending ? 'pending' : 'paid-full'}`}>
+              {payment.paymentStatus}
+            </span>
+          </div>
+        </div>
+
+        {/* Transaction Table */}
+        <div className="rh-payment-table-wrap">
+          <table className="rh-payment-table">
+            <thead>
+              <tr>
+                <th>PAYMENT ID</th>
+                <th>PAYMENT TYPE</th>
+                <th>PAYMENT MODE</th>
+                <th>AMOUNT (₹)</th>
+                <th>PAYMENT DATE</th>
+                <th>REFERENCE / TXN ID</th>
+              </tr>
+            </thead>
+            <tbody>
+              {payment.transactions && payment.transactions.length > 0 ? (
+                payment.transactions.map((txn) => (
+                  <tr key={txn.id}>
+                    <td className="rh-td-mono font-bold">{txn.id}</td>
+                    <td>
+                      <span className="rh-pay-type-box">{txn.type}</span>
+                    </td>
+                    <td>{txn.mode}</td>
+                    <td className="font-bold">{formatInr(txn.amount)}</td>
+                    <td>{txn.date}</td>
+                    <td className="rh-td-mono">{txn.reference}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="6" className="rh-payment-empty-row">
+                    No individual transaction receipts filed.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Action Button Row */}
+        <div className="rh-payment-actions-bar">
+          <button
+            type="button"
+            className="rh-btn-invoice-pdf"
+            onClick={() =>
+              triggerDownload(
+                'invoice',
+                app.downloads?.invoice?.name || `${app.id}_Complete_Tax_Invoice.pdf`,
+                'Tax Invoice PDF'
+              )
+            }
+          >
+            <span>Download Complete Invoice PDF</span>
+            <span className="rh-btn-arrow">→</span>
+          </button>
+
+          {isPending && (
+            <button
+              type="button"
+              className="rh-btn-pay-now"
+              onClick={() => {
+                setPayingPending(true);
+                setTimeout(() => {
+                  setPayingPending(false);
+                  showToast(`Redirecting to secure gateway for ${formatInr(payment.pendingBalance)}...`);
+                }, 700);
+              }}
+            >
+              {payingPending ? (
+                <>
+                  <Loader2 size={15} className="rh-spinner" />
+                  <span>Connecting Gateway...</span>
+                </>
+              ) : (
+                <>
+                  <CreditCard size={15} />
+                  <span>Pay Pending Balance ({formatInr(payment.pendingBalance)})</span>
+                </>
+              )}
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Approved Visa Document Card (User Reference Requirement!) */}
+      <div className="rh-section-box rh-approved-visa-card">
+        <h3 className="rh-approved-visa-heading">
+          {app.type === 'visa' ? 'Approved Visa Document' : 'Approved Tour Document & Vouchers'}
+        </h3>
+        <p className="rh-approved-visa-desc">
+          {app.status === 'approved'
+            ? 'Official visa document is verified and issued. Ready to view online or download as PDF.'
+            : 'Visa document will be available here once approved by embassy and uploaded by your Case Officer.'}
+        </p>
+
+        <div className="rh-approved-visa-btn-row">
+          <button
+            type="button"
+            className="rh-btn-approved-view"
+            onClick={() => {
+              if (app.status === 'approved') {
+                setShowDocPreview(true);
+              } else {
+                showToast('Document will be viewable once issued by the embassy.');
+              }
+            }}
+          >
+            <Eye size={14} />
+            <span>{app.type === 'visa' ? 'View Visa Document' : 'View Tour Document'}</span>
+          </button>
+
+          <button
+            type="button"
+            className="rh-btn-approved-download"
+            onClick={() =>
+              triggerDownload(
+                'doc',
+                app.downloads?.document?.name || `${app.id}_Visa_Document.pdf`,
+                app.type === 'visa' ? 'Visa Grant' : 'Travel Vouchers'
+              )
+            }
+          >
+            <Download size={14} />
+            <span>{app.type === 'visa' ? 'Download Visa Document' : 'Download Tour Document'}</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Document View Modal */}
+      {showDocPreview && (
+        <div className="rh-modal-overlay animate-fade-in" onClick={() => setShowDocPreview(false)}>
+          <div className="rh-doc-preview-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="rh-doc-preview-header">
+              <div className="rh-doc-preview-title-area">
+                <ShieldCheck size={22} color="#059669" />
+                <div>
+                  <h4>Official Grant Verification</h4>
+                  <span>Reference: {app.id}</span>
+                </div>
+              </div>
+              <button
+                type="button"
+                className="rh-modal-close-btn"
+                onClick={() => setShowDocPreview(false)}
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <div className="rh-doc-preview-body">
+              <div className="rh-doc-grant-banner">
+                <div className="rh-doc-grant-badge">EMBASSY VERIFIED & ISSUED</div>
+                <h3>{app.visaType || app.packageName}</h3>
+                <p>Government Authority / Immigration Services • {app.country}</p>
+              </div>
+
+              <div className="rh-doc-preview-grid">
+                <div>
+                  <label>Applicant Name</label>
+                  <span>{app.applicantName}</span>
+                </div>
+                <div>
+                  <label>Passport Number</label>
+                  <span className="font-mono">{app.passportNumber}</span>
+                </div>
+                <div>
+                  <label>Grant / VFS Number</label>
+                  <span className="font-mono">GRT-610992-AU</span>
+                </div>
+                <div>
+                  <label>Grant Status</label>
+                  <span className="rh-preview-status-approved">APPROVED / ACTIVE</span>
+                </div>
+                <div>
+                  <label>Validity</label>
+                  <span>12 Months Multiple Entry</span>
+                </div>
+                <div>
+                  <label>Issued Date</label>
+                  <span>{app.submissionDate}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="rh-doc-preview-footer">
+              <button
+                type="button"
+                className="rh-btn-modal-close"
+                onClick={() => setShowDocPreview(false)}
+              >
+                Close Preview
+              </button>
+              <button
+                type="button"
+                className="rh-btn-modal-download"
+                onClick={() => {
+                  triggerDownload(
+                    'doc',
+                    app.downloads?.document?.name || `${app.id}_Visa_Document.pdf`,
+                    'Visa Grant'
+                  );
+                  setShowDocPreview(false);
+                }}
+              >
+                <Download size={14} />
+                <span>Download Official PDF</span>
+              </button>
+            </div>
           </div>
         </div>
       )}

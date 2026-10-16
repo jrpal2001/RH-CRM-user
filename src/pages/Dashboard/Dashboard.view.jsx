@@ -190,7 +190,7 @@ export const DashboardView = () => {
           {visaAdPackage && (
             <div
               className="rh-promo-card visa"
-              onClick={() => setSelectedPackage(visaAdPackage)}
+              onClick={() => navigate(`/packages/${visaAdPackage.id}`)}
             >
               <div className="rh-promo-img-wrap">
                 <img
@@ -237,7 +237,7 @@ export const DashboardView = () => {
                       className="rh-promo-btn secondary"
                       onClick={(e) => {
                         e.stopPropagation();
-                        setSelectedPackage(visaAdPackage);
+                        navigate(`/packages/${visaAdPackage.id}`);
                       }}
                     >
                       <Eye size={13} />
@@ -264,7 +264,7 @@ export const DashboardView = () => {
           {holidayAdPackage && (
             <div
               className="rh-promo-card holiday"
-              onClick={() => setSelectedPackage(holidayAdPackage)}
+              onClick={() => navigate(`/packages/${holidayAdPackage.id}`)}
             >
               <div className="rh-promo-img-wrap">
                 <img
@@ -311,7 +311,7 @@ export const DashboardView = () => {
                       className="rh-promo-btn secondary"
                       onClick={(e) => {
                         e.stopPropagation();
-                        setSelectedPackage(holidayAdPackage);
+                        navigate(`/packages/${holidayAdPackage.id}`);
                       }}
                     >
                       <Eye size={13} />
@@ -349,7 +349,6 @@ export const DashboardView = () => {
                   pkg={pkg}
                   isFavorite={favorites?.includes(pkg.id)}
                   onToggleFavorite={toggleFavorite}
-                  onSelect={(p) => setSelectedPackage(p)}
                 />
               ))}
             </div>

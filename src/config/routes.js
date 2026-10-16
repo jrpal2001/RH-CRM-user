@@ -8,6 +8,7 @@ export const ROUTES = {
   EMPLOYEE_DETAIL: '/employees/:id',
   VISA_PACKAGES: '/packages/visa',
   HOLIDAY_PACKAGES: '/packages/holidays',
+  PACKAGE_DETAIL: '/packages/:id',
   PROFILE: '/profile',
 };
 

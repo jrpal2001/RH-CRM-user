@@ -23,14 +23,14 @@ export const getNavItems = (user) => {
       title: 'Active Applications',
       path: ROUTES.ACTIVE_APPLICATIONS,
       icon: Clock,
-      shortLabel: 'Active',
+      shortLabel: 'Current Applications',
       hasBadge: true,
     },
     {
       title: 'All Applications',
       path: ROUTES.ALL_APPLICATIONS,
       icon: Files,
-      shortLabel: 'All Files',
+      shortLabel: 'Applications',
     },
   ];
 
@@ -40,7 +40,7 @@ export const getNavItems = (user) => {
       title: 'Company Employees',
       path: ROUTES.EMPLOYEES,
       icon: Users,
-      shortLabel: 'Employees',
+      shortLabel: 'Travelers',
     });
   }
 

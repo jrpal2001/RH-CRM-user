@@ -133,7 +133,32 @@ export const allApplicationsData = [
         badge: "Approved eVisa Grant",
       },
     },
-    notes: "Your Subclass 600 multiple entry visa has been granted. Valid for 12 months with up to 90 days stay per entry."
+    notes: "Your Subclass 600 multiple entry visa has been granted. Valid for 12 months with up to 90 days stay per entry.",
+    paymentDetails: {
+      feeLabel: "TOTAL VISA FEE",
+      totalFee: 21000,
+      totalPaid: 21000,
+      pendingBalance: 0,
+      paymentStatus: "PAID IN FULL",
+      transactions: [
+        {
+          id: "PAY-1001",
+          type: "ADVANCE DEPOSIT",
+          mode: "Online UPI / Netbanking",
+          amount: 10000,
+          date: "2026-10-02",
+          reference: "TXN-998120"
+        },
+        {
+          id: "PAY-1002",
+          type: "FINAL BALANCE",
+          mode: "Credit Card / Gateway",
+          amount: 11000,
+          date: "2026-10-05",
+          reference: "TXN-998144"
+        }
+      ]
+    }
   },
   {
     id: "RH-HLD-2026-3401",
@@ -179,7 +204,32 @@ export const allApplicationsData = [
         badge: "E-Tickets & Hotel Vouchers",
       },
     },
-    notes: "Private executive airport transfer has been scheduled for Vienna International Airport (VIE)."
+    notes: "Private executive airport transfer has been scheduled for Vienna International Airport (VIE).",
+    paymentDetails: {
+      feeLabel: "TOTAL PACKAGE FEE",
+      totalFee: 118000,
+      totalPaid: 118000,
+      pendingBalance: 0,
+      paymentStatus: "PAID IN FULL",
+      transactions: [
+        {
+          id: "PAY-1005",
+          type: "BOOKING ADVANCE",
+          mode: "Corporate Card",
+          amount: 50000,
+          date: "2026-09-28",
+          reference: "TXN-661209"
+        },
+        {
+          id: "PAY-1006",
+          type: "FINAL SETTLEMENT",
+          mode: "Online Netbanking",
+          amount: 68000,
+          date: "2026-10-01",
+          reference: "TXN-661840"
+        }
+      ]
+    }
   },
   {
     id: "RH-VSA-2026-9042",
@@ -223,7 +273,24 @@ export const allApplicationsData = [
         badge: "Consulate Receipt",
       },
     },
-    notes: "Consulate processing in progress. Appointment completed at VFS Dubai center."
+    notes: "Consulate processing in progress. Appointment completed at VFS Dubai center.",
+    paymentDetails: {
+      feeLabel: "TOTAL VISA FEE",
+      totalFee: 18500,
+      totalPaid: 10000,
+      pendingBalance: 8500,
+      paymentStatus: "PARTIALLY PAID",
+      transactions: [
+        {
+          id: "PAY-1003",
+          type: "ADVANCE DEPOSIT",
+          mode: "Online UPI / Netbanking",
+          amount: 10000,
+          date: "2026-10-12",
+          reference: "TXN-882104"
+        }
+      ]
+    }
   },
   {
     id: "RH-VSA-2026-7731",
@@ -267,7 +334,24 @@ export const allApplicationsData = [
         badge: "Appointment Confirmation",
       },
     },
-    notes: "Please arrive 15 minutes before the appointment time with the printed appointment letter."
+    notes: "Please arrive 15 minutes before the appointment time with the printed appointment letter.",
+    paymentDetails: {
+      feeLabel: "TOTAL VISA FEE",
+      totalFee: 24000,
+      totalPaid: 12000,
+      pendingBalance: 12000,
+      paymentStatus: "PARTIALLY PAID",
+      transactions: [
+        {
+          id: "PAY-1004",
+          type: "INITIAL RETAINER",
+          mode: "Corporate Bank Transfer",
+          amount: 12000,
+          date: "2026-10-13",
+          reference: "TXN-771923"
+        }
+      ]
+    }
   },
   {
     id: "RH-HLD-2026-5590",
@@ -313,7 +397,24 @@ export const allApplicationsData = [
         badge: "JR Rail Pass Voucher",
       },
     },
-    notes: "Japan Rail 7-day green car exchange voucher ready. eVisa processing expected within 4 working days."
+    notes: "Japan Rail 7-day green car exchange voucher ready. eVisa processing expected within 4 working days.",
+    paymentDetails: {
+      feeLabel: "TOTAL PACKAGE FEE",
+      totalFee: 145000,
+      totalPaid: 95000,
+      pendingBalance: 50000,
+      paymentStatus: "PARTIALLY PAID",
+      transactions: [
+        {
+          id: "PAY-1007",
+          type: "INITIAL BOOKING",
+          mode: "Credit Card / Gateway",
+          amount: 95000,
+          date: "2026-10-09",
+          reference: "TXN-551092"
+        }
+      ]
+    }
   },
   {
     id: "RH-VSA-2026-6644",
@@ -357,7 +458,24 @@ export const allApplicationsData = [
         badge: "Interview Appointment",
       },
     },
-    notes: "Consular interview preparation session scheduled with RH Visa advisor on 01 Nov 2026."
+    notes: "Consular interview preparation session scheduled with RH Visa advisor on 01 Nov 2026.",
+    paymentDetails: {
+      feeLabel: "TOTAL VISA FEE",
+      totalFee: 16500,
+      totalPaid: 16500,
+      pendingBalance: 0,
+      paymentStatus: "PAID IN FULL",
+      transactions: [
+        {
+          id: "PAY-1008",
+          type: "MRV CONSULAR FEE",
+          mode: "Online UPI / Netbanking",
+          amount: 16500,
+          date: "2026-10-14",
+          reference: "TXN-661044"
+        }
+      ]
+    }
   }
 ];
 

@@ -14,6 +14,7 @@ import EmployeeDetailView from '../pages/EmployeeDetail/EmployeeDetail.view';
 import VisaPackagesView from '../pages/VisaPackages/VisaPackages.view';
 import HolidayPackagesView from '../pages/HolidayPackages/HolidayPackages.view';
 import ProfileView from '../pages/Profile/Profile.view';
+import PackageBlogDetailView from '../pages/PackageBlogDetail/PackageBlogDetail.view';
 
 export const AppRoutes = () => {
   return (
@@ -44,6 +45,9 @@ export const AppRoutes = () => {
 
         {/* Tab 6: Holiday Packages */}
         <Route path={ROUTES.HOLIDAY_PACKAGES} element={<HolidayPackagesView />} />
+
+        {/* Package Detail (Visa & Holiday) */}
+        <Route path={ROUTES.PACKAGE_DETAIL} element={<PackageBlogDetailView />} />
 
         {/* Profile */}
         <Route path={ROUTES.PROFILE} element={<ProfileView />} />

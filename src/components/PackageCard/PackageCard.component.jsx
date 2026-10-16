@@ -1,5 +1,6 @@
 import React from 'react';
-import { Star, Clock, Heart, ShieldCheck, ArrowRight } from 'lucide-react';
+import { Star, Clock, ShieldCheck, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export default function PackageCard({
   pkg,
@@ -8,10 +9,16 @@ export default function PackageCard({
   onToggleFavorite,
   featured = false
 }) {
+  const navigate = useNavigate();
+
+  const handleSelect = () => {
+    navigate(`/packages/${pkg.id}`);
+  };
+
   return (
     <div
       className={`rh-package-card ${featured ? 'featured' : ''}`}
-      onClick={() => onSelect(pkg)}
+      onClick={handleSelect}
     >
       {/* Image Banner */}
       <div className="rh-card-img-wrap">
@@ -31,18 +38,6 @@ export default function PackageCard({
             <span className="rh-flag">{pkg.flag}</span>
             <span className="rh-country-name">{pkg.country}</span>
           </div>
-
-          <button
-            type="button"
-            className={`rh-favorite-btn ${isFavorite ? 'favorited' : ''}`}
-            onClick={(e) => {
-              e.stopPropagation();
-              onToggleFavorite(pkg.id);
-            }}
-            title="Save to favorites"
-          >
-            <Heart size={16} fill={isFavorite ? '#ef4444' : 'none'} color={isFavorite ? '#ef4444' : '#ffffff'} />
-          </button>
         </div>
 
         {/* Rating Floating Badge */}
@@ -103,7 +98,7 @@ export default function PackageCard({
               className="rh-card-action-btn"
               onClick={(e) => {
                 e.stopPropagation();
-                onSelect(pkg);
+                handleSelect();
               }}
             >
               <span>Explore</span>

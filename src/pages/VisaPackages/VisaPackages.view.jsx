@@ -4,7 +4,7 @@ import PackageCard from '../../components/PackageCard/PackageCard.component';
 import { useApp } from '../../context/AppContext';
 
 export const VisaPackagesView = () => {
-  const { packages, favorites, toggleFavorite, setSelectedPackage } = useApp();
+  const { packages, favorites, toggleFavorite } = useApp();
 
   const visaPackages = packages.filter((pkg) => pkg.category === 'visa');
 
@@ -46,7 +46,6 @@ export const VisaPackagesView = () => {
             pkg={pkg}
             isFavorite={favorites.includes(pkg.id)}
             onToggleFavorite={toggleFavorite}
-            onSelect={(p) => setSelectedPackage(p)}
           />
         ))}
       </div>
