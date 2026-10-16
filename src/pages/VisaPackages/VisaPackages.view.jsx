@@ -24,19 +24,7 @@ export const VisaPackagesView = () => {
         </div>
       </div>
 
-      {/* Featured Banner */}
-      <div className="rh-visa-feature-banner">
-        <div className="rh-visa-feat-left">
-          <div className="rh-visa-feat-badge">
-            <Zap size={14} />
-            <span>99.4% EMBASSY APPROVAL RATE</span>
-          </div>
-          <h2>Guaranteed Priority Visa Appointments</h2>
-          <p>
-            Our dedicated immigration compliance officers handle complete dossier preparation, translations, flight & hotel bookings, and mock interview coaching.
-          </p>
-        </div>
-      </div>
+
 
       {/* Visa Packages Grid */}
       <div className="rh-packages-grid full-width">

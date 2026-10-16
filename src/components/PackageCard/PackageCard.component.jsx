@@ -1,5 +1,5 @@
 import React from 'react';
-import { Star, Clock, ShieldCheck, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export default function PackageCard({
@@ -12,6 +12,7 @@ export default function PackageCard({
   const navigate = useNavigate();
 
   const handleSelect = () => {
+    if (onSelect) onSelect(pkg);
     navigate(`/packages/${pkg.id}`);
   };
 
@@ -20,95 +21,30 @@ export default function PackageCard({
       className={`rh-package-card ${featured ? 'featured' : ''}`}
       onClick={handleSelect}
     >
-      {/* Image Banner */}
-      <div className="rh-card-img-wrap">
-        <img
-          src={pkg.heroImage}
-          alt={pkg.title}
-          className="rh-card-img"
-          loading="lazy"
-        />
+      {/* Corner-bleeding background image */}
+      <img
+        src={pkg.heroImage}
+        alt={pkg.title}
+        className="rh-card-corner-img"
+        loading="lazy"
+      />
 
-        {/* Gradient Scrim */}
-        <div className="rh-card-scrim"></div>
+      {/* Gradient wash from top to content area */}
+      <div className="rh-card-corner-scrim"></div>
 
-        {/* Top Badges */}
-        <div className="rh-card-top-badges">
-          <div className="rh-country-chip">
-            <span className="rh-flag">{pkg.flag}</span>
-            <span className="rh-country-name">{pkg.country}</span>
-          </div>
+      {/* Card Content - sits at bottom over gradient */}
+      <div className="rh-card-body">
+        <h3 className="rh-card-title">{pkg.title}</h3>
+        <p className="rh-card-desc">
+          {pkg.subtitle || pkg.description}
+        </p>
+
+        <div className="rh-card-action">
+          <span>Explore</span>
+          <ArrowRight size={16} className="rh-action-arrow" />
         </div>
-
-        {/* Rating Floating Badge */}
-        <div className="rh-rating-badge">
-          <Star size={13} fill="#fbbf24" color="#fbbf24" />
-          <span className="rh-rating-score">{pkg.rating}</span>
-          <span className="rh-reviews-count">({pkg.reviewsCount})</span>
-        </div>
-
-        {/* Bottom Image Info for featured look */}
-        {featured && (
-          <div className="rh-featured-overlay-content">
-            <span className="rh-featured-badge">{pkg.badge}</span>
-            <h3 className="rh-featured-title">{pkg.title}</h3>
-            <div className="rh-featured-meta">
-              <span><Clock size={13} /> {pkg.duration}</span>
-              <span>•</span>
-              <span>{pkg.weather}</span>
-            </div>
-          </div>
-        )}
       </div>
-
-      {/* Card Body */}
-      {!featured && (
-        <div className="rh-card-body">
-          <div className="rh-card-header-row">
-            <h3 className="rh-card-title">{pkg.title}</h3>
-            {pkg.category === 'visa' && (
-              <span className="rh-visa-badge" title="Official Visa Assistance">
-                <ShieldCheck size={13} /> Visa
-              </span>
-            )}
-          </div>
-
-          <p className="rh-card-subtitle">{pkg.subtitle}</p>
-
-          {/* Quick Metrics */}
-          <div className="rh-card-metrics-row">
-            <span className="rh-metric-chip">
-              <Clock size={12} /> {pkg.duration}
-            </span>
-            <span className="rh-metric-chip">
-              {pkg.distance}
-            </span>
-          </div>
-
-          {/* Price & Action Row */}
-          <div className="rh-card-footer-row">
-            <div className="rh-price-block">
-              <span className="rh-price-currency">$</span>
-              <span className="rh-price-amount">{pkg.price.toLocaleString()}</span>
-              <span className="rh-price-label">/ person</span>
-            </div>
-
-            <button
-              type="button"
-              className="rh-card-action-btn"
-              onClick={(e) => {
-                e.stopPropagation();
-                handleSelect();
-              }}
-            >
-              <span>Explore</span>
-              <div className="rh-action-arrow-circle">
-                <ArrowRight size={13} />
-              </div>
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
+
