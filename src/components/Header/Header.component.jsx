@@ -15,15 +15,15 @@ export default function Header() {
     unreadCount,
     searchQuery,
     setSearchQuery,
-    setIsTrackLookupOpen
+    setIsTrackLookupOpen,
+    setIsLogoutConfirmOpen
   } = useApp();
 
   const isCompany = user?.type === 'company';
   const navLinks = getNavItems(user);
 
   const handleLogout = () => {
-    logout();
-    navigate(ROUTES.LOGIN);
+    setIsLogoutConfirmOpen(true);
   };
 
   return (

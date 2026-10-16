@@ -5,7 +5,7 @@ import ROUTES from '../../config/routes';
 
 export const ProfileView = () => {
   const navigate = useNavigate();
-  const { user, applications, favorites, logout, setIsLoginOpen } = useApp();
+  const { user, applications, favorites, setIsLogoutConfirmOpen } = useApp();
 
   return (
     <div className="rh-tab-content-wrap animate-fade-in">
@@ -58,10 +58,7 @@ export const ProfileView = () => {
             <button
               type="button"
               className="rh-logout-full-btn"
-              onClick={() => {
-                logout();
-                navigate(ROUTES.EXPLORE);
-              }}
+              onClick={() => setIsLogoutConfirmOpen(true)}
             >
               Sign Out from RH Global CRM
             </button>

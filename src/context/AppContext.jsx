@@ -30,6 +30,7 @@ export function AppProvider({ children }) {
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [isTrackLookupOpen, setIsTrackLookupOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isLogoutConfirmOpen, setIsLogoutConfirmOpen] = useState(false);
 
   // Toast Notification
   const [toastMessage, setToastMessage] = useState(null);
@@ -182,6 +183,8 @@ export function AppProvider({ children }) {
     setIsTrackLookupOpen,
     isLoginOpen,
     setIsLoginOpen,
+    isLogoutConfirmOpen,
+    setIsLogoutConfirmOpen,
     toastMessage,
     showToast
   };

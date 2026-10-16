@@ -224,31 +224,6 @@ export default function LoginCard({ isMobile = false, onClose = null }) {
           </button>
         </form>
       )}
-
-      {/* 1-Click Demo Accounts Row */}
-      {/* <div className="rh-logincard-demos-wrap">
-        <span className="rh-logincard-demos-title">1-Click Quick Demo Sign In:</span>
-        <div className="rh-logincard-demos-grid">
-          <button
-            type="button"
-            className="rh-logincard-demo-chip"
-            onClick={() => handleQuickDemo('company')}
-            title="Sign in as Acme Global Corporate Account"
-          >
-            <Building2 size={12} />
-            <span>Acme Global (Company)</span>
-          </button>
-          <button
-            type="button"
-            className="rh-logincard-demo-chip"
-            onClick={() => handleQuickDemo('individual')}
-            title="Sign in as Morgan Vance Personal Traveler"
-          >
-            <User size={12} />
-            <span>Morgan Vance (Individual)</span>
-          </button>
-        </div>
-      </div> */}
     </div>
   );
 }
