@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ShieldCheck, CheckCircle2, X, Compass, MapPin, Star, Sparkles } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import ROUTES from '../../config/routes';
-import loginBg from '../../assets/login.jpg';
+import loginBg from '../../assets/login_1.png';
 import LoginCard from '../../components/LoginCard/LoginCard.component';
 import SlideToLogin from '../../components/SlideToLogin/SlideToLogin.component';
 
@@ -26,55 +26,10 @@ export const LoginView = () => {
   return (
     <div className="rh-login-unified-container">
       {/* ========================================================================= */}
-      {/* 1. DESKTOP VIEW (Visible on >= 900px, matches reference 2nd image)        */}
+      {/* 1. DESKTOP VIEW (Visible on >= 900px)                                     */}
       {/* ========================================================================= */}
       <div className="rh-login-desktop-layout">
-        {/* Left Side: Clean Form Section */}
-        <div className="rh-login-desktop-form-pane">
-          {/* Subtle Decorative Watercolor Flower Accents */}
-          <div className="rh-deco-flower top-flower" aria-hidden="true">
-            <svg width="56" height="56" viewBox="0 0 100 100" fill="none">
-              <ellipse cx="50" cy="22" rx="14" ry="20" fill="#fbcfe8" opacity="0.65" />
-              <ellipse cx="50" cy="78" rx="14" ry="20" fill="#fbcfe8" opacity="0.65" />
-              <ellipse cx="22" cy="50" rx="20" ry="14" fill="#fce7f3" opacity="0.75" />
-              <ellipse cx="78" cy="50" rx="20" ry="14" fill="#fce7f3" opacity="0.75" />
-              <circle cx="50" cy="50" r="14" fill="#f472b6" opacity="0.75" />
-            </svg>
-          </div>
-
-          <div className="rh-deco-flower bottom-flower" aria-hidden="true">
-            <svg width="48" height="48" viewBox="0 0 100 100" fill="none">
-              <ellipse cx="50" cy="24" rx="12" ry="18" fill="#dcfce7" opacity="0.65" />
-              <ellipse cx="50" cy="76" rx="12" ry="18" fill="#dcfce7" opacity="0.65" />
-              <ellipse cx="24" cy="50" rx="18" ry="12" fill="#d1fae5" opacity="0.75" />
-              <ellipse cx="76" cy="50" rx="18" ry="12" fill="#d1fae5" opacity="0.75" />
-              <circle cx="50" cy="50" r="12" fill="#a7f3d0" opacity="0.8" />
-            </svg>
-          </div>
-
-          <div className="rh-desktop-form-inner">
-            {/* Top Brand Logo */}
-            <div className="rh-desktop-brand-header">
-              <div className="rh-logo-badge small">
-                <ShieldCheck size={18} className="rh-logo-icon" />
-              </div>
-              <span className="rh-desktop-brand-title">RH GLOBAL</span>
-            </div>
-
-            {/* Title & Subtitle (slightly smaller and sleeker as requested) */}
-            <div className="rh-desktop-header-text">
-              <h1 className="rh-desktop-welcome-heading">Welcome back</h1>
-              <p className="rh-desktop-welcome-sub">
-                Sign in with your email & OTP code to access your travel desk.
-              </p>
-            </div>
-
-            {/* Modular Login Card Component */}
-            <LoginCard isMobile={false} />
-          </div>
-        </div>
-
-        {/* Right Side: Hero Image Section with login.jpg (matching Image 2) */}
+        {/* Left Side: Hero Image Section with login_1.png */}
         <div className="rh-login-desktop-hero-pane">
           <img
             src={loginBg}
@@ -134,6 +89,51 @@ export const LoginView = () => {
                 <CheckCircle2 size={13} color="#a7f3d0" /> 24/7 Corporate Concierge
               </span>
             </div>
+          </div>
+        </div>
+
+        {/* Right Side: Clean Form Section (Login Card) */}
+        <div className="rh-login-desktop-form-pane">
+          {/* Subtle Decorative Watercolor Flower Accents */}
+          <div className="rh-deco-flower top-flower" aria-hidden="true">
+            <svg width="56" height="56" viewBox="0 0 100 100" fill="none">
+              <ellipse cx="50" cy="22" rx="14" ry="20" fill="#fbcfe8" opacity="0.65" />
+              <ellipse cx="50" cy="78" rx="14" ry="20" fill="#fbcfe8" opacity="0.65" />
+              <ellipse cx="22" cy="50" rx="20" ry="14" fill="#fce7f3" opacity="0.75" />
+              <ellipse cx="78" cy="50" rx="20" ry="14" fill="#fce7f3" opacity="0.75" />
+              <circle cx="50" cy="50" r="14" fill="#f472b6" opacity="0.75" />
+            </svg>
+          </div>
+
+          <div className="rh-deco-flower bottom-flower" aria-hidden="true">
+            <svg width="48" height="48" viewBox="0 0 100 100" fill="none">
+              <ellipse cx="50" cy="24" rx="12" ry="18" fill="#dcfce7" opacity="0.65" />
+              <ellipse cx="50" cy="76" rx="12" ry="18" fill="#dcfce7" opacity="0.65" />
+              <ellipse cx="24" cy="50" rx="18" ry="12" fill="#d1fae5" opacity="0.75" />
+              <ellipse cx="76" cy="50" rx="18" ry="12" fill="#d1fae5" opacity="0.75" />
+              <circle cx="50" cy="50" r="12" fill="#a7f3d0" opacity="0.8" />
+            </svg>
+          </div>
+
+          <div className="rh-desktop-form-inner">
+            {/* Top Brand Logo */}
+            <div className="rh-desktop-brand-header">
+              <div className="rh-logo-badge small">
+                <ShieldCheck size={18} className="rh-logo-icon" />
+              </div>
+              <span className="rh-desktop-brand-title">RH GLOBAL</span>
+            </div>
+
+            {/* Title & Subtitle (slightly smaller and sleeker as requested) */}
+            <div className="rh-desktop-header-text">
+              <h1 className="rh-desktop-welcome-heading">Welcome back</h1>
+              <p className="rh-desktop-welcome-sub">
+                Sign in with your email & OTP code to access your travel desk.
+              </p>
+            </div>
+
+            {/* Modular Login Card Component */}
+            <LoginCard isMobile={false} />
           </div>
         </div>
       </div>

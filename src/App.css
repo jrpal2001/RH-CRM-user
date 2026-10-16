@@ -2585,7 +2585,7 @@
   padding: 36px 42px;
   overflow-y: auto;
   z-index: 2;
-  box-shadow: 6px 0 28px rgba(0, 0, 0, 0.08);
+  box-shadow: -6px 0 28px rgba(0, 0, 0, 0.08);
 }
 
 /* Subtle Decorative Flower Accents */
