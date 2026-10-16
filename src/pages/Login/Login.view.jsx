@@ -17,8 +17,8 @@ export const LoginView = () => {
   const handleQuickDemoLogin = (selectedRole) => {
     const demoEmail =
       selectedRole === 'company'
-        ? 'corporate@acmeglobal.com'
-        : 'morgan.vance@example.com';
+        ? 'info@apextours.com'
+        : 'vikram.roy@gmail.com';
     loginWithEmailAndOtp(demoEmail, '7829', selectedRole);
     navigate(ROUTES.DASHBOARD);
   };

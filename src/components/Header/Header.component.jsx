@@ -117,11 +117,17 @@ export default function Header() {
                 onClick={() => navigate(ROUTES.PROFILE)}
                 title={`${user.name} (${isCompany ? user.companyName : 'Individual'})`}
               >
-                <img
-                  src={user.avatar}
-                  alt={user.name}
-                  className="rh-user-avatar-small"
-                />
+                {user.avatar ? (
+                  <img
+                    src={user.avatar}
+                    alt={user.name}
+                    className="rh-user-avatar-small"
+                  />
+                ) : (
+                  <div className="rh-user-avatar-dummy-small" aria-hidden="true">
+                    <User size={15} />
+                  </div>
+                )}
                 <span className="rh-user-name-desktop">{user.name.split(' ')[0]}</span>
               </div>
               <button

@@ -3,29 +3,40 @@
 export const companyUser = {
   id: "CORP-8820",
   type: "company",
-  name: "David Chen",
-  companyName: "Acme Global Innovations Ltd",
-  role: "Head of Corporate Mobility & HR",
-  email: "corporate@acmeglobal.com",
-  phone: "+971 4 392 8800",
-  avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
-  membership: "RH Corporate Gold Partner",
-  totalEmployees: 48,
+  name: "Sunil Mehta",
+  companyName: "Apex Tours & Tech",
+  contactPerson: "Sunil Mehta",
+  role: "Contact Person",
+  email: "info@apextours.com",
+  phone: "+91 22 2800 1122",
+  address: "45 BKC Complex, Mumbai",
+  country: "India",
+  totalEmployees: 18,
+  totalApplications: 29,
+  avatar: null,
+  membership: "Apex Corporate Desk",
+  registrationDate: "2025-11-20",
+  accountStatus: "Active",
 };
 
 export const individualUser = {
   id: "USR-9921",
   type: "individual",
-  name: "Morgan Vance",
-  role: "Frequent Traveler",
-  email: "morgan.vance@example.com",
-  phone: "+1 (555) 234-8910",
+  name: "Vikramaditya Roy",
+  applicantName: "Vikramaditya Roy",
+  role: "Individual Traveler",
+  email: "vikram.roy@gmail.com",
+  phone: "+91 99112 23344",
+  mobileNumber: "+91 99112 23344",
+  country: "India",
   passportNo: "A98234120",
-  avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80",
-  membership: "RH Platinum Traveler",
+  avatar: null,
+  registrationDate: "2026-08-14",
+  accountStatus: "Active",
+  membership: "Verified Individual Traveler",
 };
 
-export const currentUser = companyUser; // Default active for rich corporate demonstration
+export const currentUser = companyUser;
 
 export const companyEmployees = [
   {

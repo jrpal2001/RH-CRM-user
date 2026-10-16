@@ -20,7 +20,7 @@ export default function LoginCard({ isMobile = false, onClose = null }) {
   const { loginWithEmailAndOtp, showToast } = useApp();
 
   const [role, setRole] = useState('company'); // 'company' | 'individual'
-  const [email, setEmail] = useState('corporate@acmeglobal.com');
+  const [email, setEmail] = useState('info@apextours.com');
   const [otp, setOtp] = useState('');
   const [otpSent, setOtpSent] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -42,9 +42,9 @@ export default function LoginCard({ isMobile = false, onClose = null }) {
     setOtpSent(false);
     setOtp('');
     if (newRole === 'company') {
-      setEmail('corporate@acmeglobal.com');
+      setEmail('info@apextours.com');
     } else {
-      setEmail('morgan.vance@example.com');
+      setEmail('vikram.roy@gmail.com');
     }
   };
 
@@ -88,8 +88,8 @@ export default function LoginCard({ isMobile = false, onClose = null }) {
   const handleQuickDemo = (selectedRole) => {
     const demoEmail =
       selectedRole === 'company'
-        ? 'corporate@acmeglobal.com'
-        : 'morgan.vance@example.com';
+        ? 'info@apextours.com'
+        : 'vikram.roy@gmail.com';
     loginWithEmailAndOtp(demoEmail, '7829', selectedRole);
     navigate(ROUTES.DASHBOARD);
   };
