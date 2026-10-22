@@ -119,7 +119,6 @@ export const DashboardView = () => {
           <div>
             <span className="rh-section-eyebrow">CURATED CONCIERGE</span>
             <h2 className="rh-section-title">Special Travel & Visa Packages</h2>
-            <p className="rh-section-desc">Exclusive corporate & member packages curated by RH Global</p>
           </div>
           <div className="rh-promo-header-links">
             <button

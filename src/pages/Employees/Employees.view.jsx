@@ -59,13 +59,6 @@ export const EmployeesView = () => {
         <div>
           <span className="rh-section-eyebrow">CORPORATE ROSTER</span>
           <h1 className="rh-page-main-title">Company Employees</h1>
-          <p className="rh-page-main-desc">
-            Manage your corporate roster and view visa & holiday application histories for each employee.
-          </p>
-        </div>
-        <div className="rh-active-count-chip">
-          <Users size={14} />
-          <span>{employees.length} Enrolled Employees</span>
         </div>
       </div>
 

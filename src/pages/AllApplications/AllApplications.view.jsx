@@ -46,9 +46,6 @@ export const AllApplicationsView = () => {
         <div>
           <span className="rh-section-eyebrow">PORTFOLIO ARCHIVE</span>
           <h1 className="rh-page-main-title">All Applications & Bookings</h1>
-          <p className="rh-page-main-desc">
-            Complete archive of historical, current, and granted visa files & travel tours.
-          </p>
         </div>
       </div>
 

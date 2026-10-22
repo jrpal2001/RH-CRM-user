@@ -40,7 +40,7 @@ export const getNavItems = (user) => {
       title: 'Company Employees',
       path: ROUTES.EMPLOYEES,
       icon: Users,
-      shortLabel: 'Travelers',
+      shortLabel: 'Employees',
     });
   }
 

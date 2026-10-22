@@ -27,13 +27,9 @@ export const ActiveApplicationsView = () => {
         <div>
           <span className="rh-section-eyebrow">IN-FLIGHT CONCIERGE</span>
           <h1 className="rh-page-main-title">Current Active Applications</h1>
-          <p className="rh-page-main-desc">
-            All visa applications and holiday bookings currently in progress or awaiting embassy processing.
-          </p>
         </div>
         <div className="rh-active-count-chip pulse">
           <span className="rh-active-pulse-dot"></span>
-          <span>{activeApplications.length} Active Files</span>
         </div>
       </div>
 
