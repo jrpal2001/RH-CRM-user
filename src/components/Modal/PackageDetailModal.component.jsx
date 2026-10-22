@@ -240,8 +240,8 @@ export default function PackageDetailModal({
           <div className="rh-footer-price-wrap">
             <span className="rh-footer-price-label">Total Price</span>
             <div className="rh-footer-price">
-              <span className="rh-footer-currency">$</span>
-              <span className="rh-footer-val">{pkg.price.toLocaleString()}</span>
+              <span className="rh-footer-currency">₹</span>
+              <span className="rh-footer-val">{pkg.price.toLocaleString('en-IN')}</span>
             </div>
             <span className="rh-footer-note">{pkg.priceNote}</span>
           </div>

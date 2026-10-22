@@ -16,6 +16,7 @@
     "@mui/material": "^9.5.0",
     "lucide-react": "^1.57.0",
     "react": "^19.2.8",
+    "react-country-state-city": "^1.1.13",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.4"
   },

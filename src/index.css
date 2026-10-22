@@ -5,50 +5,50 @@
    ========================================================================== */
 
 :root {
-  /* Brand Palette - Deep Forest Green & Natural Pine */
-  --rh-primary: #0f2419;
-  --rh-primary-hover: #173b27;
-  --rh-primary-light: #204d35;
-  --rh-primary-muted: rgba(15, 36, 25, 0.08);
+  /* Brand Palette - Deep Luxury Obsidian Pine */
+  --rh-primary: #0a1f16;
+  --rh-primary-hover: #133c2a;
+  --rh-primary-light: #1c523a;
+  --rh-primary-muted: rgba(10, 31, 22, 0.06);
 
-  /* High-Conversion Accent - Refined Luxury Emerald & Mint */
+  /* High-Conversion Accent - Vibrant Emerald & Mint */
   --rh-accent: #10b981;
   --rh-accent-hover: #059669;
-  --rh-accent-subtle: rgba(16, 185, 129, 0.14);
-  --rh-accent-border: rgba(16, 185, 129, 0.35);
+  --rh-accent-subtle: rgba(16, 185, 129, 0.12);
+  --rh-accent-border: rgba(16, 185, 129, 0.28);
   --rh-accent-text: #ffffff;
 
   /* Natural Neutrals & Canvas Surfaces */
-  --rh-bg-main: #f0f5f1;
+  --rh-bg-main: #f8faf9;
   --rh-bg-surface: #ffffff;
   --rh-bg-surface-elevated: #ffffff;
-  --rh-bg-subtle: #e6ede8;
-  --rh-bg-tag: #eef4f0;
-  --rh-dock-bg: rgba(15, 36, 25, 0.94);
-  --rh-glass-white: rgba(255, 255, 255, 0.85);
-  --rh-glass-dark: rgba(15, 36, 25, 0.75);
+  --rh-bg-subtle: #f1f5f3;
+  --rh-bg-tag: #eef4f1;
+  --rh-dock-bg: rgba(9, 28, 19, 0.92);
+  --rh-glass-white: rgba(255, 255, 255, 0.88);
+  --rh-glass-dark: rgba(9, 28, 19, 0.85);
 
   /* Typography Colors */
-  --rh-text-primary: #0c1811;
-  --rh-text-secondary: #58675c;
-  --rh-text-muted: #8d9e92;
+  --rh-text-primary: #091a12;
+  --rh-text-secondary: #475a50;
+  --rh-text-muted: #7d9185;
   --rh-text-inverse: #ffffff;
-  --rh-text-inverse-muted: #a3b8aa;
+  --rh-text-inverse-muted: #a7bcaf;
 
   /* Borders & Dividers */
-  --rh-border: rgba(15, 36, 25, 0.09);
-  --rh-border-strong: rgba(15, 36, 25, 0.16);
+  --rh-border: rgba(10, 31, 22, 0.08);
+  --rh-border-strong: rgba(10, 31, 22, 0.14);
   --rh-border-light: rgba(255, 255, 255, 0.2);
 
   /* Elevation Shadows */
-  --rh-shadow-xs: 0 1px 3px rgba(15, 36, 25, 0.04);
-  --rh-shadow-sm: 0 4px 12px rgba(15, 36, 25, 0.06);
-  --rh-shadow-md: 0 10px 25px rgba(15, 36, 25, 0.08);
-  --rh-shadow-lg: 0 20px 45px rgba(15, 36, 25, 0.12);
-  --rh-shadow-dock: 0 14px 40px rgba(0, 0, 0, 0.28);
-  --rh-shadow-accent: 0 8px 24px rgba(16, 185, 129, 0.35);
+  --rh-shadow-xs: 0 1px 2px rgba(10, 31, 22, 0.03);
+  --rh-shadow-sm: 0 2px 8px -1px rgba(10, 31, 22, 0.05), 0 1px 3px rgba(10, 31, 22, 0.03);
+  --rh-shadow-md: 0 8px 24px -4px rgba(10, 31, 22, 0.06), 0 3px 8px -2px rgba(10, 31, 22, 0.03);
+  --rh-shadow-lg: 0 18px 38px -6px rgba(10, 31, 22, 0.09), 0 6px 16px -3px rgba(10, 31, 22, 0.04);
+  --rh-shadow-dock: 0 16px 40px rgba(0, 0, 0, 0.32);
+  --rh-shadow-accent: 0 8px 24px rgba(16, 185, 129, 0.32);
 
-  /* Visa & CRM Application Status Tokens */
+  /* Status Tokens */
   --rh-status-approved: #059669;
   --rh-status-approved-bg: #ecfdf5;
   --rh-status-approved-border: #a7f3d0;
@@ -68,9 +68,9 @@
   /* Radiuses */
   --rh-radius-xs: 6px;
   --rh-radius-sm: 12px;
-  --rh-radius-md: 20px;
-  --rh-radius-lg: 28px;
-  --rh-radius-xl: 38px;
+  --rh-radius-md: 18px;
+  --rh-radius-lg: 24px;
+  --rh-radius-xl: 32px;
   --rh-radius-pill: 9999px;
 
   /* Typography scales */
@@ -79,8 +79,8 @@
 
   /* Transitions */
   --rh-transition-fast: 160ms cubic-bezier(0.16, 1, 0.3, 1);
-  --rh-transition-smooth: 280ms cubic-bezier(0.16, 1, 0.3, 1);
-  --rh-transition-spring: 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --rh-transition-smooth: 260ms cubic-bezier(0.16, 1, 0.3, 1);
+  --rh-transition-spring: 380ms cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* Base Styles */
@@ -98,6 +98,11 @@ body {
   width: 100%;
   min-height: 100%;
   background-color: var(--rh-bg-main);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.04) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(14, 165, 233, 0.03) 0px, transparent 50%),
+    radial-gradient(at 50% 100%, rgba(16, 185, 129, 0.03) 0px, transparent 60%);
+  background-attachment: fixed;
   color: var(--rh-text-primary);
   font-family: var(--rh-font-sans);
   font-size: 15px;
@@ -113,7 +118,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   color: var(--rh-text-primary);
   letter-spacing: -0.025em;
-  line-height: 1.18;
+  line-height: 1.2;
 }
 
 button, input, select, textarea {
@@ -139,7 +144,6 @@ a {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: var(--rh-bg-main);
 }
 
 /* Hide scrollbars while preserving scroll functionality */
@@ -166,7 +170,7 @@ a {
 @keyframes slideUp {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(18px);
   }
   to {
     opacity: 1;
@@ -177,7 +181,7 @@ a {
 @keyframes scaleIn {
   from {
     opacity: 0;
-    transform: scale(0.96);
+    transform: scale(0.97);
   }
   to {
     opacity: 1;
@@ -187,10 +191,10 @@ a {
 
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(198, 242, 67, 0.4);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
   }
   50% {
-    box-shadow: 0 0 0 8px rgba(198, 242, 67, 0);
+    box-shadow: 0 0 0 7px rgba(16, 185, 129, 0);
   }
 }
 

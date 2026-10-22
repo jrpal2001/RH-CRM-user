@@ -28,13 +28,13 @@ export default function LogoutConfirmModal({ isOpen, onClose }) {
           onClick={onClose}
           aria-label="Close"
         >
-          <X size={16} />
+          <X size={14} />
         </button>
 
         {/* Warning Icon Badge */}
         <div className="rh-logout-icon-badge">
           <div className="rh-logout-icon-glow" />
-          <LogOut size={24} className="rh-logout-badge-icon" />
+          <LogOut size={18} className="rh-logout-badge-icon" />
         </div>
 
         {/* Content */}
@@ -56,7 +56,7 @@ export default function LogoutConfirmModal({ isOpen, onClose }) {
             className="rh-logout-btn-confirm"
             onClick={handleConfirmLogout}
           >
-            <LogOut size={15} />
+            <LogOut size={13} />
             <span>Yes, Log Out</span>
           </button>
         </div>

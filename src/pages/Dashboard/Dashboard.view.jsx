@@ -25,64 +25,15 @@ export const DashboardView = () => {
   const isCompany = user?.type === 'company';
   const recentApplications = applications.slice(0, 4);
 
-  // Visa ad and Holiday ad
-  const visaAdPackage = packages.find((p) => p.category === 'visa') || packages[4];
-  const holidayAdPackage = packages.find((p) => p.category === 'holidays') || packages[0];
-
-  // Additional trending packages for visual showcase
-  const trendingPackages = packages.filter(
-    (p) => p.id !== visaAdPackage?.id && p.id !== holidayAdPackage?.id
-  ).slice(0, 3);
+  // Top 3 Curated Featured Packages (1 Visa + 2 Luxury Holidays)
+  const featuredPackages = [
+    packages.find((p) => p.category === 'visa') || packages[4],
+    packages.find((p) => p.id === 'PKG-01') || packages[0],
+    packages.find((p) => p.id === 'PKG-02') || packages[1],
+  ].filter(Boolean);
 
   return (
     <div className="rh-tab-content-wrap animate-fade-in">
-      {/* Top Welcome Section & Role Switcher */}
-      <div className="rh-dashboard-hero-header">
-        <div className="rh-dash-title-group">
-          <div className="rh-user-role-badge">
-            {isCompany ? (
-              <>
-                <Building2 size={13} />
-                <span>COMPANY / CORPORATE PORTAL</span>
-              </>
-            ) : (
-              <>
-                <User size={13} />
-                <span>INDIVIDUAL TRAVELER PORTAL</span>
-              </>
-            )}
-          </div>
-
-          <h1 className="rh-dash-heading">
-            {isCompany ? user.companyName : user?.name}
-          </h1>
-          <p className="rh-dash-subheading">
-            {isCompany
-              ? `Managed by ${user.name} (${user.role}) • Corporate ID: ${user.id}`
-              : `Welcome to your personal Visa & Holiday booking desk • Passport: ${user?.passportNo}`}
-          </p>
-        </div>
-
-        {/* Demo Role Switcher Button */}
-        <div className="rh-role-switcher-banner">
-          <span className="rh-role-switch-lbl">Switch Account Mode:</span>
-          <button
-            type="button"
-            className={`rh-role-switch-btn ${isCompany ? 'active' : ''}`}
-            onClick={() => switchUserType('company')}
-          >
-            <Building2 size={13} /> Company
-          </button>
-          <button
-            type="button"
-            className={`rh-role-switch-btn ${!isCompany ? 'active' : ''}`}
-            onClick={() => switchUserType('individual')}
-          >
-            <User size={13} /> Individual
-          </button>
-        </div>
-      </div>
-
       {/* KPI Stats Grid */}
       <div className={`rh-kpi-stats-grid ${isCompany ? 'grid-4-cols' : 'grid-3-cols'}`}>
         {/* KPI 1: Current Applications */}
@@ -91,15 +42,17 @@ export const DashboardView = () => {
           onClick={() => navigate(ROUTES.ACTIVE_APPLICATIONS)}
           style={{ cursor: 'pointer' }}
         >
-          <div className="rh-kpi-icon-wrap current">
-            <Clock size={20} />
+          <div className="rh-kpi-card-header">
+            <div className="rh-kpi-icon-wrap current">
+              <Clock size={16} />
+            </div>
+            <span className="rh-kpi-chip active">
+              <span className="rh-chip-dot"></span> In Progress
+            </span>
           </div>
           <div className="rh-kpi-info">
-            <span className="rh-kpi-label">Current Applications</span>
-            <div className="rh-kpi-number-row">
-              <span className="rh-kpi-number">{stats.current}</span>
-              <span className="rh-kpi-chip active">In Progress</span>
-            </div>
+            <span className="rh-kpi-number">{stats.current}</span>
+            <span className="rh-kpi-label">Current Active Files</span>
           </div>
         </div>
 
@@ -109,15 +62,15 @@ export const DashboardView = () => {
           onClick={() => navigate(ROUTES.ALL_APPLICATIONS)}
           style={{ cursor: 'pointer' }}
         >
-          <div className="rh-kpi-icon-wrap pending">
-            <Hourglass size={20} />
+          <div className="rh-kpi-card-header">
+            <div className="rh-kpi-icon-wrap pending">
+              <Hourglass size={16} />
+            </div>
+            <span className="rh-kpi-chip review">Embassy Slot</span>
           </div>
           <div className="rh-kpi-info">
-            <span className="rh-kpi-label">Pending Applications</span>
-            <div className="rh-kpi-number-row">
-              <span className="rh-kpi-number">{stats.pending}</span>
-              <span className="rh-kpi-chip review">Embassy Slot</span>
-            </div>
+            <span className="rh-kpi-number">{stats.pending}</span>
+            <span className="rh-kpi-label">Pending Review</span>
           </div>
         </div>
 
@@ -127,15 +80,15 @@ export const DashboardView = () => {
           onClick={() => navigate(ROUTES.ALL_APPLICATIONS)}
           style={{ cursor: 'pointer' }}
         >
-          <div className="rh-kpi-icon-wrap completed">
-            <CheckCircle2 size={20} />
+          <div className="rh-kpi-card-header">
+            <div className="rh-kpi-icon-wrap completed">
+              <CheckCircle2 size={16} />
+            </div>
+            <span className="rh-kpi-chip approved">Granted</span>
           </div>
           <div className="rh-kpi-info">
-            <span className="rh-kpi-label">Completed Applications</span>
-            <div className="rh-kpi-number-row">
-              <span className="rh-kpi-number">{stats.completed}</span>
-              <span className="rh-kpi-chip approved">Granted</span>
-            </div>
+            <span className="rh-kpi-number">{stats.completed}</span>
+            <span className="rh-kpi-label">Granted & Ready</span>
           </div>
         </div>
 
@@ -146,24 +99,25 @@ export const DashboardView = () => {
             onClick={() => navigate(ROUTES.EMPLOYEES)}
             style={{ cursor: 'pointer' }}
           >
-            <div className="rh-kpi-icon-wrap employees">
-              <Users size={20} />
+            <div className="rh-kpi-card-header">
+              <div className="rh-kpi-icon-wrap employees">
+                <Users size={16} />
+              </div>
+              <span className="rh-kpi-chip corporate">Roster</span>
             </div>
             <div className="rh-kpi-info">
-              <span className="rh-kpi-label">Total Employees</span>
-              <div className="rh-kpi-number-row">
-                <span className="rh-kpi-number">{stats.totalEmployees}</span>
-                <span className="rh-kpi-chip corporate">Corporate Roster</span>
-              </div>
+              <span className="rh-kpi-number">{stats.totalEmployees}</span>
+              <span className="rh-kpi-label">Employees</span>
             </div>
           </div>
         )}
       </div>
 
-      {/* Promotional Package Advertisements Row (Visa & Holidays) */}
+      {/* Promotional Package Advertisements Row (3 Cards on Desktop) */}
       <div className="rh-section-box">
         <div className="rh-section-header-row">
           <div>
+            <span className="rh-section-eyebrow">CURATED CONCIERGE</span>
             <h2 className="rh-section-title">Special Travel & Visa Packages</h2>
             <p className="rh-section-desc">Exclusive corporate & member packages curated by RH Global</p>
           </div>
@@ -185,181 +139,24 @@ export const DashboardView = () => {
           </div>
         </div>
 
-        <div className="rh-promo-cards-grid">
-          {/* Visa Package Ad Card */}
-          {visaAdPackage && (
-            <div
-              className="rh-promo-card visa"
-              onClick={() => navigate(`/packages/${visaAdPackage.id}`)}
-            >
-              <div className="rh-promo-img-wrap">
-                <img
-                  src={visaAdPackage.heroImage}
-                  alt={visaAdPackage.title}
-                  className="rh-promo-img"
-                  loading="lazy"
-                />
-                <div className="rh-promo-scrim"></div>
-                <div className="rh-promo-top-badges">
-                  <span className="rh-promo-badge visa">
-                    <ShieldCheck size={13} />
-                    <span>FAST-TRACK VISA SOLUTION</span>
-                  </span>
-                  <span className="rh-promo-country-chip">
-                    <span className="rh-flag">{visaAdPackage.flag}</span>
-                    <span>{visaAdPackage.country}</span>
-                  </span>
-                </div>
-                <div className="rh-promo-img-bottom">
-                  <span className="rh-promo-rating">
-                    <Star size={12} fill="#fbbf24" color="#fbbf24" />
-                    <span>{visaAdPackage.rating} ({visaAdPackage.reviewsCount})</span>
-                  </span>
-                  <span className="rh-promo-duration">
-                    <Clock size={12} /> {visaAdPackage.duration}
-                  </span>
-                </div>
-              </div>
-
-              <div className="rh-promo-body">
-                <h3 className="rh-promo-title">{visaAdPackage.title}</h3>
-                <p className="rh-promo-desc">{visaAdPackage.subtitle}</p>
-
-                <div className="rh-promo-footer">
-                  <div className="rh-promo-price">
-                    <span className="rh-price-from">From</span>
-                    <strong className="rh-price-number">${visaAdPackage.price.toLocaleString()}</strong>
-                    <span className="rh-price-unit">/ applicant</span>
-                  </div>
-                  <div className="rh-promo-btn-group">
-                    <button
-                      type="button"
-                      className="rh-promo-btn secondary"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        navigate(`/packages/${visaAdPackage.id}`);
-                      }}
-                    >
-                      <Eye size={13} />
-                      <span>Details</span>
-                    </button>
-                    <button
-                      type="button"
-                      className="rh-promo-btn primary"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        navigate(ROUTES.VISA_PACKAGES);
-                      }}
-                    >
-                      <span>Explore Visa</span>
-                      <ArrowRight size={13} />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Holiday Package Ad Card */}
-          {holidayAdPackage && (
-            <div
-              className="rh-promo-card holiday"
-              onClick={() => navigate(`/packages/${holidayAdPackage.id}`)}
-            >
-              <div className="rh-promo-img-wrap">
-                <img
-                  src={holidayAdPackage.heroImage}
-                  alt={holidayAdPackage.title}
-                  className="rh-promo-img"
-                  loading="lazy"
-                />
-                <div className="rh-promo-scrim holiday"></div>
-                <div className="rh-promo-top-badges">
-                  <span className="rh-promo-badge holiday">
-                    <Palmtree size={13} />
-                    <span>FEATURED HOLIDAY ESCAPE</span>
-                  </span>
-                  <span className="rh-promo-country-chip">
-                    <span className="rh-flag">{holidayAdPackage.flag}</span>
-                    <span>{holidayAdPackage.country}</span>
-                  </span>
-                </div>
-                <div className="rh-promo-img-bottom">
-                  <span className="rh-promo-rating">
-                    <Star size={12} fill="#fbbf24" color="#fbbf24" />
-                    <span>{holidayAdPackage.rating} ({holidayAdPackage.reviewsCount})</span>
-                  </span>
-                  <span className="rh-promo-duration">
-                    <Clock size={12} /> {holidayAdPackage.duration}
-                  </span>
-                </div>
-              </div>
-
-              <div className="rh-promo-body">
-                <h3 className="rh-promo-title">{holidayAdPackage.title}</h3>
-                <p className="rh-promo-desc">{holidayAdPackage.subtitle}</p>
-
-                <div className="rh-promo-footer">
-                  <div className="rh-promo-price">
-                    <span className="rh-price-from">From</span>
-                    <strong className="rh-price-number">${holidayAdPackage.price.toLocaleString()}</strong>
-                    <span className="rh-price-unit">/ package</span>
-                  </div>
-                  <div className="rh-promo-btn-group">
-                    <button
-                      type="button"
-                      className="rh-promo-btn secondary"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        navigate(`/packages/${holidayAdPackage.id}`);
-                      }}
-                    >
-                      <Eye size={13} />
-                      <span>Details</span>
-                    </button>
-                    <button
-                      type="button"
-                      className="rh-promo-btn primary holiday"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        navigate(ROUTES.HOLIDAY_PACKAGES);
-                      }}
-                    >
-                      <span>Explore Holidays</span>
-                      <ArrowRight size={13} />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
+        {/* 3 Balanced Classy Cards Grid */}
+        <div className="rh-promo-cards-grid grid-3">
+          {featuredPackages.map((pkg) => (
+            <PackageCard
+              key={pkg.id}
+              pkg={pkg}
+              isFavorite={favorites?.includes(pkg.id)}
+              onToggleFavorite={toggleFavorite}
+            />
+          ))}
         </div>
-
-        {/* Additional Trending Packages Showcase with Images */}
-        {trendingPackages.length > 0 && (
-          <div className="rh-dash-packages-subgrid">
-            <div className="rh-subgrid-header">
-              <span className="rh-subgrid-tag">TRENDING DESTINATIONS</span>
-              <span className="rh-subgrid-hint">Handcrafted itineraries with full visa assistance</span>
-            </div>
-            <div className="rh-packages-grid full-width">
-              {trendingPackages.map((pkg) => (
-                <PackageCard
-                  key={pkg.id}
-                  pkg={pkg}
-                  isFavorite={favorites?.includes(pkg.id)}
-                  onToggleFavorite={toggleFavorite}
-                />
-              ))}
-            </div>
-          </div>
-        )}
       </div>
 
       {/* Recent Applications List */}
       <div className="rh-section-box">
         <div className="rh-section-header-row">
           <div>
+            <span className="rh-section-eyebrow">ACTIVITY OVERVIEW</span>
             <h2 className="rh-section-title">Recent Applications</h2>
             <p className="rh-section-desc">Latest filed visa and tour cases</p>
           </div>
@@ -372,7 +169,8 @@ export const DashboardView = () => {
           </button>
         </div>
 
-        <div className="rh-recent-table-wrap">
+        {/* Desktop View: Polished Table */}
+        <div className="rh-recent-table-wrap rh-desktop-only-table">
           <table className="rh-recent-table">
             <thead>
               <tr>
@@ -401,12 +199,14 @@ export const DashboardView = () => {
                   </td>
                   <td>
                     <span className={`rh-type-tag ${app.type}`}>
+                      {app.type === 'visa' ? <ShieldCheck size={12} /> : <Palmtree size={12} />}
                       {app.type === 'visa' ? 'Visa Service' : 'Holiday Tour'}
                     </span>
                   </td>
                   <td className="rh-table-date">{app.submissionDate}</td>
                   <td>
                     <span className={`rh-status-badge ${app.status}`}>
+                      <span className="rh-status-dot"></span>
                       {app.statusLabel}
                     </span>
                   </td>
@@ -424,6 +224,39 @@ export const DashboardView = () => {
               ))}
             </tbody>
           </table>
+        </div>
+
+        {/* Mobile View: High-End Cards List */}
+        <div className="rh-recent-mobile-cards rh-mobile-only-list">
+          {recentApplications.map((app) => (
+            <div
+              key={app.id}
+              className="rh-recent-mobile-card"
+              onClick={() => navigate(`/applications/${app.id}`)}
+            >
+              <div className="rh-rmc-top">
+                <code className="rh-table-code">{app.id}</code>
+                <span className={`rh-status-badge ${app.status}`}>
+                  <span className="rh-status-dot"></span>
+                  {app.statusLabel}
+                </span>
+              </div>
+              <div className="rh-rmc-main">
+                <span className="rh-table-flag">{app.flag}</span>
+                <div className="rh-rmc-title-box">
+                  <h4 className="rh-rmc-name">{app.applicantName}</h4>
+                  <span className="rh-rmc-country">{app.country} • {app.type === 'visa' ? 'Visa Service' : 'Holiday Tour'}</span>
+                </div>
+              </div>
+              <div className="rh-rmc-footer">
+                <span className="rh-rmc-date">Submitted: {app.submissionDate}</span>
+                <span className="rh-rmc-action">
+                  <span>View Details</span>
+                  <ArrowRight size={13} />
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

@@ -32,10 +32,13 @@ export default function Header() {
         <div className="rh-brand-section">
           <div className="rh-brand-logo" onClick={() => navigate(ROUTES.DASHBOARD)}>
             <div className="rh-logo-badge">
-              <Globe size={22} className="rh-logo-icon" />
+              <Globe size={20} className="rh-logo-icon" />
             </div>
             <div className="rh-brand-text">
-              <span className="rh-brand-name">RH GLOBAL</span>
+              <div className="rh-brand-title-row">
+                <span className="rh-brand-name">RH GLOBAL</span>
+                <span className="rh-brand-status-dot" title="Live Concierge Online"></span>
+              </div>
               <span className="rh-brand-tagline">
                 {isCompany ? 'Corporate Travel Desk' : 'Visa & Holiday CRM'}
               </span>
@@ -44,16 +47,18 @@ export default function Header() {
 
           {/* User Account Role Chip */}
           {user && (
-            <div className="rh-user-greeting-chip">
+            <div className="rh-user-greeting-chip" onClick={() => navigate(ROUTES.PROFILE)}>
               {isCompany ? (
                 <>
-                  <Building2 size={13} color="var(--rh-primary)" />
-                  <span className="rh-greeting-hi">{user.companyName.split(' ')[0]} (Company)</span>
+                  <Building2 size={13} className="rh-greeting-icon" />
+                  <span className="rh-greeting-hi">{user.companyName || 'Corporate'}</span>
+                  <span className="rh-greeting-sub">Desk</span>
                 </>
               ) : (
                 <>
-                  <User size={13} color="var(--rh-primary)" />
-                  <span className="rh-greeting-hi">{user.name.split(' ')[0]} (Individual)</span>
+                  <User size={13} className="rh-greeting-icon" />
+                  <span className="rh-greeting-hi">{user.name?.split(' ')[0] || 'Traveler'}</span>
+                  <span className="rh-greeting-sub">Member</span>
                 </>
               )}
             </div>
@@ -61,7 +66,7 @@ export default function Header() {
         </div>
 
         {/* Desktop Navigation Menu (dynamically rendered from config/navigation.js) */}
-        <nav className="rh-desktop-nav">
+        <nav className="rh-desktop-nav" aria-label="Main Navigation">
           {navLinks.map((link) => {
             const Icon = link.icon;
             const isActive = location.pathname === link.path;
@@ -73,7 +78,7 @@ export default function Header() {
                 className={`rh-desktop-nav-link ${isActive ? 'active' : ''}`}
                 onClick={() => navigate(link.path)}
               >
-                <Icon size={16} />
+                <Icon size={15} />
                 <span>{link.shortLabel || link.title}</span>
                 {link.hasBadge && unreadCount > 0 && !isActive && (
                   <span className="rh-nav-badge-dot"></span>
@@ -86,16 +91,6 @@ export default function Header() {
         {/* Right Section: Quick Track, Notifications, Auth */}
         <div className="rh-header-actions">
 
-          {/* Quick Track Application Button */}
-          {/* <button
-            type="button"
-            className="rh-pill-btn rh-quick-track-btn"
-            onClick={() => setIsTrackLookupOpen(true)}
-          >
-            <CheckCircle size={15} />
-            <span>Track Application</span>
-          </button> */}
-
           {/* User Profile / Auth */}
           {user ? (
             <div className="rh-user-profile-menu">
@@ -104,18 +99,20 @@ export default function Header() {
                 onClick={() => navigate(ROUTES.PROFILE)}
                 title={`${user.name} (${isCompany ? user.companyName : 'Individual'})`}
               >
-                {user.avatar ? (
-                  <img
-                    src={user.avatar}
-                    alt={user.name}
-                    className="rh-user-avatar-small"
-                  />
-                ) : (
-                  <div className="rh-user-avatar-dummy-small" aria-hidden="true">
-                    <User size={15} />
-                  </div>
-                )}
-                <span className="rh-user-name-desktop">{user.name.split(' ')[0]}</span>
+                <div className="rh-avatar-frame">
+                  {user.avatar ? (
+                    <img
+                      src={user.avatar}
+                      alt={user.name}
+                      className="rh-user-avatar-small"
+                    />
+                  ) : (
+                    <div className="rh-user-avatar-dummy-small" aria-hidden="true">
+                      <User size={15} />
+                    </div>
+                  )}
+                  <span className="rh-avatar-online-dot"></span>
+                </div>
               </div>
               <button
                 type="button"
@@ -134,33 +131,6 @@ export default function Header() {
             >
               <UserIcon size={15} />
               <span>Sign In</span>
-            </button>
-          )}
-        </div>
-      </div>
-
-      {/* Global Search Bar */}
-      <div className="rh-header-search-wrap">
-        <div className="rh-search-bar">
-          <Search size={18} className="rh-search-icon" />
-          <input
-            type="text"
-            className="rh-search-input"
-            placeholder={
-              isCompany
-                ? "Search employee name, visa country, reference ID, or tour package..."
-                : "Search destination, visa country, or holiday package..."
-            }
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          {searchQuery && (
-            <button
-              type="button"
-              className="rh-search-clear"
-              onClick={() => setSearchQuery('')}
-            >
-              ✕
             </button>
           )}
         </div>

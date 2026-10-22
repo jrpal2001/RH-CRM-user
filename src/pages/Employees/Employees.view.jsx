@@ -1,15 +1,24 @@
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Users, Search, Eye, Building2, ArrowRight, ShieldCheck, Palmtree } from 'lucide-react';
+import { Users, Search, Eye, Building2, ArrowRight, ShieldCheck, Palmtree, Mail, CreditCard, Copy, CheckCheck, Briefcase } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import ROUTES from '../../config/routes';
 
 export const EmployeesView = () => {
   const navigate = useNavigate();
-  const { user, employees, applications } = useApp();
+  const { user, employees, applications, showToast } = useApp();
   const [search, setSearch] = useState('');
+  const [copiedId, setCopiedId] = useState(null);
 
   const isCompany = user?.type === 'company';
+
+  const handleCopy = (e, text, label) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(text);
+    setCopiedId(text);
+    showToast(`Copied ${label}: ${text}`);
+    setTimeout(() => setCopiedId(null), 2000);
+  };
 
   const filteredEmployees = useMemo(() => {
     return employees.filter((emp) => {
@@ -48,24 +57,25 @@ export const EmployeesView = () => {
     <div className="rh-tab-content-wrap animate-fade-in">
       <div className="rh-section-header-row">
         <div>
+          <span className="rh-section-eyebrow">CORPORATE ROSTER</span>
           <h1 className="rh-page-main-title">Company Employees</h1>
           <p className="rh-page-main-desc">
             Manage your corporate roster and view visa & holiday application histories for each employee.
           </p>
         </div>
         <div className="rh-active-count-chip">
-          <Users size={15} />
+          <Users size={14} />
           <span>{employees.length} Enrolled Employees</span>
         </div>
       </div>
 
-      {/* Search Input */}
+      {/* Compact Search Toolbar */}
       <div className="rh-all-apps-toolbar">
-        <div className="rh-apps-search-wrap" style={{ maxWidth: '480px' }}>
-          <Search size={16} className="rh-search-icon" />
+        <div className="rh-apps-search-wrap" style={{ maxWidth: '440px' }}>
+          <Search size={15} className="rh-search-icon" />
           <input
             type="text"
-            placeholder="Search employee by name, department, or passport..."
+            placeholder="Search employee by name, department, passport..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -77,8 +87,8 @@ export const EmployeesView = () => {
         </div>
       </div>
 
-      {/* Employees Grid */}
-      <div className="rh-employees-grid">
+      {/* 3-Column Compact Executive Roster Grid */}
+      <div className="rh-compact-employees-grid">
         {filteredEmployees.map((emp) => {
           const empApps = applications.filter(
             (app) => app.employeeId === emp.id || emp.applicationIds?.includes(app.id)
@@ -86,44 +96,88 @@ export const EmployeesView = () => {
           const activeCount = empApps.filter((a) => a.statusGroup === 'current' || a.status === 'under_review').length;
 
           return (
-            <div key={emp.id} className="rh-employee-card animate-fade-in">
-              <div className="rh-emp-header">
-                <img src={emp.avatar} alt={emp.name} className="rh-emp-avatar" />
-                <div className="rh-emp-title-info">
-                  <h3 className="rh-emp-name">{emp.name}</h3>
-                  <span className="rh-emp-designation">{emp.designation}</span>
-                  <span className="rh-emp-dept-chip">{emp.department}</span>
+            <div
+              key={emp.id}
+              className="rh-compact-employee-card animate-fade-in"
+              onClick={() => navigate(`/employees/${emp.id}`)}
+            >
+              {/* Card top banner accent */}
+              <div className="rh-cec-top-accent"></div>
+
+              <div className="rh-cec-header">
+                <div className="rh-cec-avatar-wrap">
+                  <img src={emp.avatar} alt={emp.name} className="rh-cec-avatar" />
+                  <span className="rh-cec-dot" title="Active Corporate Traveler"></span>
+                </div>
+                <div className="rh-cec-info">
+                  <h3 className="rh-cec-name">{emp.name}</h3>
+                  <span className="rh-cec-designation">{emp.designation}</span>
+                  <div className="rh-cec-badges">
+                    <span className="rh-cec-dept-pill">{emp.department}</span>
+                    <span className="rh-cec-country-pill">{emp.nationality}</span>
+                  </div>
                 </div>
               </div>
 
-              <div className="rh-emp-info-rows">
-                <div className="rh-emp-info-row">
-                  <span className="rh-emp-info-lbl">Employee ID</span>
-                  <code className="rh-emp-code">{emp.id}</code>
+              {/* High-Density Inline Key-Values */}
+              <div className="rh-cec-details-box">
+                <div className="rh-cec-row">
+                  <div
+                    className="rh-cec-col-half"
+                    onClick={(e) => handleCopy(e, emp.id, 'Employee ID')}
+                    title="Click to copy ID"
+                  >
+                    <span className="rh-cec-label">ID</span>
+                    <div className="rh-cec-val-interactive">
+                      <code className="rh-cec-code">{emp.id}</code>
+                      {copiedId === emp.id ? <CheckCheck size={11} color="#059669" /> : <Copy size={11} className="rh-cec-copy" />}
+                    </div>
+                  </div>
+
+                  <div
+                    className="rh-cec-col-half"
+                    onClick={(e) => handleCopy(e, emp.passportNo, 'Passport')}
+                    title="Click to copy Passport"
+                  >
+                    <span className="rh-cec-label">Passport</span>
+                    <div className="rh-cec-val-interactive">
+                      <span className="rh-cec-val font-mono">{emp.passportNo}</span>
+                      {copiedId === emp.passportNo ? <CheckCheck size={11} color="#059669" /> : <Copy size={11} className="rh-cec-copy" />}
+                    </div>
+                  </div>
                 </div>
-                <div className="rh-emp-info-row">
-                  <span className="rh-emp-info-lbl">Passport</span>
-                  <span className="rh-emp-info-val font-mono">{emp.passportNo}</span>
+
+                <div className="rh-cec-row single-line">
+                  <span className="rh-cec-label">Email</span>
+                  <span className="rh-cec-email truncate">{emp.email}</span>
                 </div>
-                <div className="rh-emp-info-row">
-                  <span className="rh-emp-info-lbl">Email</span>
-                  <span className="rh-emp-info-val truncate">{emp.email}</span>
-                </div>
-                <div className="rh-emp-info-row">
-                  <span className="rh-emp-info-lbl">Total Travel Files</span>
-                  <span className="rh-emp-files-badge">{empApps.length} Applications</span>
+
+                <div className="rh-cec-row single-line flex-between">
+                  <span className="rh-cec-label">Cases</span>
+                  <div className="rh-cec-cases-tags">
+                    <span className="rh-cec-files-tag">{empApps.length} Files</span>
+                    {activeCount > 0 && (
+                      <span className="rh-cec-active-tag">
+                        <span className="rh-chip-dot"></span> {activeCount} Active
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
 
-              <div className="rh-emp-card-footer">
+              {/* Compact Footer Action */}
+              <div className="rh-cec-footer">
                 <button
                   type="button"
-                  className="rh-pill-btn rh-view-details-btn full-width"
-                  onClick={() => navigate(`/employees/${emp.id}`)}
+                  className="rh-cec-action-btn"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate(`/employees/${emp.id}`);
+                  }}
                 >
-                  <Eye size={15} />
-                  <span>View Details & Travel History</span>
-                  <ArrowRight size={14} />
+                  <Eye size={13} />
+                  <span>View Details & History</span>
+                  <ArrowRight size={12} className="rh-cec-arrow" />
                 </button>
               </div>
             </div>
