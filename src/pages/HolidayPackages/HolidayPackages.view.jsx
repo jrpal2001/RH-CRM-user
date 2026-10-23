@@ -12,8 +12,12 @@ export const HolidayPackagesView = () => {
     <div className="rh-tab-content-wrap animate-fade-in">
       <div className="rh-section-header-row">
         <div>
-          <span className="rh-section-eyebrow">GLOBAL DESTINATIONS</span>
+          <div className="rh-eyebrow-capsule">
+            <span className="rh-eyebrow-dot"></span>
+            <span className="rh-section-eyebrow">GLOBAL DESTINATIONS</span>
+          </div>
           <h1 className="rh-page-main-title">Curated Holiday Packages</h1>
+          <p className="rh-section-desc">Handcrafted luxury retreats, 5-star private suites, and seamless concierge itineraries.</p>
         </div>
       </div>
 

@@ -199,10 +199,10 @@ Official Portal: https://rhglobalcrm.com | support@rhglobalcrm.com`;
             <span className="rh-attr-val">{app.applicantName}</span>
           </div>
 
-          <div className="rh-attr-item">
+          {/* <div className="rh-attr-item">
             <span className="rh-attr-lbl">Passport Number</span>
             <span className="rh-attr-val font-mono">{app.passportNumber}</span>
-          </div>
+          </div> */}
 
           <div className="rh-attr-item">
             <span className="rh-attr-lbl">Destination Country</span>
@@ -638,10 +638,10 @@ Official Portal: https://rhglobalcrm.com | support@rhglobalcrm.com`;
                   <label>Applicant Name</label>
                   <span>{app.applicantName}</span>
                 </div>
-                <div>
+                {/* <div>
                   <label>Passport Number</label>
                   <span className="font-mono">{app.passportNumber}</span>
-                </div>
+                </div> */}
                 <div>
                   <label>Grant / VFS Number</label>
                   <span className="font-mono">GRT-610992-AU</span>

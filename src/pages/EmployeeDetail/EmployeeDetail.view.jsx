@@ -76,10 +76,10 @@ export const EmployeeDetailView = () => {
         </div>
 
         <div className="rh-emp-profile-details-grid">
-          <div className="rh-emp-detail-col">
+          {/* <div className="rh-emp-detail-col">
             <span className="rh-emp-label"><CreditCard size={14} /> Passport Number</span>
             <span className="rh-emp-val font-mono">{employee.passportNo}</span>
-          </div>
+          </div> */}
           <div className="rh-emp-detail-col">
             <span className="rh-emp-label"><Mail size={14} /> Work Email</span>
             <span className="rh-emp-val">{employee.email}</span>

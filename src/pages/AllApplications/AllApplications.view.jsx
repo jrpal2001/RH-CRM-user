@@ -44,8 +44,12 @@ export const AllApplicationsView = () => {
     <div className="rh-tab-content-wrap animate-fade-in">
       <div className="rh-section-header-row">
         <div>
-          <span className="rh-section-eyebrow">PORTFOLIO ARCHIVE</span>
+          <div className="rh-eyebrow-capsule">
+            <span className="rh-eyebrow-dot"></span>
+            <span className="rh-section-eyebrow">PORTFOLIO ARCHIVE</span>
+          </div>
           <h1 className="rh-page-main-title">All Applications & Bookings</h1>
+          <p className="rh-section-desc">Comprehensive history of active, under-review, and completed corporate travel dossiers.</p>
         </div>
       </div>
 
@@ -145,11 +149,11 @@ export const AllApplicationsView = () => {
                     <User size={13} className="rh-meta-icon" />
                     <strong>{app.applicantName}</strong>
                   </span>
-                  <span className="rh-meta-pill">
+                  {/* <span className="rh-meta-pill">
                     <CreditCard size={13} className="rh-meta-icon" />
                     <span>Passport:</span>
                     <code>{app.passportNumber}</code>
-                  </span>
+                  </span> */}
                   <span className="rh-meta-pill">
                     <MapPin size={13} className="rh-meta-icon" />
                     <span>{app.country}</span>

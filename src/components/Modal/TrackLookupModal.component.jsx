@@ -79,7 +79,7 @@ export default function TrackLookupModal({ isOpen, onClose, applications, onSele
             </div>
           </div>
 
-          <div className="rh-form-group">
+          {/* <div className="rh-form-group">
             <label>Passport Number or Phone (Optional)</label>
             <div className="rh-form-input-wrap">
               <input
@@ -89,7 +89,7 @@ export default function TrackLookupModal({ isOpen, onClose, applications, onSele
                 onChange={(e) => setPassportQuery(e.target.value)}
               />
             </div>
-          </div>
+          </div> */}
 
           {/* Quick Demo Pre-fills */}
           <div className="rh-quick-demo-chips">

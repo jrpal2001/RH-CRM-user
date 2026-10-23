@@ -12,8 +12,12 @@ export const VisaPackagesView = () => {
     <div className="rh-tab-content-wrap animate-fade-in">
       <div className="rh-section-header-row">
         <div>
-          <span className="rh-section-eyebrow">CONSULAR SERVICES</span>
+          <div className="rh-eyebrow-capsule">
+            <span className="rh-eyebrow-dot"></span>
+            <span className="rh-section-eyebrow">CONSULAR SERVICES</span>
+          </div>
           <h1 className="rh-page-main-title">Fast-Track Visa Services</h1>
+          <p className="rh-section-desc">Accredited diplomatic filings with guaranteed biometric slots and end-to-end documentation audit.</p>
         </div>
       </div>
 

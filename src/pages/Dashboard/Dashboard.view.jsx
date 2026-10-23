@@ -12,7 +12,10 @@ import {
   Building2,
   User,
   Sparkles,
-  Star
+  Star,
+  ArrowUpRight,
+  TrendingUp,
+  FileCheck
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import ROUTES from '../../config/routes';
@@ -38,13 +41,13 @@ export const DashboardView = () => {
       <div className={`rh-kpi-stats-grid ${isCompany ? 'grid-4-cols' : 'grid-3-cols'}`}>
         {/* KPI 1: Current Applications */}
         <div
-          className="rh-kpi-card"
+          className="rh-kpi-card kpi-emerald"
           onClick={() => navigate(ROUTES.ACTIVE_APPLICATIONS)}
-          style={{ cursor: 'pointer' }}
         >
+          <div className="rh-kpi-top-glow"></div>
           <div className="rh-kpi-card-header">
             <div className="rh-kpi-icon-wrap current">
-              <Clock size={16} />
+              <Clock size={14} />
             </div>
             <span className="rh-kpi-chip active">
               <span className="rh-chip-dot"></span> In Progress
@@ -52,19 +55,19 @@ export const DashboardView = () => {
           </div>
           <div className="rh-kpi-info">
             <span className="rh-kpi-number">{stats.current}</span>
-            <span className="rh-kpi-label">Current Active Files</span>
+            <span className="rh-kpi-label">Active Files</span>
           </div>
         </div>
 
         {/* KPI 2: Pending Applications */}
         <div
-          className="rh-kpi-card"
+          className="rh-kpi-card kpi-amber"
           onClick={() => navigate(ROUTES.ALL_APPLICATIONS)}
-          style={{ cursor: 'pointer' }}
         >
+          <div className="rh-kpi-top-glow amber"></div>
           <div className="rh-kpi-card-header">
             <div className="rh-kpi-icon-wrap pending">
-              <Hourglass size={16} />
+              <Hourglass size={14} />
             </div>
             <span className="rh-kpi-chip review">Embassy Slot</span>
           </div>
@@ -76,13 +79,13 @@ export const DashboardView = () => {
 
         {/* KPI 3: Completed Applications */}
         <div
-          className="rh-kpi-card"
+          className="rh-kpi-card kpi-teal"
           onClick={() => navigate(ROUTES.ALL_APPLICATIONS)}
-          style={{ cursor: 'pointer' }}
         >
+          <div className="rh-kpi-top-glow teal"></div>
           <div className="rh-kpi-card-header">
             <div className="rh-kpi-icon-wrap completed">
-              <CheckCircle2 size={16} />
+              <CheckCircle2 size={14} />
             </div>
             <span className="rh-kpi-chip approved">Granted</span>
           </div>
@@ -95,13 +98,13 @@ export const DashboardView = () => {
         {/* KPI 4: Total Employees (ONLY if Company user!) */}
         {isCompany && (
           <div
-            className="rh-kpi-card"
+            className="rh-kpi-card kpi-violet"
             onClick={() => navigate(ROUTES.EMPLOYEES)}
-            style={{ cursor: 'pointer' }}
           >
+            <div className="rh-kpi-top-glow violet"></div>
             <div className="rh-kpi-card-header">
               <div className="rh-kpi-icon-wrap employees">
-                <Users size={16} />
+                <Users size={14} />
               </div>
               <span className="rh-kpi-chip corporate">Roster</span>
             </div>
@@ -117,8 +120,12 @@ export const DashboardView = () => {
       <div className="rh-section-box">
         <div className="rh-section-header-row">
           <div>
-            <span className="rh-section-eyebrow">CURATED CONCIERGE</span>
+            <div className="rh-eyebrow-capsule">
+              <span className="rh-eyebrow-dot"></span>
+              <span className="rh-section-eyebrow">CURATED CONCIERGE</span>
+            </div>
             <h2 className="rh-section-title">Special Travel & Visa Packages</h2>
+            <p className="rh-section-desc">Handcrafted consular lodgments and signature holiday escapes curated exclusively for members.</p>
           </div>
           <div className="rh-promo-header-links">
             <button
@@ -155,16 +162,20 @@ export const DashboardView = () => {
       <div className="rh-section-box">
         <div className="rh-section-header-row">
           <div>
-            <span className="rh-section-eyebrow">ACTIVITY OVERVIEW</span>
+            <div className="rh-eyebrow-capsule">
+              <span className="rh-eyebrow-dot"></span>
+              <span className="rh-section-eyebrow">ACTIVITY OVERVIEW</span>
+            </div>
             <h2 className="rh-section-title">Recent Applications</h2>
-            <p className="rh-section-desc">Latest filed visa and tour cases</p>
+            <p className="rh-section-desc">Real-time status tracking for filed visa and tour cases</p>
           </div>
           <button
             type="button"
             className="rh-section-view-all"
             onClick={() => navigate(ROUTES.ALL_APPLICATIONS)}
           >
-            View All ({applications.length}) →
+            <span>View All ({applications.length})</span>
+            <ArrowRight size={14} />
           </button>
         </div>
 

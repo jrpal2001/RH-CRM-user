@@ -25,11 +25,16 @@ export const ActiveApplicationsView = () => {
     <div className="rh-tab-content-wrap animate-fade-in">
       <div className="rh-section-header-row">
         <div>
-          <span className="rh-section-eyebrow">IN-FLIGHT CONCIERGE</span>
+          <div className="rh-eyebrow-capsule">
+            <span className="rh-eyebrow-dot"></span>
+            <span className="rh-section-eyebrow">IN-FLIGHT CONCIERGE</span>
+          </div>
           <h1 className="rh-page-main-title">Current Active Applications</h1>
+          <p className="rh-section-desc">Live diplomatic filing timeline, biometric appointments, and consular clearance tracking.</p>
         </div>
         <div className="rh-active-count-chip pulse">
           <span className="rh-active-pulse-dot"></span>
+          <span>{activeApplications.length} In-Flight Dossiers</span>
         </div>
       </div>
 

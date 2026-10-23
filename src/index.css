@@ -1,3 +1,6 @@
+/* ===== Google Fonts ===== */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
 /* ==========================================================================
    RH GLOBAL CRM — USER PORTAL GLOBAL DESIGN SYSTEM
    Luxury Travel, Visa & Holiday Booking Theme
@@ -5,11 +8,11 @@
    ========================================================================== */
 
 :root {
-  /* Brand Palette - Deep Luxury Obsidian Pine */
-  --rh-primary: #0a1f16;
-  --rh-primary-hover: #133c2a;
-  --rh-primary-light: #1c523a;
-  --rh-primary-muted: rgba(10, 31, 22, 0.06);
+  /* Brand Palette - Deep Luxury Obsidian Pine & Gold Accents */
+  --rh-primary: #061c13;
+  --rh-primary-hover: #0c3322;
+  --rh-primary-light: #124a32;
+  --rh-primary-muted: rgba(6, 28, 19, 0.05);
 
   /* High-Conversion Accent - Vibrant Emerald & Mint */
   --rh-accent: #10b981;
@@ -18,34 +21,40 @@
   --rh-accent-border: rgba(16, 185, 129, 0.28);
   --rh-accent-text: #ffffff;
 
-  /* Natural Neutrals & Canvas Surfaces */
-  --rh-bg-main: #f8faf9;
+  /* Luxury Gold / Amber Accents */
+  --rh-gold: #f59e0b;
+  --rh-gold-light: #fef3c7;
+  --rh-gold-border: rgba(245, 158, 11, 0.35);
+
+  /* Executive Canvas & Surfaces */
+  --rh-bg-main: #f5f8f6;
   --rh-bg-surface: #ffffff;
   --rh-bg-surface-elevated: #ffffff;
-  --rh-bg-subtle: #f1f5f3;
-  --rh-bg-tag: #eef4f1;
-  --rh-dock-bg: rgba(9, 28, 19, 0.92);
+  --rh-bg-subtle: #f0f4f2;
+  --rh-bg-tag: #edf3f0;
+  --rh-dock-bg: rgba(6, 28, 19, 0.94);
   --rh-glass-white: rgba(255, 255, 255, 0.88);
-  --rh-glass-dark: rgba(9, 28, 19, 0.85);
+  --rh-glass-dark: rgba(6, 28, 19, 0.88);
 
   /* Typography Colors */
-  --rh-text-primary: #091a12;
-  --rh-text-secondary: #475a50;
-  --rh-text-muted: #7d9185;
+  --rh-text-primary: #081a12;
+  --rh-text-secondary: #3e5246;
+  --rh-text-muted: #6b8274;
   --rh-text-inverse: #ffffff;
-  --rh-text-inverse-muted: #a7bcaf;
+  --rh-text-inverse-muted: #9eb8a8;
 
   /* Borders & Dividers */
-  --rh-border: rgba(10, 31, 22, 0.08);
-  --rh-border-strong: rgba(10, 31, 22, 0.14);
+  --rh-border: rgba(6, 28, 19, 0.08);
+  --rh-border-strong: rgba(6, 28, 19, 0.14);
   --rh-border-light: rgba(255, 255, 255, 0.2);
 
-  /* Elevation Shadows */
-  --rh-shadow-xs: 0 1px 2px rgba(10, 31, 22, 0.03);
-  --rh-shadow-sm: 0 2px 8px -1px rgba(10, 31, 22, 0.05), 0 1px 3px rgba(10, 31, 22, 0.03);
-  --rh-shadow-md: 0 8px 24px -4px rgba(10, 31, 22, 0.06), 0 3px 8px -2px rgba(10, 31, 22, 0.03);
-  --rh-shadow-lg: 0 18px 38px -6px rgba(10, 31, 22, 0.09), 0 6px 16px -3px rgba(10, 31, 22, 0.04);
-  --rh-shadow-dock: 0 16px 40px rgba(0, 0, 0, 0.32);
+  /* Luxury Elevation Shadows */
+  --rh-shadow-xs: 0 1px 2px rgba(6, 28, 19, 0.04);
+  --rh-shadow-sm: 0 2px 8px -1px rgba(6, 28, 19, 0.06), 0 1px 3px rgba(6, 28, 19, 0.03);
+  --rh-shadow-md: 0 8px 24px -4px rgba(6, 28, 19, 0.07), 0 3px 8px -2px rgba(6, 28, 19, 0.03);
+  --rh-shadow-lg: 0 20px 42px -8px rgba(6, 28, 19, 0.1), 0 6px 18px -3px rgba(6, 28, 19, 0.04);
+  --rh-shadow-card: 0 4px 20px -2px rgba(6, 28, 19, 0.05), 0 1px 3px rgba(6, 28, 19, 0.03);
+  --rh-shadow-card-hover: 0 16px 36px -6px rgba(6, 28, 19, 0.09), 0 4px 14px -2px rgba(16, 185, 129, 0.12);
   --rh-shadow-accent: 0 8px 24px rgba(16, 185, 129, 0.32);
 
   /* Status Tokens */
@@ -73,9 +82,19 @@
   --rh-radius-xl: 32px;
   --rh-radius-pill: 9999px;
 
-  /* Typography scales */
-  --rh-font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  --rh-font-display: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
+  /* Typography Families */
+  --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-ui: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Theme System Aliases */
+  --rh-font-heading: var(--font-heading);
+  --rh-font-display: var(--font-heading);
+  --rh-font-body: var(--font-body);
+  --rh-font-sans: var(--font-body);
+  --rh-font-family: var(--font-body);
+  --rh-font-ui: var(--font-ui);
+  --rh-font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Monaco, Consolas, ui-monospace, monospace;
 
   /* Transitions */
   --rh-transition-fast: 160ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -97,32 +116,59 @@ html,
 body {
   width: 100%;
   min-height: 100%;
-  background-color: var(--rh-bg-main);
+  background-color: #f5f8f6;
   background-image: 
-    radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.04) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(14, 165, 233, 0.03) 0px, transparent 50%),
-    radial-gradient(at 50% 100%, rgba(16, 185, 129, 0.03) 0px, transparent 60%);
+    radial-gradient(at 10% 8%, rgba(16, 185, 129, 0.07) 0px, transparent 55%),
+    radial-gradient(at 90% 12%, rgba(6, 44, 30, 0.06) 0px, transparent 55%),
+    radial-gradient(at 50% 90%, rgba(16, 185, 129, 0.05) 0px, transparent 65%);
   background-attachment: fixed;
   color: var(--rh-text-primary);
-  font-family: var(--rh-font-sans);
-  font-size: 15px;
-  line-height: 1.5;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: -0.011em;
+  line-height: 1.45;
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   overflow-x: clip;
 }
 
-/* Typography Helpers */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--rh-font-display);
-  font-weight: 700;
+/* Headings */
+h1, h2, h3, h4, h5, h6,
+.heading {
+  font-family: var(--font-heading);
+  font-weight: 600;
   color: var(--rh-text-primary);
-  letter-spacing: -0.025em;
-  line-height: 1.2;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
 }
 
-button, input, select, textarea {
-  font-family: inherit;
+h1 { font-size: 18px; }
+h2 { font-size: 15px; }
+h3 { font-size: 13.5px; }
+h4 { font-size: 12.5px; }
+h5 { font-size: 11.5px; }
+h6 { font-size: 10.5px; }
+
+@media (max-width: 640px) {
+  html, body {
+    font-size: 12.5px;
+  }
+  h1 { font-size: 16.5px; }
+  h2 { font-size: 14px; }
+  h3 { font-size: 13px; }
+}
+
+/* Buttons, Inputs, Selects */
+button,
+input,
+select,
+textarea,
+optgroup {
+  font-family: var(--font-ui);
+  letter-spacing: -0.01em;
   font-size: inherit;
   border: none;
   outline: none;
@@ -132,6 +178,36 @@ button, input, select, textarea {
 button {
   cursor: pointer;
   user-select: none;
+}
+
+/* Labels, Badges, Tags, Chips, Pills */
+.label,
+.badge,
+.tag,
+.chip,
+.rh-meta-pill,
+.rh-status-badge,
+.rh-tag,
+.rh-chip,
+.rh-meta-badge,
+.rh-card-badge,
+.rh-meta-status {
+  font-family: var(--font-ui);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Utility Font Classes */
+.font-heading {
+  font-family: var(--font-heading) !important;
+}
+
+.font-body {
+  font-family: var(--font-body) !important;
+}
+
+.font-ui {
+  font-family: var(--font-ui) !important;
 }
 
 a {

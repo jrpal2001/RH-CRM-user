@@ -57,8 +57,16 @@ export const EmployeesView = () => {
     <div className="rh-tab-content-wrap animate-fade-in">
       <div className="rh-section-header-row">
         <div>
-          <span className="rh-section-eyebrow">CORPORATE ROSTER</span>
+          <div className="rh-eyebrow-capsule">
+            <span className="rh-eyebrow-dot"></span>
+            <span className="rh-section-eyebrow">CORPORATE ROSTER</span>
+          </div>
           <h1 className="rh-page-main-title">Company Employees</h1>
+          <p className="rh-section-desc">Manage verified corporate travelers, passport validity, and assigned visa filings.</p>
+        </div>
+        <div className="rh-active-count-chip corporate">
+          <Users size={13} />
+          <span>{filteredEmployees.length} Enrolled Travelers</span>
         </div>
       </div>
 

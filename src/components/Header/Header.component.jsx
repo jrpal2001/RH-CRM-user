@@ -37,32 +37,13 @@ export default function Header() {
             <div className="rh-brand-text">
               <div className="rh-brand-title-row">
                 <span className="rh-brand-name">RH GLOBAL</span>
-                <span className="rh-brand-status-dot" title="Live Concierge Online"></span>
+                <span className="rh-brand-tier-badge">CONCIERGE</span>
               </div>
               <span className="rh-brand-tagline">
-                {isCompany ? 'Corporate Travel Desk' : 'Visa & Holiday CRM'}
+                {isCompany ? 'Corporate Travel Desk' : 'Executive Travel Desk'}
               </span>
             </div>
           </div>
-
-          {/* User Account Role Chip */}
-          {user && (
-            <div className="rh-user-greeting-chip" onClick={() => navigate(ROUTES.PROFILE)}>
-              {isCompany ? (
-                <>
-                  <Building2 size={13} className="rh-greeting-icon" />
-                  <span className="rh-greeting-hi">{user.companyName || 'Corporate'}</span>
-                  <span className="rh-greeting-sub">Desk</span>
-                </>
-              ) : (
-                <>
-                  <User size={13} className="rh-greeting-icon" />
-                  <span className="rh-greeting-hi">{user.name?.split(' ')[0] || 'Traveler'}</span>
-                  <span className="rh-greeting-sub">Member</span>
-                </>
-              )}
-            </div>
-          )}
         </div>
 
         {/* Desktop Navigation Menu (dynamically rendered from config/navigation.js) */}

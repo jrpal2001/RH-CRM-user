@@ -23,14 +23,14 @@ export const getNavItems = (user) => {
       title: 'Active Applications',
       path: ROUTES.ACTIVE_APPLICATIONS,
       icon: Clock,
-      shortLabel: 'Current Applications',
+      shortLabel: 'Active',
       hasBadge: true,
     },
     {
       title: 'All Applications',
       path: ROUTES.ALL_APPLICATIONS,
       icon: Files,
-      shortLabel: 'Applications',
+      shortLabel: 'All Files',
     },
   ];
 
