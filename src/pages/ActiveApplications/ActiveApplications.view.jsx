@@ -41,7 +41,11 @@ export const ActiveApplicationsView = () => {
       {activeApplications.length > 0 ? (
         <div className="rh-active-cards-grid">
           {activeApplications.map((app) => (
-            <div key={app.id} className="rh-active-file-card">
+            <div
+              key={app.id}
+              className="rh-active-file-card"
+              onClick={() => navigate(`/applications/${app.id}`)}
+            >
               <div className="rh-active-file-top">
                 <div className="rh-file-badge-row">
                   <div className="rh-badge-group-left">
@@ -52,11 +56,11 @@ export const ActiveApplicationsView = () => {
                       title="Click to copy Reference ID"
                     >
                       <code className="rh-table-code">{app.id}</code>
-                      {copiedId === app.id ? <CheckCheck size={12} color="#059669" /> : <Copy size={12} />}
+                      {copiedId === app.id ? <CheckCheck size={11} color="#059669" /> : <Copy size={11} />}
                     </button>
 
                     <span className={`rh-type-tag ${app.type}`}>
-                      {app.type === 'visa' ? <ShieldCheck size={12} /> : <Palmtree size={12} />}
+                      {app.type === 'visa' ? <ShieldCheck size={11} /> : <Palmtree size={11} />}
                       <span>{app.type === 'visa' ? 'Visa Application' : 'Holiday Tour'}</span>
                     </span>
                   </div>
@@ -72,30 +76,33 @@ export const ActiveApplicationsView = () => {
                   <span>{app.type === 'visa' ? app.visaType : app.packageName}</span>
                 </h3>
 
-                <div className="rh-file-meta-pills">
-                  <span className="rh-meta-pill">
-                    <User size={13} className="rh-meta-icon" />
+                {/* Compact Single-Line Meta Data */}
+                <div className="rh-file-compact-meta">
+                  <span className="rh-meta-applicant">
+                    <User size={12} className="rh-meta-icon" />
                     <strong>{app.applicantName}</strong>
                   </span>
-                  <span className="rh-meta-pill">
-                    <CreditCard size={13} className="rh-meta-icon" />
-                    <span>Passport:</span>
-                    <code>{app.passportNumber}</code>
+                  <span className="rh-meta-bullet">•</span>
+                  <span className="rh-meta-passport">
+                    <span>Passport:</span> <code>{app.passportNumber}</code>
                   </span>
-                  <span className="rh-meta-pill">
-                    <Calendar size={13} className="rh-meta-icon" />
-                    <span>Submitted: {app.submissionDate}</span>
+                  <span className="rh-meta-bullet">•</span>
+                  <span className="rh-meta-date">
+                    <span>Submitted:</span> {app.submissionDate}
                   </span>
                   {app.estimatedCompletion && (
-                    <span className="rh-meta-pill eta">
-                      <Clock size={13} className="rh-meta-icon" />
-                      <span>ETA: {app.estimatedCompletion}</span>
-                    </span>
+                    <>
+                      <span className="rh-meta-bullet">•</span>
+                      <span className="rh-meta-eta">
+                        <Clock size={11} />
+                        <span>ETA: {app.estimatedCompletion}</span>
+                      </span>
+                    </>
                   )}
                 </div>
               </div>
 
-              {/* Compact Sleek Milestone Pipeline */}
+              {/* Compact Sleek Milestone Stepper Bar */}
               <div className="rh-active-stepper-container">
                 <div className="rh-stepper-header">
                   <span className="rh-stepper-title">Milestone Roadmap</span>
@@ -104,7 +111,7 @@ export const ActiveApplicationsView = () => {
                   </span>
                 </div>
 
-                <div className="rh-compact-pipeline-track">
+                <div className="rh-compact-stepper-bar">
                   {app.steps.map((step, idx) => {
                     const stepNum = idx + 1;
                     const isPassed = stepNum < app.currentStep;
@@ -113,41 +120,33 @@ export const ActiveApplicationsView = () => {
                     return (
                       <div
                         key={step.id || idx}
-                        className={`rh-pipeline-step ${isPassed ? 'completed' : ''} ${isCurrent ? 'current' : ''}`}
+                        className={`rh-step-node ${isPassed ? 'completed' : ''} ${isCurrent ? 'current' : ''}`}
                       >
-                        <div className="rh-pipeline-bullet">
-                          {isPassed ? (
-                            <Check size={12} className="rh-check-icon" />
-                          ) : (
-                            <span>{stepNum}</span>
+                        <div className="rh-step-node-top">
+                          <span className="rh-step-node-bubble">
+                            {isPassed ? <Check size={10} /> : stepNum}
+                          </span>
+                          {idx < app.steps.length - 1 && (
+                            <span className={`rh-step-node-line ${isPassed ? 'active' : ''}`}></span>
                           )}
                         </div>
-                        <div className="rh-pipeline-text">
-                          <span className="rh-pipeline-title">{step.title}</span>
-                          <span className="rh-pipeline-date">{step.date || 'Pending'}</span>
-                        </div>
+                        <span className="rh-step-node-title">{step.title}</span>
+                        <span className="rh-step-node-date">{step.date || 'Pending'}</span>
                       </div>
                     );
                   })}
                 </div>
               </div>
 
-              {/* Action row with View Button */}
+              {/* Action row with View Button on the SAME line */}
               <div className="rh-active-card-footer">
-                <div className="rh-active-footer-left">
-                  <span className="rh-footer-destination">
-                    {app.country} • {app.type === 'visa' ? 'Consular Jurisdiction' : 'Luxury Itinerary'}
-                  </span>
-                </div>
-                <button
-                  type="button"
-                  className="rh-pill-btn rh-view-details-btn"
-                  onClick={() => navigate(`/applications/${app.id}`)}
-                >
-                  <Eye size={15} />
-                  <span>View Details & Downloads</span>
-                  <ArrowRight size={14} />
-                </button>
+                <span className="rh-footer-destination">
+                  {app.country} • {app.type === 'visa' ? 'Consular Filing' : 'Luxury Itinerary'}
+                </span>
+                <span className="rh-active-card-action">
+                  <span>View Dossier</span>
+                  <ArrowRight size={12} />
+                </span>
               </div>
             </div>
           ))}

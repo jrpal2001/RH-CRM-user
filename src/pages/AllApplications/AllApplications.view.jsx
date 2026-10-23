@@ -118,20 +118,22 @@ export const AllApplicationsView = () => {
             >
               <div className="rh-app-item-main">
                 <div className="rh-app-item-top">
-                  <button
-                    type="button"
-                    className="rh-ref-pill-btn"
-                    onClick={(e) => handleCopy(e, app.id)}
-                    title="Click to copy Reference ID"
-                  >
-                    <code className="rh-table-code">{app.id}</code>
-                    {copiedId === app.id ? <CheckCheck size={12} color="#059669" /> : <Copy size={12} />}
-                  </button>
+                  <div className="rh-app-top-left">
+                    <button
+                      type="button"
+                      className="rh-ref-pill-btn"
+                      onClick={(e) => handleCopy(e, app.id)}
+                      title="Click to copy Reference ID"
+                    >
+                      <code className="rh-table-code">{app.id}</code>
+                      {copiedId === app.id ? <CheckCheck size={11} color="#059669" /> : <Copy size={11} />}
+                    </button>
 
-                  <span className={`rh-type-tag ${app.type}`}>
-                    {app.type === 'visa' ? <ShieldCheck size={12} /> : <Palmtree size={12} />}
-                    <span>{app.type === 'visa' ? 'Visa Service' : 'Holiday Tour'}</span>
-                  </span>
+                    <span className={`rh-type-tag ${app.type}`}>
+                      {app.type === 'visa' ? <ShieldCheck size={11} /> : <Palmtree size={11} />}
+                      <span>{app.type === 'visa' ? 'Visa' : 'Tour'}</span>
+                    </span>
+                  </div>
 
                   <span className={`rh-status-badge ${app.status}`}>
                     <span className="rh-status-dot"></span>
@@ -144,40 +146,23 @@ export const AllApplicationsView = () => {
                   <span>{app.type === 'visa' ? app.visaType : app.packageName}</span>
                 </h3>
 
-                <div className="rh-app-item-meta">
-                  <span className="rh-meta-pill">
-                    <User size={13} className="rh-meta-icon" />
+                <div className="rh-app-item-bottom">
+                  <div className="rh-app-compact-meta">
                     <strong>{app.applicantName}</strong>
-                  </span>
-                  {/* <span className="rh-meta-pill">
-                    <CreditCard size={13} className="rh-meta-icon" />
-                    <span>Passport:</span>
-                    <code>{app.passportNumber}</code>
-                  </span> */}
-                  <span className="rh-meta-pill">
-                    <MapPin size={13} className="rh-meta-icon" />
+                    <span className="rh-meta-bullet">•</span>
                     <span>{app.country}</span>
-                  </span>
-                  <span className="rh-meta-pill">
-                    <Calendar size={13} className="rh-meta-icon" />
-                    <span>Submitted: {app.submissionDate}</span>
+                    {app.submissionDate && (
+                      <>
+                        <span className="rh-meta-bullet">•</span>
+                        <span>{app.submissionDate}</span>
+                      </>
+                    )}
+                  </div>
+                  <span className="rh-app-card-cta">
+                    <span>View</span>
+                    <ArrowRight size={12} />
                   </span>
                 </div>
-              </div>
-
-              <div className="rh-app-item-action">
-                <button
-                  type="button"
-                  className="rh-pill-btn rh-view-details-btn"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    navigate(`/applications/${app.id}`);
-                  }}
-                >
-                  <Eye size={15} />
-                  <span>View Details</span>
-                  <ArrowRight size={14} />
-                </button>
               </div>
             </div>
           ))}

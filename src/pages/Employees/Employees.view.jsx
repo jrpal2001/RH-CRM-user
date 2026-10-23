@@ -72,7 +72,7 @@ export const EmployeesView = () => {
 
       {/* Compact Search Toolbar */}
       <div className="rh-all-apps-toolbar">
-        <div className="rh-apps-search-wrap" style={{ maxWidth: '440px' }}>
+        <div className="rh-apps-search-wrap">
           <Search size={15} className="rh-search-icon" />
           <input
             type="text"
@@ -105,81 +105,58 @@ export const EmployeesView = () => {
               {/* Card top banner accent */}
               <div className="rh-cec-top-accent"></div>
 
+              {/* Header: Avatar, Name, Designation, Country */}
               <div className="rh-cec-header">
                 <div className="rh-cec-avatar-wrap">
                   <img src={emp.avatar} alt={emp.name} className="rh-cec-avatar" />
                   <span className="rh-cec-dot" title="Active Corporate Traveler"></span>
                 </div>
                 <div className="rh-cec-info">
-                  <h3 className="rh-cec-name">{emp.name}</h3>
-                  <span className="rh-cec-designation">{emp.designation}</span>
-                  <div className="rh-cec-badges">
-                    <span className="rh-cec-dept-pill">{emp.department}</span>
+                  <div className="rh-cec-name-row">
+                    <h3 className="rh-cec-name">{emp.name}</h3>
                     <span className="rh-cec-country-pill">{emp.nationality}</span>
                   </div>
+                  <span className="rh-cec-designation">
+                    {emp.designation} <span className="rh-meta-bullet">•</span> <span className="rh-cec-dept-text">{emp.department}</span>
+                  </span>
                 </div>
               </div>
 
-              {/* High-Density Inline Key-Values */}
-              <div className="rh-cec-details-box">
-                <div className="rh-cec-row">
-                  <div
-                    className="rh-cec-col-half"
-                    onClick={(e) => handleCopy(e, emp.id, 'Employee ID')}
-                    title="Click to copy ID"
-                  >
-                    <span className="rh-cec-label">ID</span>
-                    <div className="rh-cec-val-interactive">
-                      <code className="rh-cec-code">{emp.id}</code>
-                      {copiedId === emp.id ? <CheckCheck size={11} color="#059669" /> : <Copy size={11} className="rh-cec-copy" />}
-                    </div>
-                  </div>
-
-                  <div
-                    className="rh-cec-col-half"
-                    onClick={(e) => handleCopy(e, emp.passportNo, 'Passport')}
-                    title="Click to copy Passport"
-                  >
-                    <span className="rh-cec-label">Passport</span>
-                    <div className="rh-cec-val-interactive">
-                      <span className="rh-cec-val font-mono">{emp.passportNo}</span>
-                      {copiedId === emp.passportNo ? <CheckCheck size={11} color="#059669" /> : <Copy size={11} className="rh-cec-copy" />}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="rh-cec-row single-line">
-                  <span className="rh-cec-label">Email</span>
-                  <span className="rh-cec-email truncate">{emp.email}</span>
-                </div>
-
-                <div className="rh-cec-row single-line flex-between">
-                  <span className="rh-cec-label">Cases</span>
-                  <div className="rh-cec-cases-tags">
-                    <span className="rh-cec-files-tag">{empApps.length} Files</span>
-                    {activeCount > 0 && (
-                      <span className="rh-cec-active-tag">
-                        <span className="rh-chip-dot"></span> {activeCount} Active
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </div>
-
-              {/* Compact Footer Action */}
-              <div className="rh-cec-footer">
-                <button
-                  type="button"
-                  className="rh-cec-action-btn"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    navigate(`/employees/${emp.id}`);
-                  }}
+              {/* Compact Inline Details Row */}
+              <div className="rh-cec-compact-meta-row">
+                <div
+                  className="rh-cec-meta-cell"
+                  onClick={(e) => handleCopy(e, emp.id, 'Employee ID')}
+                  title="Click to copy ID"
                 >
-                  <Eye size={13} />
-                  <span>View Details & History</span>
-                  <ArrowRight size={12} className="rh-cec-arrow" />
-                </button>
+                  <span className="rh-cec-mini-lbl">ID:</span>
+                  <code className="rh-cec-code">{emp.id}</code>
+                </div>
+                <span className="rh-meta-bullet">•</span>
+                <div
+                  className="rh-cec-meta-cell"
+                  onClick={(e) => handleCopy(e, emp.passportNo, 'Passport')}
+                  title="Click to copy Passport"
+                >
+                  <span className="rh-cec-mini-lbl">Passport:</span>
+                  <code className="rh-cec-code">{emp.passportNo}</code>
+                </div>
+                <span className="rh-meta-bullet">•</span>
+                <span className="rh-cec-files-tag">{empApps.length} Files</span>
+                {activeCount > 0 && (
+                  <span className="rh-cec-active-tag">
+                    <span className="rh-chip-dot"></span> {activeCount} Active
+                  </span>
+                )}
+              </div>
+
+              {/* Compact Footer: Email & History Arrow */}
+              <div className="rh-cec-compact-bottom-row">
+                <span className="rh-cec-email-compact">{emp.email}</span>
+                <span className="rh-cec-view-link">
+                  <span>History</span>
+                  <ArrowRight size={12} />
+                </span>
               </div>
             </div>
           );

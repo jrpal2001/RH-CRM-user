@@ -259,7 +259,7 @@ export const DashboardView = () => {
                 </div>
               </div>
               <div className="rh-rmc-footer">
-                <span className="rh-rmc-date">Submitted: {app.submissionDate}</span>
+                <span className="rh-rmc-date">Submitted: {app.submissionDate || app.bookingDate || app.steps?.[0]?.date || 'Recent'}</span>
                 <span className="rh-rmc-action">
                   <span>View Details</span>
                   <ArrowRight size={13} />
