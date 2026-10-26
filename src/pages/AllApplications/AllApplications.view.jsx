@@ -157,6 +157,12 @@ export const AllApplicationsView = () => {
                         <span>{app.submissionDate}</span>
                       </>
                     )}
+                    {app.currentStageTitle && (
+                      <>
+                        <span className="rh-meta-bullet">•</span>
+                        <span className="font-semibold text-primary">{app.currentStageTitle}</span>
+                      </>
+                    )}
                   </div>
                   <span className="rh-app-card-cta">
                     <span>View</span>

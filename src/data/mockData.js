@@ -106,12 +106,156 @@ export const allApplicationsData = [
     status: "approved", // "active" | "under_review" | "approved" | "pending"
     statusGroup: "completed", // "current" | "pending" | "completed"
     statusLabel: "Visa Granted & Ready to Download",
-    currentStep: 4,
+    currentStep: 7,
+    currentStageId: "PAYMENT",
+    currentStageTitle: "Stage 7: Payment",
     steps: [
-      { id: 1, title: "Application Submitted", date: "04 Oct 2026", desc: "Form & initial documents filed online", done: true },
-      { id: 2, title: "Document Verification", date: "06 Oct 2026", desc: "Verified by RH Global Compliance team", done: true },
-      { id: 3, title: "Embassy Biometrics & Review", date: "10 Oct 2026", desc: "Biometrics processed at VFS Global center", done: true },
-      { id: 4, title: "Visa Decision & Issuance", date: "13 Oct 2026", desc: "Department of Home Affairs approved Grant #610992", done: true },
+      {
+        id: 1,
+        stageKey: "DOCS_RECEIVED",
+        title: "Stage 1: Docs Received",
+        shortTitle: "Docs Received",
+        subtitle: "Document receipt & intake checklist",
+        date: "04 Oct 2026",
+        desc: "All initial documents received and verified against common intake checklist.",
+        done: true,
+        details: {
+          mode: "Courier",
+          receivedDate: "04 Oct 2026",
+          courierTracking: "BD-982341029",
+          remarks: "All original passport and employment documents received via BlueDart in good order.",
+          checklist: [
+            { id: "c1", label: "Passport / primary document (validity verified > 6 months)", status: "received", mandatory: true },
+            { id: "c2", label: "Photograph (35x45mm, white background, recent)", status: "received", mandatory: true },
+            { id: "c3", label: "Completed application form", status: "received", mandatory: true },
+            { id: "c4", label: "Covering letter stating purpose of visit", status: "received", mandatory: true },
+            { id: "c5", label: "Invitation / host letter (if applicable)", status: "na", mandatory: false },
+            { id: "c6", label: "Employment / company supporting documents", status: "received", mandatory: true },
+            { id: "c7", label: "Financial supporting documents (Bank statements & ITR)", status: "received", mandatory: true },
+            { id: "c8", label: "Travel itinerary / confirmed flight tickets", status: "received", mandatory: false },
+            { id: "c9", label: "Accommodation booking / hotel confirmation", status: "received", mandatory: false },
+            { id: "c10", label: "Travel & medical insurance policy", status: "received", mandatory: false },
+            { id: "c11", label: "Original documents where required", status: "received", mandatory: true },
+            { id: "c12", label: "Other supporting documents", status: "na", mandatory: false },
+            { id: "c13", label: "All required documents received confirmation", status: "received", mandatory: true }
+          ]
+        }
+      },
+      {
+        id: 2,
+        stageKey: "APPOINTMENT_BOOKING",
+        title: "Stage 2: Appointment Booking",
+        shortTitle: "Appointment Booking",
+        subtitle: "Appointment coordination & biometric slot",
+        date: "06 Oct 2026",
+        desc: "Biometrics and submission appointment coordinated at VFS Global.",
+        done: true,
+        details: {
+          location: "Bangalore",
+          handledBy: "RHG Staff",
+          appointmentDate: "08 Oct 2026",
+          appointmentTime: "10:30 AM",
+          center: "VFS Global Bangalore, Gopalan Innovation Mall",
+          remarks: "Appointment slot confirmed. Biometric confirmation letter sent to applicant."
+        }
+      },
+      {
+        id: 3,
+        stageKey: "DOCUMENT_VERIFICATION",
+        title: "Stage 3: Document Verification",
+        shortTitle: "Document Verification",
+        subtitle: "Readiness check & compliance audit",
+        date: "08 Oct 2026",
+        desc: "Case passed full internal compliance review; ready for embassy lodgement.",
+        done: true,
+        details: {
+          verificationStatus: "Ready for Submission",
+          verifier: "Senior Compliance Lead",
+          verifiedDate: "08 Oct 2026",
+          remarks: "Bank statements, employer NOC, and financial adequacy cleared with zero defects."
+        }
+      },
+      {
+        id: 4,
+        stageKey: "SUBMISSION",
+        title: "Stage 4: Submission",
+        shortTitle: "Submission",
+        subtitle: "VFS / Embassy submission",
+        date: "09 Oct 2026",
+        desc: "Application successfully submitted to Australian Department of Home Affairs.",
+        done: true,
+        details: {
+          submissionStatus: "Submitted to VFS / Embassy",
+          vfsReferenceNo: "VFS-BLR-AU-992140",
+          collectionMode: "Direct Applicant",
+          submissionDate: "09 Oct 2026",
+          remarks: "Lodgement completed online via ImmiAccount. Biometrics matched."
+        }
+      },
+      {
+        id: 5,
+        stageKey: "IN_PROGRESS",
+        title: "Stage 5: In Progress",
+        shortTitle: "In Progress",
+        subtitle: "Post-submission follow-up & consulate processing",
+        date: "11 Oct 2026",
+        desc: "Department of Home Affairs active assessment completed.",
+        done: true,
+        details: {
+          inProgressStatus: "In Progress",
+          pendingRequests: [
+            {
+              date: "11 Oct 2026",
+              query: "Consulate requested updated travel itinerary confirmation",
+              status: "Cleared",
+              clearedDate: "11 Oct 2026"
+            }
+          ],
+          remarks: "Clarification submitted promptly and acknowledged by consular case officer."
+        }
+      },
+      {
+        id: 6,
+        stageKey: "COMPLETION",
+        title: "Stage 6: Completion",
+        shortTitle: "Completion",
+        subtitle: "Decision & passport/document dispatch",
+        date: "13 Oct 2026",
+        desc: "Visa granted by Australian Department of Home Affairs and dispatched.",
+        done: true,
+        details: {
+          finalStatus: "Approved",
+          visaGrantNumber: "AU-610992-2026",
+          validity: "12 Months Multiple Entry",
+          uploadedDocument: "Australian_Government_eVisa_Grant_Notice.pdf",
+          dispatch: {
+            dispatched: true,
+            modeOfDispatch: "Courier",
+            courierPartner: "BlueDart Express",
+            trackingNumber: "BD-88192039",
+            dispatchDate: "14 Oct 2026"
+          },
+          remarks: "Official Visa Grant letter issued and dispatched to applicant address."
+        }
+      },
+      {
+        id: 7,
+        stageKey: "PAYMENT",
+        title: "Stage 7: Payment",
+        shortTitle: "Payment",
+        subtitle: "Final visa settlement & tax invoice generation",
+        date: "14 Oct 2026",
+        desc: "All professional visa fees, government charges, and courier fees settled in full.",
+        done: true,
+        details: {
+          paymentStatus: "PAID IN FULL",
+          totalFee: 21000,
+          totalPaid: 21000,
+          pendingBalance: 0,
+          invoiceNumber: "INV-AU-99214",
+          remarks: "Final settlement completed. Official tax receipt and invoice issued."
+        }
+      }
     ],
     downloads: {
       application: {
@@ -199,35 +343,35 @@ export const allApplicationsData = [
         badge: "Payment Receipt",
       },
       document: {
-        name: "Confirmed_Flight_Ticket_And_Hotel_Vouchers.pdf",
+        name: "Boarding_Passes_Hotels_Vouchers_Package.pdf",
         type: "PDF",
-        size: "3.4 MB",
-        badge: "E-Tickets & Hotel Vouchers",
+        size: "2.4 MB",
+        badge: "Travel Vouchers",
       },
     },
-    notes: "Private executive airport transfer has been scheduled for Vienna International Airport (VIE).",
+    notes: "Your confirmed vouchers and airport transfer details have been dispatched. Emergency concierge line is active 24/7.",
     paymentDetails: {
       feeLabel: "TOTAL PACKAGE FEE",
-      totalFee: 118000,
-      totalPaid: 118000,
+      totalFee: 145000,
+      totalPaid: 145000,
       pendingBalance: 0,
       paymentStatus: "PAID IN FULL",
       transactions: [
         {
-          id: "PAY-1005",
-          type: "BOOKING ADVANCE",
-          mode: "Corporate Card",
-          amount: 50000,
+          id: "PAY-2001",
+          type: "ADVANCE DEPOSIT (50%)",
+          mode: "Corporate Netbanking",
+          amount: 72500,
           date: "2026-09-28",
-          reference: "TXN-661209"
+          reference: "TXN-882109"
         },
         {
-          id: "PAY-1006",
+          id: "PAY-2002",
           type: "FINAL SETTLEMENT",
-          mode: "Online Netbanking",
-          amount: 68000,
-          date: "2026-10-01",
-          reference: "TXN-661840"
+          mode: "Corporate Netbanking",
+          amount: 72500,
+          date: "2026-10-04",
+          reference: "TXN-882410"
         }
       ]
     }
@@ -248,11 +392,151 @@ export const allApplicationsData = [
     status: "under_review",
     statusGroup: "current",
     statusLabel: "Consulate Review in Progress",
-    currentStep: 2,
+    currentStep: 5,
+    currentStageId: "IN_PROGRESS",
+    currentStageTitle: "Stage 5: In Progress",
     steps: [
-      { id: 1, title: "Application Lodged", date: "12 Oct 2026", desc: "Dossier uploaded and pre-screened", done: true },
-      { id: 2, title: "Embassy File Processing", date: "14 Oct 2026", desc: "Under internal review by French Consulate", done: true },
-      { id: 3, title: "Decision & Passport Dispatch", date: "Pending", desc: "Estimated by 26 Oct 2026", done: false },
+      {
+        id: 1,
+        stageKey: "DOCS_RECEIVED",
+        title: "Stage 1: Docs Received",
+        shortTitle: "Docs Received",
+        subtitle: "Document receipt & intake checklist",
+        date: "12 Oct 2026",
+        desc: "All initial documents picked up from applicant residence.",
+        done: true,
+        details: {
+          mode: "Pickup",
+          receivedDate: "12 Oct 2026",
+          pickupAgent: "RHG Courier Representative",
+          remarks: "Physical passport, photo specifications, and employer letter collected.",
+          checklist: [
+            { id: "c1", label: "Passport / primary document (validity verified > 6 months)", status: "received", mandatory: true },
+            { id: "c2", label: "Photograph (35x45mm, white background, recent)", status: "received", mandatory: true },
+            { id: "c3", label: "Completed application form", status: "received", mandatory: true },
+            { id: "c4", label: "Covering letter stating purpose of visit", status: "received", mandatory: true },
+            { id: "c5", label: "Invitation / host letter (if applicable)", status: "received", mandatory: false },
+            { id: "c6", label: "Employment / company supporting documents", status: "received", mandatory: true },
+            { id: "c7", label: "Financial supporting documents (Bank statements & ITR)", status: "received", mandatory: true },
+            { id: "c8", label: "Travel itinerary / confirmed flight tickets", status: "received", mandatory: false },
+            { id: "c9", label: "Accommodation booking / hotel confirmation", status: "received", mandatory: false },
+            { id: "c10", label: "Travel & medical insurance policy (€30k coverage)", status: "received", mandatory: false },
+            { id: "c11", label: "Original documents where required", status: "received", mandatory: true },
+            { id: "c12", label: "Other supporting documents", status: "na", mandatory: false },
+            { id: "c13", label: "All required documents received confirmation", status: "received", mandatory: true }
+          ]
+        }
+      },
+      {
+        id: 2,
+        stageKey: "APPOINTMENT_BOOKING",
+        title: "Stage 2: Appointment Booking",
+        shortTitle: "Appointment Booking",
+        subtitle: "Appointment coordination & biometric slot",
+        date: "13 Oct 2026",
+        desc: "VFS France appointment scheduled and attended by applicant.",
+        done: true,
+        details: {
+          location: "Delhi",
+          handledBy: "RHG Staff",
+          appointmentDate: "15 Oct 2026",
+          appointmentTime: "09:00 AM",
+          center: "VFS Global France Center, Shivaji Stadium Metro Station, Delhi",
+          remarks: "Appointment coordinated with RHG concierge staff present on-site."
+        }
+      },
+      {
+        id: 3,
+        stageKey: "DOCUMENT_VERIFICATION",
+        title: "Stage 3: Document Verification",
+        shortTitle: "Document Verification",
+        subtitle: "Readiness check & compliance audit",
+        date: "15 Oct 2026",
+        desc: "Schengen travel insurance, hotel bookings, and NOC validated.",
+        done: true,
+        details: {
+          verificationStatus: "Ready for Submission",
+          verifier: "Senior Schengen Specialist",
+          verifiedDate: "15 Oct 2026",
+          remarks: "Financial requirements met. Cover letter formatted according to French consulate rules."
+        }
+      },
+      {
+        id: 4,
+        stageKey: "SUBMISSION",
+        title: "Stage 4: Submission",
+        shortTitle: "Submission",
+        subtitle: "VFS / Embassy submission",
+        date: "16 Oct 2026",
+        desc: "Application dossier lodged at VFS Global France.",
+        done: true,
+        details: {
+          submissionStatus: "Submitted to VFS / Embassy",
+          vfsReferenceNo: "VFS-DEL-FR-881902",
+          collectionMode: "Counter Collection",
+          submissionDate: "16 Oct 2026",
+          remarks: "Biometrics recorded and original passport submitted to Embassy of France."
+        }
+      },
+      {
+        id: 5,
+        stageKey: "IN_PROGRESS",
+        title: "Stage 5: In Progress",
+        shortTitle: "In Progress",
+        subtitle: "Post-submission follow-up & consulate processing",
+        date: "Active (Since 16 Oct)",
+        desc: "Application under formal adjudication by Consulate General of France.",
+        done: false,
+        details: {
+          inProgressStatus: "In Progress",
+          pendingRequests: [
+            {
+              date: "18 Oct 2026",
+              query: "Consulate requested employer tax return verification letter",
+              status: "In Process",
+              actionRequired: "Uploaded by RHG staff on 19 Oct; awaiting consulate clearance"
+            }
+          ],
+          remarks: "Consulate follow-up initiated. Tracking status shows in-progress at Embassy."
+        }
+      },
+      {
+        id: 6,
+        stageKey: "COMPLETION",
+        title: "Stage 6: Completion",
+        shortTitle: "Completion",
+        subtitle: "Decision & passport/document dispatch",
+        date: "Pending",
+        desc: "Estimated visa issuance and passport dispatch by 26 Oct 2026.",
+        done: false,
+        details: {
+          finalStatus: "Pending Consular Outcome",
+          dispatch: {
+            dispatched: false,
+            modeOfDispatch: "Courier",
+            trackingNumber: "Awaiting generation upon dispatch"
+          },
+          remarks: "Ready for dispatch immediately once consulate releases passport."
+        }
+      },
+      {
+        id: 7,
+        stageKey: "PAYMENT",
+        title: "Stage 7: Payment",
+        shortTitle: "Payment",
+        subtitle: "Final visa settlement & tax invoice generation",
+        date: "Pending",
+        desc: "Advance deposit received; final balance due upon successful visa grant.",
+        done: false,
+        details: {
+          paymentStatus: "PARTIAL",
+          totalFee: 24000,
+          totalPaid: 12000,
+          pendingBalance: 12000,
+          invoiceNumber: "INV-FR-88190",
+          remarks: "Advance retainer settled. Remaining balance payable upon visa grant."
+        }
+      }
     ],
     downloads: {
       application: {
@@ -274,21 +558,21 @@ export const allApplicationsData = [
         badge: "Consulate Receipt",
       },
     },
-    notes: "Consulate processing in progress. Appointment completed at VFS Dubai center.",
+    notes: "Your application is currently being processed by the French Consulate. Standard turnaround is 10–14 working days.",
     paymentDetails: {
       feeLabel: "TOTAL VISA FEE",
-      totalFee: 18500,
-      totalPaid: 10000,
-      pendingBalance: 8500,
+      totalFee: 24000,
+      totalPaid: 12000,
+      pendingBalance: 12000,
       paymentStatus: "PARTIALLY PAID",
       transactions: [
         {
-          id: "PAY-1003",
-          type: "ADVANCE DEPOSIT",
+          id: "PAY-3001",
+          type: "ADVANCE RETAINER",
           mode: "Online UPI / Netbanking",
-          amount: 10000,
+          amount: 12000,
           date: "2026-10-12",
-          reference: "TXN-882104"
+          reference: "TXN-771092"
         }
       ]
     }
@@ -310,10 +594,139 @@ export const allApplicationsData = [
     statusGroup: "pending",
     statusLabel: "Biometrics Appointment Scheduled",
     currentStep: 2,
+    currentStageId: "APPOINTMENT_BOOKING",
+    currentStageTitle: "Stage 2: Appointment Booking",
     steps: [
-      { id: 1, title: "UKVI Online Submission", date: "13 Oct 2026", desc: "Visa application fee paid & submitted", done: true },
-      { id: 2, title: "Biometrics Appointment", date: "18 Oct 2026", desc: "Scheduled at VFS WAFI Mall, Dubai", done: false },
-      { id: 3, title: "UK Visas & Immigration Decision", date: "Pending", desc: "Estimated by 27 Oct 2026", done: false },
+      {
+        id: 1,
+        stageKey: "DOCS_RECEIVED",
+        title: "Stage 1: Docs Received",
+        shortTitle: "Docs Received",
+        subtitle: "Document receipt & intake checklist",
+        date: "13 Oct 2026",
+        desc: "Digital intake forms and bank statements received via email portal.",
+        done: true,
+        details: {
+          mode: "Email",
+          receivedDate: "13 Oct 2026",
+          remarks: "Digital files validated. Physical passport to be submitted during VFS appointment.",
+          checklist: [
+            { id: "c1", label: "Passport / primary document (validity verified > 6 months)", status: "received", mandatory: true },
+            { id: "c2", label: "Photograph (UKVI digital upload format)", status: "received", mandatory: true },
+            { id: "c3", label: "Completed UKVI online application form", status: "received", mandatory: true },
+            { id: "c4", label: "Covering letter & UK sponsor business letter", status: "received", mandatory: true },
+            { id: "c5", label: "Invitation / host letter", status: "received", mandatory: false },
+            { id: "c6", label: "Employment / company supporting documents", status: "received", mandatory: true },
+            { id: "c7", label: "Financial supporting documents & bank statements", status: "received", mandatory: true },
+            { id: "c8", label: "Travel itinerary / flight plan", status: "received", mandatory: false },
+            { id: "c9", label: "Accommodation booking / hotel reservation", status: "received", mandatory: false },
+            { id: "c10", label: "Travel & medical insurance", status: "na", mandatory: false },
+            { id: "c11", label: "Original documents where required", status: "received", mandatory: true },
+            { id: "c12", label: "Other supporting documents", status: "na", mandatory: false },
+            { id: "c13", label: "All required documents received confirmation", status: "received", mandatory: true }
+          ]
+        }
+      },
+      {
+        id: 2,
+        stageKey: "APPOINTMENT_BOOKING",
+        title: "Stage 2: Appointment Booking",
+        shortTitle: "Appointment Booking",
+        subtitle: "Appointment coordination & biometric slot",
+        date: "Scheduled for 18 Oct 2026",
+        desc: "Biometrics appointment confirmed at VFS Global Mumbai.",
+        done: false,
+        details: {
+          location: "Mumbai",
+          handledBy: "RHG Staff",
+          appointmentDate: "18 Oct 2026",
+          appointmentTime: "11:15 AM",
+          center: "VFS Global Center, Trade Centre, BKC, Bandra East, Mumbai",
+          remarks: "Appointment confirmed. 2-day calendar reminder generated for assigned case worker."
+        }
+      },
+      {
+        id: 3,
+        stageKey: "DOCUMENT_VERIFICATION",
+        title: "Stage 3: Document Verification",
+        shortTitle: "Document Verification",
+        subtitle: "Readiness check & compliance audit",
+        date: "Pending",
+        desc: "Final verification to be confirmed post-appointment.",
+        done: false,
+        details: {
+          verificationStatus: "Pending",
+          verifier: "Awaiting Appointment Completion",
+          remarks: "Checklist completed, awaiting biometric slip attachment."
+        }
+      },
+      {
+        id: 4,
+        stageKey: "SUBMISSION",
+        title: "Stage 4: Submission",
+        shortTitle: "Submission",
+        subtitle: "VFS / Embassy submission",
+        date: "Pending",
+        desc: "Will be lodged following Mumbai biometrics session.",
+        done: false,
+        details: {
+          submissionStatus: "Pending Submission",
+          vfsReferenceNo: "Pending Lodgement",
+          collectionMode: "Direct Applicant",
+          remarks: "Direct applicant courier return selected."
+        }
+      },
+      {
+        id: 5,
+        stageKey: "IN_PROGRESS",
+        title: "Stage 5: In Progress",
+        shortTitle: "In Progress",
+        subtitle: "Post-submission follow-up & consulate processing",
+        date: "Pending",
+        desc: "UKVI priority processing queue will be monitored upon submission.",
+        done: false,
+        details: {
+          inProgressStatus: "Pending",
+          pendingRequests: [],
+          remarks: "UKVI standard 15-day service."
+        }
+      },
+      {
+        id: 6,
+        stageKey: "COMPLETION",
+        title: "Stage 6: Completion",
+        shortTitle: "Completion",
+        subtitle: "Decision & passport/document dispatch",
+        date: "Pending",
+        desc: "Estimated decision & dispatch by 27 Oct 2026.",
+        done: false,
+        details: {
+          finalStatus: "Pending",
+          dispatch: {
+            dispatched: false,
+            modeOfDispatch: "Courier"
+          },
+          remarks: "Direct DHL courier to client address."
+        }
+      },
+      {
+        id: 7,
+        stageKey: "PAYMENT",
+        title: "Stage 7: Payment",
+        shortTitle: "Payment",
+        subtitle: "Final visa settlement & tax invoice generation",
+        date: "Pending",
+        desc: "Retainer fee paid; balance due upon final document dispatch.",
+        done: false,
+        details: {
+          paymentStatus: "PARTIAL",
+          totalFee: 28000,
+          totalPaid: 15000,
+          pendingBalance: 13000,
+          invoiceNumber: "INV-UK-7731",
+          remarks: "Advance intake invoice issued."
+        }
+      }
     ],
     downloads: {
       application: {
@@ -335,21 +748,21 @@ export const allApplicationsData = [
         badge: "Appointment Confirmation",
       },
     },
-    notes: "Please arrive 15 minutes before the appointment time with the printed appointment letter.",
+    notes: "Please arrive 15 minutes prior to your appointment at VFS BKC Mumbai with original passport and appointment letter.",
     paymentDetails: {
       feeLabel: "TOTAL VISA FEE",
-      totalFee: 24000,
-      totalPaid: 12000,
-      pendingBalance: 12000,
+      totalFee: 28000,
+      totalPaid: 15000,
+      pendingBalance: 13000,
       paymentStatus: "PARTIALLY PAID",
       transactions: [
         {
-          id: "PAY-1004",
-          type: "INITIAL RETAINER",
-          mode: "Corporate Bank Transfer",
-          amount: 12000,
+          id: "PAY-4001",
+          type: "INTAKE RETAINER",
+          mode: "Credit Card / Gateway",
+          amount: 15000,
           date: "2026-10-13",
-          reference: "TXN-771923"
+          reference: "TXN-661099"
         }
       ]
     }
@@ -361,59 +774,59 @@ export const allApplicationsData = [
     country: "Japan",
     countryCode: "JP",
     flag: "🇯🇵",
-    packageName: "Kyoto Autumn Corporate Executive Tour",
-    applicantName: "Sophia Martinez",
-    employeeId: "EMP-103",
-    passportNumber: "E77491029",
-    duration: "8 Days / 7 Nights",
-    travelDates: "10 Nov 2026 – 17 Nov 2026",
-    submissionDate: "09 Oct 2026",
-    guestCount: 1,
-    hotel: "The Ritz-Carlton Kyoto",
+    packageName: "Golden Route: Tokyo, Kyoto & Osaka Autumn Discovery",
+    applicantName: "Rajesh Kothari",
+    employeeId: "EMP-104",
+    passportNumber: "K44102981",
+    duration: "9 Days / 8 Nights",
+    travelDates: "14 Nov 2026 – 22 Nov 2026",
+    submissionDate: "06 Oct 2026",
+    guestCount: 4,
+    hotel: "Keio Plaza Hotel Tokyo & Kyoto Century Hotel",
     status: "active",
     statusGroup: "current",
-    statusLabel: "Flight Confirmed & Hotel Processing",
+    statusLabel: "Shinkansen & Hotel Confirmations Locked",
     currentStep: 2,
     steps: [
-      { id: 1, title: "Itinerary Confirmed", date: "09 Oct 2026", desc: "Corporate flight & hotel package locked in", done: true },
-      { id: 2, title: "Japan eVisa & Rail Pass", date: "14 Oct 2026", desc: "eVisa processing with Japanese Ministry", done: true },
-      { id: 3, title: "Final Vouchers Issuance", date: "Pending", desc: "Expected 25 Oct 2026", done: false },
+      { id: 1, title: "Booking Received", date: "06 Oct 2026", desc: "Family custom itinerary locked with local guide", done: true },
+      { id: 2, title: "JR Rail Pass & Hotels Secured", date: "09 Oct 2026", desc: "Bullet train & 5-star hotels confirmed", done: true },
+      { id: 3, title: "Travel Vouchers Issued", date: "Pending", desc: "Estimated delivery by 28 Oct 2026", done: false },
     ],
     downloads: {
       application: {
-        name: "Japan_Corporate_Tour_Booking_Confirmation.pdf",
+        name: "Japan_Tour_Booking_Confirmation.pdf",
         type: "PDF",
         size: "1.3 MB",
-        badge: "Tour Agreement",
+        badge: "Booking Confirmation",
       },
       invoice: {
-        name: "RHGlobal_Tour_Invoice_JP-5590.pdf",
+        name: "Tax_Invoice_Japan_Discovery_INV-8820.pdf",
         type: "PDF",
-        size: "490 KB",
-        badge: "Invoice",
+        size: "480 KB",
+        badge: "Tax Invoice",
       },
       document: {
-        name: "Japan_Rail_Pass_Exchange_Order_Voucher.pdf",
+        name: "Shinkansen_Bullet_Train_Vouchers_Notice.pdf",
         type: "PDF",
-        size: "1.5 MB",
-        badge: "JR Rail Pass Voucher",
+        size: "1.1 MB",
+        badge: "Rail Pass Notice",
       },
     },
-    notes: "Japan Rail 7-day green car exchange voucher ready. eVisa processing expected within 4 working days.",
+    notes: "Your bullet train passes and Kyoto tea ceremony reservations are confirmed. Final vouchers will be generated next week.",
     paymentDetails: {
       feeLabel: "TOTAL PACKAGE FEE",
-      totalFee: 145000,
-      totalPaid: 95000,
-      pendingBalance: 50000,
+      totalFee: 260000,
+      totalPaid: 150000,
+      pendingBalance: 110000,
       paymentStatus: "PARTIALLY PAID",
       transactions: [
         {
-          id: "PAY-1007",
-          type: "INITIAL BOOKING",
-          mode: "Credit Card / Gateway",
-          amount: 95000,
-          date: "2026-10-09",
-          reference: "TXN-551092"
+          id: "PAY-5001",
+          type: "ADVANCE BOOKING (60%)",
+          mode: "Corporate Netbanking",
+          amount: 150000,
+          date: "2026-10-06",
+          reference: "TXN-991204"
         }
       ]
     }
@@ -432,13 +845,144 @@ export const allApplicationsData = [
     submissionDate: "10 Oct 2026",
     estimatedCompletion: "05 Nov 2026",
     status: "pending",
-    statusGroup: "pending",
-    statusLabel: "DS-160 Filed • Consular Interview Slot Locked",
-    currentStep: 2,
+    statusGroup: "current",
+    statusLabel: "DS-160 Lodged • Interview Scheduled",
+    currentStep: 4,
+    currentStageId: "SUBMISSION",
+    currentStageTitle: "Stage 4: Submission",
     steps: [
-      { id: 1, title: "DS-160 Form Filed", date: "10 Oct 2026", desc: "Full CEAC consular form submitted", done: true },
-      { id: 2, title: "MRV Fee & Interview Scheduled", date: "14 Oct 2026", desc: "Slot secured at US Consulate Dubai", done: true },
-      { id: 3, title: "Visa Interview & Stamping", date: "03 Nov 2026", desc: "Personal interview at Consulate", done: false },
+      {
+        id: 1,
+        stageKey: "DOCS_RECEIVED",
+        title: "Stage 1: Docs Received",
+        shortTitle: "Docs Received",
+        subtitle: "Document receipt & intake checklist",
+        date: "10 Oct 2026",
+        desc: "Employment proof, previous US travel history, and tax returns received via courier.",
+        done: true,
+        details: {
+          mode: "Courier",
+          receivedDate: "10 Oct 2026",
+          remarks: "All intake documents reviewed and verified.",
+          checklist: [
+            { id: "c1", label: "Passport / primary document (validity verified > 6 months)", status: "received", mandatory: true },
+            { id: "c2", label: "Photograph (2x2 inch, US visa specification)", status: "received", mandatory: true },
+            { id: "c3", label: "DS-160 online application form draft", status: "received", mandatory: true },
+            { id: "c4", label: "Covering letter & business travel explanation", status: "received", mandatory: true },
+            { id: "c5", label: "Invitation / US partner business letter", status: "received", mandatory: false },
+            { id: "c6", label: "Employment / company supporting documents", status: "received", mandatory: true },
+            { id: "c7", label: "Financial supporting documents (3 years ITR & bank)", status: "received", mandatory: true },
+            { id: "c8", label: "Travel itinerary / US client meeting schedule", status: "received", mandatory: false },
+            { id: "c9", label: "Accommodation booking / hotel details", status: "received", mandatory: false },
+            { id: "c10", label: "Travel & medical insurance", status: "na", mandatory: false },
+            { id: "c11", label: "Original documents where required", status: "received", mandatory: true },
+            { id: "c12", label: "Other supporting documents", status: "na", mandatory: false },
+            { id: "c13", label: "All required documents received confirmation", status: "received", mandatory: true }
+          ]
+        }
+      },
+      {
+        id: 2,
+        stageKey: "APPOINTMENT_BOOKING",
+        title: "Stage 2: Appointment Booking",
+        shortTitle: "Appointment Booking",
+        subtitle: "Appointment coordination & biometric slot",
+        date: "12 Oct 2026",
+        desc: "OFC Biometrics & Consular Interview slots secured.",
+        done: true,
+        details: {
+          location: "Chennai",
+          handledBy: "RHG Staff",
+          appointmentDate: "03 Nov 2026",
+          appointmentTime: "08:30 AM",
+          center: "US Consulate General Chennai, Gemini Circle",
+          remarks: "OFC biometric scheduled for 02 Nov; Consular Interview scheduled for 03 Nov."
+        }
+      },
+      {
+        id: 3,
+        stageKey: "DOCUMENT_VERIFICATION",
+        title: "Stage 3: Document Verification",
+        shortTitle: "Document Verification",
+        subtitle: "Readiness check & compliance audit",
+        date: "14 Oct 2026",
+        desc: "DS-160 confirmation and mock interview preparation dossier completed.",
+        done: true,
+        details: {
+          verificationStatus: "Ready for Submission",
+          verifier: "US Consular Compliance Specialist",
+          verifiedDate: "14 Oct 2026",
+          remarks: "Dossier organized with color-coded tabs for consular presentation."
+        }
+      },
+      {
+        id: 4,
+        stageKey: "SUBMISSION",
+        title: "Stage 4: Submission",
+        shortTitle: "Submission",
+        subtitle: "VFS / Embassy submission",
+        date: "Active Lodgement (14 Oct)",
+        desc: "DS-160 submitted to CEAC portal; MRV fee receipt linked.",
+        done: false,
+        details: {
+          submissionStatus: "Submitted to VFS / Embassy",
+          vfsReferenceNo: "CEAC-AA00998124",
+          collectionMode: "Counter Collection",
+          submissionDate: "14 Oct 2026",
+          remarks: "Barcoded confirmation page lodged. Awaiting personal appearance for interview."
+        }
+      },
+      {
+        id: 5,
+        stageKey: "IN_PROGRESS",
+        title: "Stage 5: In Progress",
+        shortTitle: "In Progress",
+        subtitle: "Post-submission follow-up & consulate processing",
+        date: "Pending",
+        desc: "Will activate following consular interview on 03 Nov 2026.",
+        done: false,
+        details: {
+          inProgressStatus: "Pending",
+          pendingRequests: [],
+          remarks: "Interview coaching session scheduled with applicant."
+        }
+      },
+      {
+        id: 6,
+        stageKey: "COMPLETION",
+        title: "Stage 6: Completion",
+        shortTitle: "Completion",
+        subtitle: "Decision & passport/document dispatch",
+        date: "Pending",
+        desc: "Estimated visa stamping & VAC passport collection by 05 Nov 2026.",
+        done: false,
+        details: {
+          finalStatus: "Pending",
+          dispatch: {
+            dispatched: false,
+            modeOfDispatch: "Hand Delivery"
+          },
+          remarks: "Passport to be collected from VAC Chennai counter."
+        }
+      },
+      {
+        id: 7,
+        stageKey: "PAYMENT",
+        title: "Stage 7: Payment",
+        shortTitle: "Payment",
+        subtitle: "Final visa settlement & tax invoice generation",
+        date: "Pending",
+        desc: "MRV fee and advance fee paid; final balance due after interview.",
+        done: false,
+        details: {
+          paymentStatus: "PARTIAL",
+          totalFee: 32500,
+          totalPaid: 16500,
+          pendingBalance: 16000,
+          invoiceNumber: "INV-US-6644",
+          remarks: "Consular visa filing fee paid; remaining consultation fee due."
+        }
+      }
     ],
     downloads: {
       application: {
@@ -460,17 +1004,17 @@ export const allApplicationsData = [
         badge: "Interview Appointment",
       },
     },
-    notes: "Consular interview preparation session scheduled with RH Visa advisor on 01 Nov 2026.",
+    notes: "Your DS-160 form is lodged and MRV receipt is verified. Interview appointment is confirmed for Nov 03, 2026.",
     paymentDetails: {
       feeLabel: "TOTAL VISA FEE",
-      totalFee: 16500,
+      totalFee: 32500,
       totalPaid: 16500,
-      pendingBalance: 0,
-      paymentStatus: "PAID IN FULL",
+      pendingBalance: 16000,
+      paymentStatus: "PARTIALLY PAID",
       transactions: [
         {
-          id: "PAY-1008",
-          type: "MRV CONSULAR FEE",
+          id: "PAY-6001",
+          type: "ADVANCE MRV & FILING FEE",
           mode: "Online UPI / Netbanking",
           amount: 16500,
           date: "2026-10-14",
